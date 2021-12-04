@@ -9,7 +9,9 @@
             "ssr": true, 
             // 컴포넌트네임으로 난수화되지 않은 클래스명 볼 수 있게 하는 옵션입니다. 배포시 false 설정할 예정이며 개발 중 자유로이 on/off 해주셔도 좋습니다.
             "displayName": true, 
-            "preprocess": false
+            "preprocess": false,
+            "fileName": true,
+            "pure": true
          }
        ]
     ]
