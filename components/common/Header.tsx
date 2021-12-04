@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { Responsive } from '.';
+import { Responsive } from './Responsive';
 import Link from 'next/link';
 
 const HeaderBlock = styled.header`

@@ -13,9 +13,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;
-  font-size: 16pt; /* 본문 16pt */
   color: #333333;
 }
 
