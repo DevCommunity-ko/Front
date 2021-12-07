@@ -4,6 +4,26 @@ import palette from '../../lib/styles/palette';
 import { Responsive } from './Responsive';
 import Link from 'next/link';
 
+export const Header = () => {
+  return (
+    <>
+      <HeaderBlock>
+        <Wrapper>
+          <Link href="/" passHref={true}>
+            <LogoTemp>로고</LogoTemp>
+          </Link>
+          <div className="right">
+            <Link href="/login">로그인</Link>
+            <div>&nbsp;&nbsp;|&nbsp;&nbsp; </div>
+            <Link href="/register">회원가입</Link>
+          </div>
+        </Wrapper>
+      </HeaderBlock>
+      <Spacer />
+    </>
+  );
+};
+
 const HeaderBlock = styled.header`
   position: fixed;
   width: 100%;
@@ -43,25 +63,5 @@ const LogoTemp = styled.div`
 const Spacer = styled.div`
   height: 5rem;
 `;
-
-export const Header = () => {
-  return (
-    <>
-      <HeaderBlock>
-        <Wrapper>
-          <Link href="/" passHref={true}>
-            <LogoTemp>로고</LogoTemp>
-          </Link>
-          <div className="right">
-            <Link href="/login">로그인</Link>
-            <div>&nbsp;&nbsp;|&nbsp;&nbsp; </div>
-            <Link href="/register">회원가입</Link>
-          </div>
-        </Wrapper>
-      </HeaderBlock>
-      <Spacer />
-    </>
-  );
-};
 
 export default Header;
