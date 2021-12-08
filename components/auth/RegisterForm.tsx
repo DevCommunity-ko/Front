@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
-import CheckboxItem from '../../components/auth/CheckboxItem';
-import { RoundButton } from '../../components/index';
+import CheckboxItem from './CheckboxItem';
+import { RoundButton } from '../index';
 import { registerFormItems } from '../../lib/texts/texts';
 
 export const RegisterForm = () => {

@@ -4,7 +4,7 @@ import palette from '../../lib/styles/palette';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Header, AuthTemplate } from '../../components/index';
-import RegisterForm from '../../containers/auth/RegisterForm';
+import RegisterForm from '../../components/auth/RegisterForm';
 
 const register = () => {
   return (
