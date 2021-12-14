@@ -35,7 +35,7 @@ export type UserData = {
 
 //초기 상태 타입
 export type UserState = {
-  userData: UserData;
+  userData: LoginPayload;
   error: any;
 };
 
@@ -49,31 +49,31 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     // Login
-    login(state: UserState, _action: PayloadAction<LoginPayload>) {},
+    loginRequest(state: UserState, _action: PayloadAction<LoginPayload>) {},
     loginSuccess(state: UserState, action: PayloadAction<UserData>) {},
     loginFailure(state: UserState, action: PayloadAction<{ error: any }>) {},
 
     // Logout
-    logout(state: UserState) {},
+    logoutRequest(state: UserState) {},
     logoutSuccess(state: UserState) {},
     logoutFailure(state: UserState, action: PayloadAction<{ error: any }>) {},
 
     // Register
-    register(state: UserState) {},
-    registerSuccess(state: UserState) {},
+    registerRequest(state: UserState, action: PayloadAction<RegisterPayload>) {},
+    registerSuccess(state: UserState, action: PayloadAction<UserData>) {},
     registerFailure(state: UserState, action: PayloadAction<{ error: any }>) {},
   },
 });
 
 const { reducer, actions } = userSlice;
 export const {
-  login,
+  loginRequest,
   loginSuccess,
   loginFailure,
-  logout,
+  logoutRequest,
   logoutSuccess,
   logoutFailure,
-  register,
+  registerRequest,
   registerSuccess,
   registerFailure,
 } = actions;

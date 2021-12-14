@@ -1,21 +1,20 @@
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from '.';
-import { login, LoginPayload, logout, register, RegisterPayload } from './auth';
+import { useDispatch } from "react-redux";
+import { loginRequest, LoginPayload, logoutRequest, registerRequest, RegisterPayload } from './auth';
 
 export default function useUser() {
     const dispatch = useDispatch();
 
     const login = useCallback((payload: LoginPayload) => {
-        dispatch(login(payload));
+        dispatch(loginRequest(payload));
     }, []);
 
     const logout = useCallback(() => {
-        dispatch(logout());
+        dispatch(logoutRequest());
     }, []);
 
     const register = useCallback((payload: RegisterPayload) => {
-        dispatch(register(payload));
+        dispatch(registerRequest(payload));
     }, []);
 
     return { login, logout, register }

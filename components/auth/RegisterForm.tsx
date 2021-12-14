@@ -4,6 +4,7 @@ import palette from '../../lib/styles/palette';
 import CheckboxItem from './CheckboxItem';
 import { RoundButton } from '../index';
 import { registerFormItems } from '../../lib/texts/texts';
+import useUser from '../../store/modules/authHook';
 
 export const RegisterForm = () => {
   const [isShowAll, setIsShowAll] = useState(false);
@@ -15,6 +16,8 @@ export const RegisterForm = () => {
     false,
     false,
   ]);
+
+  const { login } = useUser();
 
   const showAll = () => {
     setIsShowAll(true);
@@ -42,11 +45,13 @@ export const RegisterForm = () => {
   const onButtonClick = async (e) => {
     /* 자세한 동작은 화면 전환 및 동작 방식 협의 후 결정 */
     console.log('obc()');
+    e.preventDefault();
     if (!(checkedList[1] && checkedList[2])) {
       setIsShowAll(true);
       /* */
     } else {
       /* */
+      login({ userId: 'userId', socialToken: 'SocialTokenTest'});
     }
   };
 
