@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
-import CheckboxItem from './CheckboxItem';
-import { RoundButton } from '../index';
+import { CheckboxItem } from '.';
 import { registerFormItems } from '../../lib/texts/texts';
-import useUser from '../../store/modules/authHook';
+import { RoundButton } from '..';
 
-export const RegisterForm = () => {
+type AgreementProps = {
+  toPageNext: Function;
+  registerForm: object;
+  setRegisterForm: Function;
+};
+
+export const RegisterAgreement = ({ toPageNext, registerForm, setRegisterForm }: AgreementProps) => {
   const [isShowAll, setIsShowAll] = useState(false);
+  const [isErrorShown, setIsErrorShown] = useState(false);
   //allChecked, BasicTerm, PersonalInfo, SMS, Email
   const [checkedList, setCheckedLists] = useState([
     false,
@@ -16,8 +22,6 @@ export const RegisterForm = () => {
     false,
     false,
   ]);
-
-  const { login } = useUser();
 
   const showAll = () => {
     setIsShowAll(true);
@@ -34,7 +38,7 @@ export const RegisterForm = () => {
     ]);
   };
 
-  const handleChecked = async (index: number) => {
+  const handleChecked = (index: number) => {
     let arrayCopied = [...checkedList];
     arrayCopied[index] = !checkedList[index];
     arrayCopied[0] =
@@ -42,22 +46,22 @@ export const RegisterForm = () => {
     setCheckedLists(arrayCopied);
   };
 
-  const onButtonClick = async (e) => {
-    /* 자세한 동작은 화면 전환 및 동작 방식 협의 후 결정 */
-    console.log('obc()');
+  const onButtonClick = (e) => {
     e.preventDefault();
     if (!(checkedList[1] && checkedList[2])) {
-      setIsShowAll(true);
-      /* */
+      setIsErrorShown(true);
     } else {
-      /* */
-      login({ userId: 'userId', socialToken: 'SocialTokenTest'});
+      let agreementsAdded = {
+        ...registerForm,
+        agreements: [ checkedList[1], checkedList[2], checkedList[3], checkedList[4]]
+      }
+      setRegisterForm(agreementsAdded);
+      toPageNext();
     }
   };
 
   return (
-    <RegisterBlock isShowAll={isShowAll ? 1 : 0}>
-      <h2>가입하기</h2>
+    <>
       <SNSBlock>
         <p>SNS 계정으로 간편하게 시작하기</p>
         <SelectSNSItem>
@@ -67,7 +71,7 @@ export const RegisterForm = () => {
           <SNSItemTemplate />
         </SelectSNSItem>
       </SNSBlock>
-      <FormBlock id="AgreeForm">
+      <FormBlock id="AgreeForm" isShowAll={isShowAll ? 1 : 0}>
         {registerFormItems.map((item, index) => (
           <CheckboxItem
             key={index}
@@ -77,30 +81,20 @@ export const RegisterForm = () => {
             onCheck={() => handleChecked(index)}
             handleCheckAll={handleCheckAll}
             showAll={showAll}
+            isShowAll={isShowAll}
           />
         ))}
-        <Spacer isShowAll={isShowAll ? 1 : 0} />
+        <SpacerWithErrorMsg
+          isShowAll={isShowAll ? 1 : 0}
+          isErrorShown={isErrorShown ? 1 : 0}
+        >
+          필수 항목에 동의해주세요
+        </SpacerWithErrorMsg>
         <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
       </FormBlock>
-    </RegisterBlock>
+    </>
   );
 };
-
-const RegisterBlock = styled.div<{ isShowAll: number }>`
-  width: 30rem;
-
-  & > h2 {
-    font-size: 1.875em;
-    margin-bottom: 0 0 2.5rem 0;
-    padding: 0;
-  }
-
-  ${(props) =>
-    props.isShowAll &&
-    css`
-      margin-bottom: 8.625rem;
-    `}
-`;
 
 const SNSBlock = styled.div`
   text-align: center;
@@ -133,54 +127,40 @@ const SNSItemTemplate = styled.div`
   }
 `;
 
-const FormBlock = styled.form`
+const FormBlock = styled.form<{ isShowAll: number }>`
   & > p {
     margin: 0 0 1.25rem 0;
     font-weight: 400;
     word-break: keep-all;
     color: ${palette.Gray[2]};
   }
+
+  ${(props) =>
+    props.isShowAll &&
+    css`
+      margin-bottom: 8.625rem;
+    `}
 `;
 
-const BlockAgreeAll = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
+type spacerProps = {
+  isShowAll: number;
+  isErrorShown: number;
+};
 
-  & > label {
-    font-size: 1.25em;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-
-    & > input {
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-right: 0.375rem;
-    }
-  }
-
-  & > span {
-    text-decoration: underline;
-    color: ${palette.Gray[2]};
-    cursor: pointer;
-    font-weight: 700;
-
-    &:hover {
-      color: ${palette.Font[0]};
-    }
-  }
-`;
-
-const Spacer = styled.div<{ isShowAll: number }>`
+const SpacerWithErrorMsg = styled.div<spacerProps>`
   height: 2.5rem;
+  color: transparent;
+  text-align: center;
 
   ${(props) =>
     !props.isShowAll &&
     css`
       height: 3.75rem;
     `}
-`;
 
-export default RegisterForm;
+  ${(props) =>
+    props.isErrorShown &&
+    css`
+      color: ${palette.Alert[0]};
+    `}
+`;

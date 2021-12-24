@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
-export const RoundButton = ({ children, onClick }) => {
+export const RoundButton = ({ children, onClick, ...rest }) => {
     return (
         <RoundButtonBlock onClick={onClick}>
             {children}

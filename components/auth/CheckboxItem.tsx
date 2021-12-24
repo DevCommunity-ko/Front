@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 
-const CheckboxItem = (props) => {
+export const CheckboxItem = (props) => {
   const {
     visibility,
     formItem,
@@ -10,6 +10,7 @@ const CheckboxItem = (props) => {
     onCheck,
     showAll,
     handleCheckAll,
+    isShowAll
   } = props;
   return (
     <FormBlock visibility={visibility ? 1 : 0}>
@@ -25,7 +26,7 @@ const CheckboxItem = (props) => {
           />
           <div>{formItem.text}</div>
         </StyledLabel>
-        {formItem.showAll ? (
+        {(formItem.showAll && !isShowAll) ? (
           <ShowMore onClick={showAll}>자세히 보기</ShowMore>
         ) : (
           ''
@@ -168,5 +169,3 @@ const TermBlock = styled.div`
     border: 5.16px solid transparent;
   }
 `;
-
-export default CheckboxItem;

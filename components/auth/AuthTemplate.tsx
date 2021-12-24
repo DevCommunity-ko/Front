@@ -10,5 +10,3 @@ const AuthTemplateBlock = styled.main`
 export const AuthTemplate = ({ children }) => {
   return <AuthTemplateBlock>{children}</AuthTemplateBlock>;
 };
-
-export default AuthTemplate;
