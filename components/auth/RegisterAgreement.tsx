@@ -110,7 +110,7 @@ const SNSBlock = styled.div`
 
 const SelectSNSItem = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 3.75rem;
 `;
 
