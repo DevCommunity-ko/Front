@@ -1,16 +1,30 @@
 import Link from 'next/link';
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
 const LoginForm = () => {
+  const loginNaver = () => {
+    const client_id = 'KJPFs_Lf5t3L81JjcKWR';
+    const redirect_uri = 'http://localhost:3000/login/authSocial/naver';
+    const state_string = encodeURI('http://localhost:3000/login');
+    const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
+
+    window.open(
+      request_url,
+      'windowname',
+      'width=430, height=500, location=no, status=no, scrollbars=yes',
+    );
+  };
+
   return (
     <Wrapper>
       <h2>로그인하기</h2>
       <SNSBlock>
         <p>SNS 계정으로 간편하게 시작하기</p>
         <SelectSNSItem>
-          <SNSItemTemplate />
+          <SNSItemTemplateForTest onClick={loginNaver} />
           <SNSItemTemplate />
           <SNSItemTemplate />
           <SNSItemTemplate />
@@ -91,6 +105,19 @@ const SNSItemTemplate = styled.div`
 
   &:hover {
     background-color: ${palette.Gray[0]};
+  }
+`;
+
+const SNSItemTemplateForTest = styled.div`
+  background-color: green;
+  cursor: pointer;
+
+  width: 65px;
+  height: 65px;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: lightgreen;
   }
 `;
 
