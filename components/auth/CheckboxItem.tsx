@@ -28,7 +28,7 @@ export const CheckboxItem = ({
   showAll,
 }: CheckboxItemProps) => {
   return (
-    <FormBlock visibility={visibility}>
+    <FormBlock isVisible={visibility}>
       <TitleBlock>
         <StyledLabel>
           <StyledInput
@@ -128,13 +128,13 @@ const StyledInput = styled.input<InputType>`
     `}
 `;
 
-const FormBlock = styled.div<{ visibility: boolean }>`
+const FormBlock = styled.div<{ isVisible: boolean }>`
   height: max-content;
   visibility: visible;
   margin-bottom: 1.25rem;
 
   ${(props) =>
-    !props.visibility &&
+    !props.isVisible &&
     css`
       height: 0;
       visibility: hidden;
