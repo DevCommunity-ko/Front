@@ -2,31 +2,46 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 
-export const CheckboxItem = (props) => {
-  const {
-    visibility,
-    formItem,
-    checkedState,
-    onCheck,
-    showAll,
-    handleCheckAll,
-    isShowAll
-  } = props;
+type CheckboxItemProps = {
+  visibility: boolean;
+  formItem: {
+    isRequired: boolean;
+    text: string;
+    showAll?: boolean;
+    subHead?: string;
+    terms?: string;
+  };
+  checkedState: boolean;
+  onCheck: React.ChangeEventHandler<HTMLInputElement>;
+  handleCheckAll: React.ChangeEventHandler<HTMLInputElement>;
+  isShowAll: boolean;
+  showAll?: React.MouseEventHandler<HTMLSpanElement>;
+};
+
+export const CheckboxItem = ({
+  visibility,
+  formItem,
+  checkedState,
+  onCheck,
+  handleCheckAll,
+  isShowAll,
+  showAll,
+}: CheckboxItemProps) => {
   return (
-    <FormBlock visibility={visibility ? 1 : 0}>
+    <FormBlock visibility={visibility}>
       <TitleBlock>
         <StyledLabel>
           <StyledInput
             type="checkbox"
             required={formItem.isRequired}
-            isRequired={formItem.isRequired ? 1 : 0}
+            isRequired={formItem.isRequired}
             checked={checkedState}
             onChange={formItem.showAll ? handleCheckAll : onCheck}
-            isTitle={formItem.showAll ? 1 : 0}
+            isTitle={formItem.showAll ? true : false}
           />
           <div>{formItem.text}</div>
         </StyledLabel>
-        {(formItem.showAll && !isShowAll) ? (
+        {formItem.showAll && !isShowAll ? (
           <ShowMore onClick={showAll}>자세히 보기</ShowMore>
         ) : (
           ''
@@ -34,12 +49,10 @@ export const CheckboxItem = (props) => {
       </TitleBlock>
       {formItem.subHead ? <SubHeadBlock>{formItem.subHead}</SubHeadBlock> : ''}
       {/* 일단 스타일링 위해서 InnerHTML 넣어두긴 했는데, 보안상 이슈 있을 수 있으니까 JSON 형태로 데이터 파싱하거나, 스타일링을 하지 않는 방향으로 해야 할 듯 */}
-      {formItem.terms ? (
+      {formItem.terms && (
         <TermBlock
           dangerouslySetInnerHTML={{ __html: formItem.terms }}
         ></TermBlock>
-      ) : (
-        ''
       )}
     </FormBlock>
   );
@@ -84,8 +97,8 @@ const StyledLabel = styled.label`
 `;
 
 interface InputType {
-  isRequired: number;
-  isTitle: number;
+  isRequired: boolean;
+  isTitle: boolean;
 }
 
 const StyledInput = styled.input<InputType>`
@@ -115,7 +128,7 @@ const StyledInput = styled.input<InputType>`
     `}
 `;
 
-const FormBlock = styled.div<{ visibility: number }>`
+const FormBlock = styled.div<{ visibility: boolean }>`
   height: max-content;
   visibility: visible;
   margin-bottom: 1.25rem;

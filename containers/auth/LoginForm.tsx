@@ -8,7 +8,7 @@ const LoginForm = () => {
   const loginNaver = () => {
     const client_id = 'qco1iLqUirs5dpGJHK_L';
     const redirect_uri = encodeURI('http://localhost:3000/login/authSocial/naver');
-    const state_string = Math.random().toString(36).substr(2,11);;
+    const state_string = Math.random().toString(36).substr(2,11);
     const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
 
     window.open(

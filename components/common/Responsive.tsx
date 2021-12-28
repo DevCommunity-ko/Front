@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface ResponsiveProps {
+  children: React.ReactNode;
+}
+
 const ResponsiveBlock = styled.div`
   margin: 0 9.375%;
 
@@ -10,7 +14,7 @@ const ResponsiveBlock = styled.div`
   }
 `;
 
-export const Responsive = ({ children, ...rest }) => {
+export const Responsive = ({ children, ...rest }: ResponsiveProps) => {
   return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
 };
 

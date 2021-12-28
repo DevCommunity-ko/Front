@@ -35,8 +35,8 @@ export type UserData = {
 
 //초기 상태 타입
 export type UserState = {
-  userData: LoginPayload;
-  error: any;
+  userData: LoginPayload | null;
+  error: unknown;
 };
 
 const initialState: UserState = {

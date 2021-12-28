@@ -31,22 +31,6 @@ export const RegisterForm = () => {
   return (
     <RegisterBlock>
       <h2>{pageTitle[pageStats]}</h2>
-      {/* <h4>forDebug</h4>
-      <p>socialToken : {registerForm.userId}</p>
-      <p>
-        agreements : [ {registerForm.agreements[0].toString()},{' '}
-        {registerForm.agreements[1].toString()},{' '}
-        {registerForm.agreements[2].toString()},{' '}
-        {registerForm.agreements[3].toString()}]
-      </p>
-      <p>name : {registerForm.name}</p>
-      <p>sex : {registerForm.gender}</p>
-      <p>dob : {registerForm.dob}</p>
-      <p>email : {registerForm.email}</p>
-      <p>phone : {registerForm.phone}</p>
-      <p>workfield : {registerForm.workfield}</p>
-      <p>workSpecified : {registerForm.workSpecified}</p>
-      <p>careerLength : {registerForm.careerLength}</p> */}
       {pageStats === 0 ? (
         <RegisterAgreement
           toPageNext={toPageNext}

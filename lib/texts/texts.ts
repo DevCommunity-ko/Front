@@ -39,27 +39,31 @@ export const registerFormItems = [
 export const RegisterFormDetailItems = [
   {
     type: 'text',
-    title: '이름',
+    label: '이름',
     placeholder: '실명(국문)으로 입력해주세요.',
     errorMsg: '실명을 정확히 입력해 주세요.',
     required: true,
   },
   {
     type: 'text',
-    title: '생년월일',
+    label: '생년월일',
     placeholder: 'YYYY-MM-DD',
-    buttonRound: ['남자', '여자', '선택 없음'],
+    buttonList: [
+      { label: '남자', value: 'male' },
+      { label: '여자', value: 'female' },
+      { label: '선택 없음', value: 'else' },
+    ],
     required: true,
   },
   {
     type: 'email',
-    title: '이메일',
+    label: '이메일',
     errorMsg: '이메일을 정확히 입력해 주세요.',
     required: true,
   },
   {
     type: 'tel',
-    title: '휴대폰번호',
+    label: '휴대폰번호',
     placeholder: '정확한 휴대폰번호를 입력해주세요.',
     errorMsg: '정확한 휴대폰번호를 입력해주세요.',
     buttonText: '인증번호 받기',
@@ -67,7 +71,7 @@ export const RegisterFormDetailItems = [
   },
   {
     type: 'text',
-    title: '인증번호 입력',
+    label: '인증번호 입력',
     errorMsg: '인증번호가 일치하지 않습니다.',
   },
 ];
@@ -75,20 +79,20 @@ export const RegisterFormDetailItems = [
 export const RegisterFormFieldItems = [
   {
     type: 'text',
-    title: '직군',
+    label: '직군',
     placeholder: '선택해 주세요.',
-    dropdown: ['항목1','항목2','항목3']
+    dropdown: ['항목1', '항목2', '항목3'],
   },
   {
     type: 'text',
-    title: '직무',
+    label: '직무',
     placeholder: '선택해 주세요.',
-    dropdown: ['항목1','항목2','항목3']
+    dropdown: ['항목1', '항목2', '항목3'],
   },
   {
     type: 'text',
-    title: '경력',
+    label: '경력',
     placeholder: '선택해 주세요.',
-    dropdown: ['항목1','항목2','항목3']
-  }
-]
+    dropdown: ['항목1', '항목2', '항목3'],
+  },
+];

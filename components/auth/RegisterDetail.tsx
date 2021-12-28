@@ -34,7 +34,7 @@ export const RegisterDetail = ({
   ]);
 
   const verifyAllFields = () => {
-    return new Promise((resolve) => {
+    return new Promise<boolean>((resolve) => {
       //19xx 혹은 20xx년생의 생년월일 입력 형식
       const DateRegex =
         /^(19|20)\d{2}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])/;
@@ -91,27 +91,27 @@ export const RegisterDetail = ({
     });
   };
 
-  const checkAndSetFormData = (isErrorFound) => {
-    console.log('casfd() called and isErrorFound? ' + isErrorFound);
+  const checkAndSetFormData = (isErrorFound: boolean) => {
     if (
       // 필드에 에러가 하나도 없는 경우
-      !isErrorFound
+      isErrorFound
     ) {
-      let newRegisterForm = {
-        ...registerForm,
-        name: detailDataList[0],
-        dob: detailDataList[1],
-        email: detailDataList[2],
-        phone: detailDataList[3],
-        gender: detailDataList[5],
-      };
-      setRegisterForm(newRegisterForm);
-      //console.log(errorStatusList);
-      toPageNext();
+      return;
     }
+
+    let newRegisterForm = {
+      ...registerForm,
+      name: detailDataList[0],
+      dob: detailDataList[1],
+      email: detailDataList[2],
+      phone: detailDataList[3],
+      gender: detailDataList[5],
+    };
+    setRegisterForm(newRegisterForm);
+    toPageNext();
   };
 
-  const onButtonClick = async (e) => {
+  const onButtonClick = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
     await verifyAllFields().then((isErrorFound) => {
       checkAndSetFormData(isErrorFound);
@@ -130,9 +130,10 @@ export const RegisterDetail = ({
           <TextInputBox
             key={index}
             index={index}
-            title={item.title}
+            label={item.label}
             type={item.type}
-            buttonRound={item.buttonRound}
+            placeholder={item.placeholder}
+            buttonRound={item.buttonList}
             buttonText={item.buttonText}
             errorStatus={errorStatusList[index]}
             errorMsg={item.errorMsg}

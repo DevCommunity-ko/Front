@@ -11,50 +11,47 @@ type AgreementProps = {
   setRegisterForm: Function;
 };
 
-export const RegisterAgreement = ({ toPageNext, registerForm, setRegisterForm }: AgreementProps) => {
+export const RegisterAgreement = ({
+  toPageNext,
+  registerForm,
+  setRegisterForm,
+}: AgreementProps) => {
   const [isShowAll, setIsShowAll] = useState(false);
   const [isErrorShown, setIsErrorShown] = useState(false);
-  //allChecked, BasicTerm, PersonalInfo, SMS, Email
-  const [checkedList, setCheckedLists] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [isCheckedAll, setIsCheckedAll] = useState(false);
+  // BasicTerm, PersonalInfo, SMS, Email
+  const [checkedList, setCheckedLists] = useState([false, false, false, false]);
 
   const showAll = () => {
     setIsShowAll(true);
   };
 
   const handleCheckAll = () => {
-    const isCheckedAll = checkedList[0];
     setCheckedLists([
       !isCheckedAll,
       !isCheckedAll,
       !isCheckedAll,
       !isCheckedAll,
-      !isCheckedAll,
     ]);
+    setIsCheckedAll(!isCheckedAll);
   };
 
   const handleChecked = (index: number) => {
     let arrayCopied = [...checkedList];
     arrayCopied[index] = !checkedList[index];
-    arrayCopied[0] =
-      arrayCopied[1] && arrayCopied[2] && arrayCopied[3] && arrayCopied[4];
+    setIsCheckedAll(arrayCopied.every(Boolean));
     setCheckedLists(arrayCopied);
   };
 
-  const onButtonClick = (e) => {
+  const onButtonClick = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    if (!(checkedList[1] && checkedList[2])) {
+    if (!(checkedList[0] && checkedList[1])) {
       setIsErrorShown(true);
     } else {
       let agreementsAdded = {
         ...registerForm,
-        agreements: [ checkedList[1], checkedList[2], checkedList[3], checkedList[4]]
-      }
+        agreements: checkedList,
+      };
       setRegisterForm(agreementsAdded);
       toPageNext();
     }
@@ -71,22 +68,22 @@ export const RegisterAgreement = ({ toPageNext, registerForm, setRegisterForm }:
           <SNSItemTemplate />
         </SelectSNSItem>
       </SNSBlock>
-      <FormBlock id="AgreeForm" isShowAll={isShowAll ? 1 : 0}>
+      <FormBlock id="AgreeForm" isShowAll={isShowAll}>
         {registerFormItems.map((item, index) => (
           <CheckboxItem
             key={index}
-            visibility={index ? (isShowAll ? 1 : 0) : 1}
+            visibility={index ? isShowAll : true}
             formItem={item}
-            checkedState={checkedList[index]}
-            onCheck={() => handleChecked(index)}
+            checkedState={index == 0 ? isCheckedAll : checkedList[index - 1]}
+            onCheck={() => handleChecked(index - 1)}
             handleCheckAll={handleCheckAll}
             showAll={showAll}
             isShowAll={isShowAll}
           />
         ))}
         <SpacerWithErrorMsg
-          isShowAll={isShowAll ? 1 : 0}
-          isErrorShown={isErrorShown ? 1 : 0}
+          isShowAll={isShowAll}
+          isErrorShown={isErrorShown}
         >
           필수 항목에 동의해주세요
         </SpacerWithErrorMsg>
@@ -127,7 +124,7 @@ const SNSItemTemplate = styled.div`
   }
 `;
 
-const FormBlock = styled.form<{ isShowAll: number }>`
+const FormBlock = styled.form<{ isShowAll: boolean }>`
   & > p {
     margin: 0 0 1.25rem 0;
     font-weight: 400;
@@ -143,8 +140,8 @@ const FormBlock = styled.form<{ isShowAll: number }>`
 `;
 
 type spacerProps = {
-  isShowAll: number;
-  isErrorShown: number;
+  isShowAll: boolean;
+  isErrorShown: boolean;
 };
 
 const SpacerWithErrorMsg = styled.div<spacerProps>`

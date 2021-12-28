@@ -17,7 +17,7 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
     '', // careerLength
   ]);
 
-  const onClick = (e) => {
+  const onClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
     let newRegisterForm = {
       ...registerForm,
@@ -38,7 +38,7 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
       {RegisterFormFieldItems.map((item, index) => (
         <TextInputBox
           key={index}
-          title={item.title}
+          label={item.label}
           type={item.type}
           index={index}
           placeholder={item.placeholder}
