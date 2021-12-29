@@ -57,31 +57,28 @@ export const TextInputBox = ({
           onChange={(e) => onChange(e)}
           maxLength={index === 1 ? 10 : 524288} // 생일인경우 10글자('YYYY-MM-DD') 제한, 생일이 아닌 경우 기본값.
         />
-        {dropdown ? (
+        {dropdown && (
           <datalist id={'datalist_' + index}>
             {dropdown.map((dItem, i) => (
               <option key={i}>{dItem}</option>
             ))}
           </datalist>
-        ) : (
-          ''
         )}
         <ButtonArea>
-          {buttonList
-            ? buttonList.map((item) => (
-                <LabelGender key={item.value}>
-                  <InputItemGender
-                    type="radio"
-                    name="gender"
-                    value={DataList[5]}
-                    onChange={() => onGenderChange(item.value)}
-                    required
-                  />
-                  <RoundButtonGender>{item.label}</RoundButtonGender>
-                </LabelGender>
-              ))
-            : ''}
-          {buttonText ? <TextButton>{buttonText}</TextButton> : ''}
+          {buttonList &&
+            buttonList.map((item) => (
+              <LabelGender key={item.value}>
+                <InputItemGender
+                  type="radio"
+                  name="gender"
+                  value={DataList[5]}
+                  onChange={() => onGenderChange(item.value)}
+                  required
+                />
+                <RoundButtonGender>{item.label}</RoundButtonGender>
+              </LabelGender>
+            ))}
+          {buttonText && <TextButton>{buttonText}</TextButton>}
         </ButtonArea>
       </InputLine>
     </InputBlock>

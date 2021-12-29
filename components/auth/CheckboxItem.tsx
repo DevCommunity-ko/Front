@@ -12,20 +12,20 @@ type CheckboxItemProps = {
     terms?: string;
   };
   checkedState: boolean;
-  onCheck: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   handleCheckAll: React.ChangeEventHandler<HTMLInputElement>;
   isShowAll: boolean;
-  showAll?: React.MouseEventHandler<HTMLSpanElement>;
+  onClickShowMore?: React.MouseEventHandler<HTMLSpanElement>;
 };
 
 export const CheckboxItem = ({
   visibility,
   formItem,
   checkedState,
-  onCheck,
+  onChange,
   handleCheckAll,
   isShowAll,
-  showAll,
+  onClickShowMore,
 }: CheckboxItemProps) => {
   return (
     <FormBlock isVisible={visibility}>
@@ -34,20 +34,19 @@ export const CheckboxItem = ({
           <StyledInput
             type="checkbox"
             required={formItem.isRequired}
-            isRequired={formItem.isRequired}
             checked={checkedState}
-            onChange={formItem.showAll ? handleCheckAll : onCheck}
+            onChange={formItem.showAll ? handleCheckAll : onChange}
             isTitle={formItem.showAll ? true : false}
           />
           <div>{formItem.text}</div>
         </StyledLabel>
         {formItem.showAll && !isShowAll ? (
-          <ShowMore onClick={showAll}>자세히 보기</ShowMore>
+          <ShowMore onClick={onClickShowMore}>자세히 보기</ShowMore>
         ) : (
           ''
         )}
       </TitleBlock>
-      {formItem.subHead ? <SubHeadBlock>{formItem.subHead}</SubHeadBlock> : ''}
+      {formItem.subHead && <SubHeadBlock>{formItem.subHead}</SubHeadBlock>}
       {/* 일단 스타일링 위해서 InnerHTML 넣어두긴 했는데, 보안상 이슈 있을 수 있으니까 JSON 형태로 데이터 파싱하거나, 스타일링을 하지 않는 방향으로 해야 할 듯 */}
       {formItem.terms && (
         <TermBlock
@@ -97,7 +96,7 @@ const StyledLabel = styled.label`
 `;
 
 interface InputType {
-  isRequired: boolean;
+  required: boolean;
   isTitle: boolean;
 }
 
@@ -108,7 +107,7 @@ const StyledInput = styled.input<InputType>`
     content: '(선택)';
 
     ${(props) =>
-      props.isRequired &&
+      props.required &&
       css`
         content: '(필수)';
         color: ${palette.Alert};
@@ -136,16 +135,7 @@ const FormBlock = styled.div<{ isVisible: boolean }>`
   ${(props) =>
     !props.isVisible &&
     css`
-      height: 0;
-      visibility: hidden;
-      margin: 0;
-      padding: 0;
-
-      * {
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
+      display:none;
     `}
 `;
 

@@ -111,7 +111,7 @@ export const RegisterDetail = ({
     toPageNext();
   };
 
-  const onButtonClick = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+  const onButtonClick = async (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     await verifyAllFields().then((isErrorFound) => {
       checkAndSetFormData(isErrorFound);

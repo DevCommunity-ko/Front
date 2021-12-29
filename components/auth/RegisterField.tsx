@@ -17,7 +17,7 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
     '', // careerLength
   ]);
 
-  const onClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+  const onClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     let newRegisterForm = {
       ...registerForm,

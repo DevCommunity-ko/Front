@@ -3,23 +3,26 @@ import styled from 'styled-components';
 import { RegisterAgreement, RegisterDetail } from '../../components/auth';
 import RegisterField from '../../components/auth/RegisterField';
 import useUser from '../../store/modules/authHook';
+import type { RegisterPayload } from '../../store/modules/auth';
 
 export const RegisterForm = () => {
   const [pageStats, setPageStats] = useState(0);
-  const pageTitle = ['가입하기', '상세정보 입력', '전문분야 설정'];
+  const pageTitle = ['가입하기', '추가 정보 입력'];
 
-  const [registerForm, setRegisterForm] = useState({
-    userId: undefined,
-    socialToken: undefined,
+  
+
+  const [registerForm, setRegisterForm] = useState<RegisterPayload>({
+    userId: '',
+    socialToken: '',
     agreements: [false, false, false, false],
-    name: undefined,
-    gender: undefined,
-    dob: undefined,
-    email: undefined,
-    phone: undefined,
-    workfield: undefined,
-    workSpecified: undefined,
-    careerLength: undefined,
+    name: '',
+    gender: '',
+    dob: new Date,
+    email: '',
+    phone: '',
+    workfield: '',
+    workSpecified: '',
+    careerLength: '',
   });
 
   const toPageNext = () => {
@@ -31,31 +34,18 @@ export const RegisterForm = () => {
   return (
     <RegisterBlock>
       <h2>{pageTitle[pageStats]}</h2>
-      {pageStats === 0 ? (
+      {pageStats === 0 && (
         <RegisterAgreement
           toPageNext={toPageNext}
           registerForm={registerForm}
           setRegisterForm={setRegisterForm}
         />
-      ) : (
-        ''
       )}
-      {pageStats === 1 ? (
-        <RegisterDetail
-          toPageNext={toPageNext}
-          registerForm={registerForm}
-          setRegisterForm={setRegisterForm}
-        />
-      ) : (
-        ''
-      )}
-      {pageStats === 2 ? (
+      {pageStats === 1 && (
         <RegisterField
           registerForm={registerForm}
           setRegisterForm={setRegisterForm}
         />
-      ) : (
-        ''
       )}
     </RegisterBlock>
   );

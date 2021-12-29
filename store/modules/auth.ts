@@ -15,12 +15,12 @@ export type LoginPayload = {
 export type RegisterPayload = {
   userId: string;
   socialToken: string;
-  agreement: boolean[];
+  agreements: boolean[];
   name: string;
-  sex: string;
   dob: Date;
   email: string;
-  phone: string;
+  gender?: string;
+  phone?: string;
   workfield?: string;
   workSpecified?: string;
   careerLength?: string;

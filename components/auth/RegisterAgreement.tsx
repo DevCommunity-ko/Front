@@ -4,10 +4,11 @@ import palette from '../../lib/styles/palette';
 import { CheckboxItem } from '.';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '..';
+import { RegisterPayload } from '../../store/modules/auth';
 
 type AgreementProps = {
   toPageNext: Function;
-  registerForm: object;
+  registerForm: RegisterPayload;
   setRegisterForm: Function;
 };
 
@@ -22,39 +23,34 @@ export const RegisterAgreement = ({
   // BasicTerm, PersonalInfo, SMS, Email
   const [checkedList, setCheckedLists] = useState([false, false, false, false]);
 
-  const showAll = () => {
+  const onClickShowMore = () => {
     setIsShowAll(true);
   };
 
   const handleCheckAll = () => {
-    setCheckedLists([
-      !isCheckedAll,
-      !isCheckedAll,
-      !isCheckedAll,
-      !isCheckedAll,
-    ]);
+    setCheckedLists((prev) => prev.map(() => !isCheckedAll));
     setIsCheckedAll(!isCheckedAll);
   };
 
   const handleChecked = (index: number) => {
-    let arrayCopied = [...checkedList];
+    const arrayCopied = [...checkedList];
     arrayCopied[index] = !checkedList[index];
     setIsCheckedAll(arrayCopied.every(Boolean));
     setCheckedLists(arrayCopied);
   };
 
-  const onButtonClick = (e: { preventDefault: () => void; }) => {
+  const onButtonClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     if (!(checkedList[0] && checkedList[1])) {
       setIsErrorShown(true);
-    } else {
-      let agreementsAdded = {
-        ...registerForm,
-        agreements: checkedList,
-      };
-      setRegisterForm(agreementsAdded);
-      toPageNext();
+      return;
     }
+    const agreementsAdded = {
+      ...registerForm,
+      agreements: checkedList,
+    };
+    setRegisterForm(agreementsAdded);
+    toPageNext();
   };
 
   return (
@@ -75,17 +71,14 @@ export const RegisterAgreement = ({
             visibility={index ? isShowAll : true}
             formItem={item}
             checkedState={index == 0 ? isCheckedAll : checkedList[index - 1]}
-            onCheck={() => handleChecked(index - 1)}
+            onChange={() => handleChecked(index - 1)}
             handleCheckAll={handleCheckAll}
-            showAll={showAll}
+            onClickShowMore={onClickShowMore}
             isShowAll={isShowAll}
           />
         ))}
-        <SpacerWithErrorMsg
-          isShowAll={isShowAll}
-          isErrorShown={isErrorShown}
-        >
-          필수 항목에 동의해주세요
+        <SpacerWithErrorMsg isShowAll={isShowAll}>
+          {isErrorShown && '필수 항목에 동의해주세요'}
         </SpacerWithErrorMsg>
         <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
       </FormBlock>
@@ -139,25 +132,14 @@ const FormBlock = styled.form<{ isShowAll: boolean }>`
     `}
 `;
 
-type spacerProps = {
-  isShowAll: boolean;
-  isErrorShown: boolean;
-};
-
-const SpacerWithErrorMsg = styled.div<spacerProps>`
+const SpacerWithErrorMsg = styled.div<{ isShowAll: boolean }>`
   height: 2.5rem;
-  color: transparent;
+  color: ${palette.Alert[0]};
   text-align: center;
 
   ${(props) =>
     !props.isShowAll &&
     css`
       height: 3.75rem;
-    `}
-
-  ${(props) =>
-    props.isErrorShown &&
-    css`
-      color: ${palette.Alert[0]};
     `}
 `;
