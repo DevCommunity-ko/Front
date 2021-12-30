@@ -10,7 +10,7 @@ const ResponsiveBlock = styled.div`
   }
 `;
 
-export const Responsive = ({ children, ...rest }) => {
+export const Responsive: React.FC = ({ children, ...rest }) => {
   return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
 };
 
