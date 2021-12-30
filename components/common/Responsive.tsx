@@ -1,14 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from '../../lib/styles/stitches.config';
 
-const ResponsiveBlock = styled.div`
-  margin: 0 9.375%;
+const ResponsiveBlock = styled('div', {
+  //default : on Desktop (1920*1080)
+  margin: '0 9.375%',
 
-  /*media settings*/
-  @media (max-width: 1024px) {
-    //중단점 및 반응형 디자인 확정되면 추가될 예정입니다.
-  }
-`;
+  '@Laptop': {},
+  '@Tablet': {},
+  '@Mobile': {},  
+});
 
 export const Responsive: React.FC = ({ children, ...rest }) => {
   return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;

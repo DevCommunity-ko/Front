@@ -1,8 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
-import styled from 'styled-components';
+import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '..';
-import palette from '../../lib/styles/palette';
 
 type ResultProps = {
   isSucceed: boolean;
@@ -10,7 +10,7 @@ type ResultProps = {
 
 export const ResultPage = ({ isSucceed }: ResultProps) => {
   const onClick = () => {
-    Router.push("/");
+    Router.push('/');
   };
   return (
     <>
@@ -22,38 +22,53 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
           <RoundButton onClick={onClick}>확인</RoundButton>
         </BlockSucceed>
       ) : (
-        <BlockFailed>asd</BlockFailed>
+        <BlockFailed>
+          <h2>죄송합니다</h2>
+          <p>
+            다시 <Link href="/login">로그인</Link>하시거나{' '}
+            <Link href="/register">회원가입</Link>을 시도해 주시기 바랍니다.
+          </p>
+        </BlockFailed>
       )}
     </>
   );
 };
 
-const BlockTemplate = styled.div`
-  width: 30rem;
-  text-align: center;
-  * {
-    margin: 0;
-    padding: 0;
-  }
-`;
+const BlockTemplate = styled('div', {
+  width: '30rem',
+  textAlign: 'center',
+  color: '$Font',
+  margin: '0',
+  padding: '0',
+});
 
-const BlockSucceed = styled(BlockTemplate)`
-  * {
-      color: ${palette.Font};
-  }
-  & > h1 {
-    font-size: 1.875em;
-    margin-bottom: 0.625rem;
-  }
-  & > h4 {
-    font-weight: 400;
-    font-size: 1.25em;
-  }
-  & > p {
-    margin: 6.25rem 0;
-    font-size: 1.875em;
-    font-weight: 400;
-  }
-`;
+const BlockSucceed = styled(BlockTemplate, {
+  '& > h1': {
+    fontSize: '$30',
+    marginBottom: '0.625rem',
+  },
+  '& > h4': {
+    fontWeight: '$Regular',
+    fontSize: '$20',
+  },
+  '& > p': {
+    margin: '6.25rem 0',
+    fontSize: '$30',
+    fontWeight: '$Regular',
+  },
+});
 
-const BlockFailed = styled(BlockTemplate)``;
+const BlockFailed = styled(BlockTemplate, {
+  paddingTop: '5.875rem',
+  width: '17rem',
+  height: '100vh',
+  '& > *': {
+    fontSize: '$20',
+    fontWeight: '$Medium',
+  },
+  'a': {
+    fontSize: '1em',
+    fontWeight: '$Bold',
+    textDecoration: 'underline'
+  }
+});

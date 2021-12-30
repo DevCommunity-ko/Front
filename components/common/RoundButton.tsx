@@ -1,27 +1,34 @@
 import React from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import { styled } from '../../lib/styles/stitches.config';
 
-export const RoundButton = ({ children, onClick, ...rest }) => {
-  return <RoundButtonBlock {...rest} onClick={onClick}>{children}</RoundButtonBlock>;
+type RoundButtonProps = React.PropsWithChildren<{
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}>;
+
+export const RoundButton = ({
+  children,
+  onClick,
+  ...rest
+}: RoundButtonProps) => {
+  return (
+    <RoundButtonBlock {...rest} onClick={onClick}>
+      {children}
+    </RoundButtonBlock>
+  );
 };
 
-const RoundButtonBlock = styled.button`
-  width: 100%;
-  background-color: ${palette.Gray[1]};
-  border-radius: 30px;
-  border: none;
-  font-size: 1.1em;
-  font-weight: 700;
-  height: 3rem;
+const RoundButtonBlock = styled('button', {
+  width: '100%',
+  backgroundColor: '$Gray',
+  borderRadius: '30px',
+  border: 'none',
+  fontSize: '1.1em',
+  fontWeight: '$Bold',
+  height: '3rem',
 
-  cursor: pointer;
+  cursor: 'pointer',
 
-  &:hover {
-    background-color: ${palette.Gray[0]};
-  }
-`;
-
-
-
-// export default RoundButton;
+  '&:hover': {
+    backgroundColor: '$LightGray',
+  },
+});

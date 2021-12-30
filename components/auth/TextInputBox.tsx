@@ -1,6 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import palette from '../../lib/styles/palette';
+import { styled } from '../../lib/styles/stitches.config';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
   label: string;
@@ -59,59 +58,61 @@ export const TextInputBox = ({
   );
 };
 
-const InputLabel = styled.label`
-  & > div {
-    margin: 0;
-    font-weight: 400;
-    margin-bottom: 1.875rem;
-  }
-`;
+const InputLabel = styled('label', {
+  '& > div': {
+    margin: '0',
+    fontWeight: '$Regular',
+    marginBottom: '1.875rem',
+  },
+});
 
-const InputBlock = styled.div<{ errorStatus?: boolean }>`
-  padding-bottom: 0.438rem;
-  box-sizing: border-box;
+const InputBlock = styled('div', {
+  paddingBottom: '0.438rem',
+  boxSizing: 'border-box',
+  variants: {
+    errorStatus: {
+      true: {
+        '& > div > input::placeholder': {
+          color: '$Alert',
+        },
+      },
+    },
+  },
+});
 
-  ${(props) =>
-    props.errorStatus &&
-    css`
-      & > div > input::placeholder {
-        color: ${palette.Alert};
-      }
-    `}
-`;
+const InputLine = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  paddingBottom: '0.625rem',
+  borderBottom: '0.5px solid $Font',
+  variants: {
+    errorStatus: {
+      true: {
+        borderBottom: '0.5px solid $Alert',
+      },
+    },
+  },
+});
 
-const InputLine = styled.div<{ errorStatus?: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 0.625rem;
-  border-bottom: 0.5px solid ${palette.Font};
+const InputItem = styled('input', {
+  border: 'none',
+  fontSize: '1rem',
+  width: '100%',
 
-  ${(props) =>
-    props.errorStatus &&
-    css`
-      border-bottom: 0.5px solid ${palette.Alert};
-    `}
-`;
+  '&:focus': {
+    outline: 'none',
+  },
 
-const InputItem = styled.input`
-  border: none;
-  font-size: 1rem;
-  width: 100%;
+  '&::placeholder': {
+    fontSize: '1rem',
+    color: '$Gray',
+  },
+});
 
-  &:focus {
-    outline: none;
-  }
-
-  &::placeholder {
-    font-size: 1rem;
-    color: ${palette.Gray[1]};
-  }
-`;
-
-const ErrorBox = styled.div`
-  float: right;
-  font-size: 1em;
-  color: ${palette.Alert};
-  font-weight: 400;
-  margin-bottom: 1.25rem;
-`;
+const ErrorBox = styled('div', {
+  float: 'right',
+  fontSize: '1em',
+  color: '$Alert',
+  fontWeight: '$Regular',
+  marginBottom: '1.25rem',
+});

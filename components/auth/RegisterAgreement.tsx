@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import palette from '../../lib/styles/palette';
+import { styled } from '../../lib/styles/stitches.config';
 import { CheckboxItem } from '.';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '..';
@@ -58,10 +57,10 @@ export const RegisterAgreement = ({
       <SNSBlock>
         <p>SNS 계정으로 간편하게 시작하기</p>
         <SelectSNSItem>
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
+          <SNSItemTemporary />
+          <SNSItemTemporary />
+          <SNSItemTemporary />
+          <SNSItemTemporary />
         </SelectSNSItem>
       </SNSBlock>
       <FormBlock id="AgreeForm" isShowAll={isShowAll}>
@@ -80,66 +79,71 @@ export const RegisterAgreement = ({
         <SpacerWithErrorMsg isShowAll={isShowAll}>
           {isErrorShown && '필수 항목에 동의해주세요'}
         </SpacerWithErrorMsg>
-        <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
+        <RoundButton
+          onClick={(e: React.MouseEvent<HTMLSpanElement>) => onButtonClick(e)}
+        >
+          다음
+        </RoundButton>
       </FormBlock>
     </>
   );
 };
 
-const SNSBlock = styled.div`
-  text-align: center;
-  width: 100%;
+const SNSBlock = styled('div', {
+  textAlign: 'center',
+  width: '100%',
+  marginBottom: '3.75rem',
 
-  margin-bottom: 3.75rem;
+  '& > p': {
+    fontSize: '$20',
+    margin: '0 0 1.313rem 0',
+  },
+});
 
-  & > p {
-    font-size: 1.25em;
-    margin: 0 0 1.313rem 0;
-  }
-`;
+const SelectSNSItem = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  margin: '0 3.75rem',
+});
 
-const SelectSNSItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 3.75rem;
-`;
+const SNSItemTemporary = styled('div', {
+  backgroundColor: '$Gray',
+  cursor: 'pointer',
 
-const SNSItemTemplate = styled.div`
-  background-color: ${palette.Gray[1]};
-  cursor: pointer;
+  width: '65px',
+  height: '65px',
+  borderRadius: '50px',
 
-  width: 65px;
-  height: 65px;
-  border-radius: 50px;
+  '&:hover': {
+    backgroundColor: '$LightGray',
+  },
+});
 
-  &:hover {
-    background-color: ${palette.Gray[0]};
-  }
-`;
+const FormBlock = styled('form', {
+  '& > p ': {
+    margin: '0 0 1.25rem 0',
+    fontWeight: '$Regular',
+    wordBreak: 'keep-all',
+    color: '$DarkGray',
+  },
+  variants: {
+    isShowAll: {
+      true: {
+        marginBottom: '8.625rem',
+      },
+    },
+  },
+});
 
-const FormBlock = styled.form<{ isShowAll: boolean }>`
-  & > p {
-    margin: 0 0 1.25rem 0;
-    font-weight: 400;
-    word-break: keep-all;
-    color: ${palette.Gray[2]};
-  }
-
-  ${(props) =>
-    props.isShowAll &&
-    css`
-      margin-bottom: 8.625rem;
-    `}
-`;
-
-const SpacerWithErrorMsg = styled.div<{ isShowAll: boolean }>`
-  height: 2.5rem;
-  color: ${palette.Alert[0]};
-  text-align: center;
-
-  ${(props) =>
-    !props.isShowAll &&
-    css`
-      height: 3.75rem;
-    `}
-`;
+const SpacerWithErrorMsg = styled('div', {
+  height: '2.5rem',
+  color: '$Alert',
+  textAlign: 'center',
+  variants: {
+    isShowAll: {
+      true: {
+        height: '3.75rem',
+      },
+    },
+  },
+});

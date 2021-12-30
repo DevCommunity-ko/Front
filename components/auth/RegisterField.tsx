@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { styled } from '../../lib/styles/stitches.config';
 import Router from 'next/router';
 import { TextInputBox } from '.';
 import { RoundButton } from '..';
@@ -48,7 +48,11 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
         />
       ))}
       <Spacer />
-      <RoundButton onClick={(e) => onClick(e)}>가입하기</RoundButton>
+      <RoundButton
+        onClick={(e: React.MouseEvent<HTMLSpanElement>) => onClick(e)}
+      >
+        가입하기
+      </RoundButton>
       <AnchorBlock>
         <a onClick={onClick}>나중에 입력할게요</a>
       </AnchorBlock>
@@ -58,22 +62,20 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
 
 export default RegisterField;
 
-const Container = styled.form`
-  box-sizing: border-box;
-  padding-top: 1.75rem;
-`;
+const Container = styled('form', {
+  boxSizing: 'border-box',
+  paddingTop: '1.75rem',
+});
 
-const Spacer = styled.div`
-  height: 2rem;
-`;
+const Spacer = styled('div', { height: '2rem' });
 
-const AnchorBlock = styled.div`
-  margin-top: 3.75rem;
-  display: flex;
-  justify-content: center;
+const AnchorBlock = styled('div', {
+  marginTop: '3.75rem',
+  display: 'flex',
+  justifyContent: 'center',
 
-  & > a {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-`;
+  '& > a': {
+    cursor: 'pointer',
+    textDecoration: 'underline',
+  },
+});
