@@ -16,22 +16,24 @@ export const registerFormItems = [
   },
   {
     isRequired: true,
-    //showMore: true, 전문 보기 기능 빼기로 잠정 결정
+    showAll: false,
     text: '개인회원 약관 동의',
     terms: TermBasic,
   },
   {
     isRequired: true,
-    //showMore: true, 전문 보기 기능 빼기로 잠정 결정
+    showAll: false,
     text: '개인정보 수집 및 이용에 대한 안내',
     terms: TermPersonalInfo,
   },
   {
     isRequired: false,
+    showAll: false,
     text: '마케팅 정보 SMS 수신 동의',
   },
   {
     isRequired: false,
+    showAll: false,
     text: '마케팅 정보 이메일 수신 동의',
   },
 ];

@@ -42,15 +42,15 @@ export const TextInputBox = ({
   };
 
   return (
-    <InputBlock errorStatus={errorStatus ? true : false}>
+    <InputBlock errorStatus={errorStatus}>
       <InputLabel htmlFor={'textInput' + label}>
         <div>{label}</div>
       </InputLabel>
-      <InputLine>
+      <InputLine errorStatus={errorStatus}>
         <InputItem
           name={'textInput' + label}
           type={type}
-          placeholder={errorStatus ? errorMsg : placeholder}
+          placeholder={placeholder}
           list={'datalist_' + index}
           required={required}
           value={DataList[index]}
@@ -81,6 +81,7 @@ export const TextInputBox = ({
           {buttonText && <TextButton>{buttonText}</TextButton>}
         </ButtonArea>
       </InputLine>
+      <ErrorBox>{errorStatus && errorMsg}</ErrorBox>
     </InputBlock>
   );
 };
@@ -93,26 +94,30 @@ const InputLabel = styled.label`
   }
 `;
 
-const InputBlock = styled.div<{ errorStatus: boolean }>`
-  margin-bottom: 1.25rem;
+const InputBlock = styled.div<{ errorStatus?: boolean }>`
   padding-bottom: 0.438rem;
   box-sizing: border-box;
-  border-bottom: 0.5px solid ${palette.Font};
 
   ${(props) =>
     props.errorStatus &&
     css`
-      border-bottom: 0.5px solid ${palette.Alert};
-
       & > div > input::placeholder {
         color: ${palette.Alert};
       }
     `}
 `;
 
-const InputLine = styled.div`
+const InputLine = styled.div<{ errorStatus?: boolean }>`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 0.625rem;
+  border-bottom: 0.5px solid ${palette.Font};
+
+  ${(props) =>
+    props.errorStatus &&
+    css`
+      border-bottom: 0.5px solid ${palette.Alert};
+    `}
 `;
 
 const InputItem = styled.input`
@@ -169,4 +174,12 @@ const TextButton = styled.div`
   width: max-content;
 
   cursor: pointer;
+`;
+
+const ErrorBox = styled.div`
+  float: right;
+  font-size: 1em;
+  color: ${palette.Alert};
+  font-weight: 400;
+  margin-bottom: 1.25rem;
 `;

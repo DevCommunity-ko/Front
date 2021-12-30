@@ -7,7 +7,7 @@ type CheckboxItemProps = {
   formItem: {
     isRequired: boolean;
     text: string;
-    showAll?: boolean;
+    showAll: boolean;
     subHead?: string;
     terms?: string;
   };
@@ -36,14 +36,12 @@ export const CheckboxItem = ({
             required={formItem.isRequired}
             checked={checkedState}
             onChange={formItem.showAll ? handleCheckAll : onChange}
-            isTitle={formItem.showAll ? true : false}
+            isTitle={formItem.showAll}
           />
           <div>{formItem.text}</div>
         </StyledLabel>
-        {formItem.showAll && !isShowAll ? (
+        {formItem.showAll && !isShowAll && (
           <ShowMore onClick={onClickShowMore}>자세히 보기</ShowMore>
-        ) : (
-          ''
         )}
       </TitleBlock>
       {formItem.subHead && <SubHeadBlock>{formItem.subHead}</SubHeadBlock>}
@@ -135,7 +133,7 @@ const FormBlock = styled.div<{ isVisible: boolean }>`
   ${(props) =>
     !props.isVisible &&
     css`
-      display:none;
+      display: none;
     `}
 `;
 

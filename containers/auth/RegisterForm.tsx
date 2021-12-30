@@ -9,15 +9,13 @@ export const RegisterForm = () => {
   const [pageStats, setPageStats] = useState(0);
   const pageTitle = ['가입하기', '추가 정보 입력'];
 
-  
-
   const [registerForm, setRegisterForm] = useState<RegisterPayload>({
     userId: '',
     socialToken: '',
     agreements: [false, false, false, false],
     name: '',
     gender: '',
-    dob: new Date,
+    dob: new Date(),
     email: '',
     phone: '',
     workfield: '',
