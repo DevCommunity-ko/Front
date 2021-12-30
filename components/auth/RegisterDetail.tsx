@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { TextInputBox } from '.';
+import { TextInputBox, TextInputBoxWithButtons } from '.';
 import { RoundButton } from '..';
 import palette from '../../lib/styles/palette';
 import { RegisterFormDetailItems } from '../../lib/texts/texts';
@@ -126,22 +126,36 @@ export const RegisterDetail = ({
         </SocialAccountDiscription>
       </AccountConnectedTemplate>
       <FormBlock id="DetailForm">
-        {RegisterFormDetailItems.map((item, index) => (
-          <TextInputBox
-            key={index}
-            index={index}
-            label={item.label}
-            type={item.type}
-            placeholder={item.placeholder}
-            buttonList={item.buttonList}
-            buttonText={item.buttonText}
-            errorStatus={errorStatusList[index]}
-            errorMsg={item.errorMsg}
-            required={item.required}
-            DataList={detailDataList}
-            setDataList={setDetailDataList}
-          ></TextInputBox>
-        ))}
+        {RegisterFormDetailItems.map((item, index) =>
+          item.buttonList ? (
+            <TextInputBoxWithButtons
+              key={index}
+              index={index}
+              label={item.label}
+              type={item.type}
+              placeholder={item.placeholder}
+              buttonList={item.buttonList}
+              errorStatus={errorStatusList[index]}
+              errorMsg={item.errorMsg}
+              required={item.required}
+              DataList={detailDataList}
+              setDataList={setDetailDataList}
+            />
+          ) : (
+            <TextInputBox
+              key={index}
+              index={index}
+              label={item.label}
+              type={item.type}
+              placeholder={item.placeholder}
+              errorStatus={errorStatusList[index]}
+              errorMsg={item.errorMsg}
+              required={item.required}
+              DataList={detailDataList}
+              setDataList={setDetailDataList}
+            />
+          ),
+        )}
         <Spacer />
         <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
       </FormBlock>

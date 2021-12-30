@@ -10,9 +10,11 @@ type TextInputProps = React.HTMLProps<HTMLInputElement> & {
   errorStatus?: boolean;
   errorMsg?: string;
   dropdown?: string[];
+  buttonList?: Array<{ label: string; value: string }>;
+  buttonText?: string;
 };
 
-export const TextInputBox = ({
+export const TextInputBoxWithButtons = ({
   label,
   type,
   index,
@@ -20,6 +22,7 @@ export const TextInputBox = ({
   errorMsg,
   placeholder,
   dropdown,
+  buttonList,
   required,
   DataList,
   setDataList,
@@ -27,6 +30,13 @@ export const TextInputBox = ({
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let ChangedList = [...DataList];
     ChangedList[index] = e.target.value;
+    setDataList(ChangedList);
+  };
+
+  const onGenderChange = (value: string) => {
+    let ChangedList = [...DataList];
+    ChangedList[5] = value;
+
     setDataList(ChangedList);
   };
 
@@ -53,6 +63,21 @@ export const TextInputBox = ({
             ))}
           </datalist>
         )}
+        <ButtonArea>
+          {buttonList &&
+            buttonList.map((item) => (
+              <LabelGender key={item.value}>
+                <InputItemGender
+                  type="radio"
+                  name="gender"
+                  value={DataList[5]}
+                  onChange={() => onGenderChange(item.value)}
+                  required
+                />
+                <RoundButtonGender>{item.label}</RoundButtonGender>
+              </LabelGender>
+            ))}
+        </ButtonArea>
       </InputLine>
       <ErrorBox>{errorStatus && errorMsg}</ErrorBox>
     </InputBlock>
@@ -106,6 +131,47 @@ const InputItem = styled.input`
     font-size: 1rem;
     color: ${palette.Gray[1]};
   }
+`;
+
+const ButtonArea = styled.div`
+  display: flex;
+  width: max-content;
+`;
+
+const LabelGender = styled.label`
+  width: max-content;
+
+  &:not(label:last-child) {
+    margin-right: 0.25rem;
+  }
+`;
+
+const InputItemGender = styled.input`
+  display: none;
+
+  &:checked + div {
+    background-color: ${palette.Font};
+    color: white;
+  }
+`;
+
+const RoundButtonGender = styled.div`
+  padding: 0 0.625rem;
+  border: 0.5px solid ${palette.Font};
+  border-radius: 30px;
+
+  height: 1.5rem;
+  width: fit-content;
+
+  cursor: pointer;
+`;
+
+const TextButton = styled.div`
+  font-weight: 400;
+  font-size: 1.125em;
+  width: max-content;
+
+  cursor: pointer;
 `;
 
 const ErrorBox = styled.div`

@@ -40,6 +40,13 @@ export const RegisterForm = () => {
         />
       )}
       {pageStats === 1 && (
+        <RegisterDetail
+          toPageNext={toPageNext}
+          registerForm={registerForm}
+          setRegisterForm={setRegisterForm}
+        />
+      )}
+      {pageStats === 2 && (
         <RegisterField
           registerForm={registerForm}
           setRegisterForm={setRegisterForm}

@@ -68,7 +68,7 @@ export const RegisterFormDetailItems = [
     label: '휴대폰번호',
     placeholder: '정확한 휴대폰번호를 입력해주세요.',
     errorMsg: '정확한 휴대폰번호를 입력해주세요.',
-    buttonText: '인증번호 받기',
+    buttonList: [{ label: '인증번호 받기', value: 'getVNum' }],
     required: true,
   },
   {
