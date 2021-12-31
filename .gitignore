@@ -35,3 +35,6 @@ yarn-error.log*
 
 # 진행사항 및 참고사항 적어두는 로컬 메모 파일입니다.
 .memo
+
+# typescript
+tsconfig.tsbuildinfo
