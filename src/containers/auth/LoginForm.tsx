@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
 
-import palette from '../../lib/styles/palette';
+import { styled } from '../../lib/styles/stitches.config';
 
 const LoginForm = () => {
   const loginNaver = () => {
     const client_id = 'qco1iLqUirs5dpGJHK_L';
-    const redirect_uri = encodeURI('http://localhost:3000/login/authSocial/naver');
-    const state_string = Math.random().toString(36).substr(2,11);
+    const redirect_uri = encodeURI(
+      'http://localhost:3000/login/authSocial/naver',
+    );
+    const state_string = Math.random().toString(36).substr(2, 11);
     const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
 
     window.open(
@@ -42,83 +43,83 @@ const LoginForm = () => {
   );
 };
 
-const Wrapper = styled.div`
-  width: 22.5rem;
+const Wrapper = styled('div', {
+  width: '22.5rem',
 
-  & > h2 {
-    font-size: 1.875em;
-    margin-bottom: 0 0 2.5rem 0;
-    padding: 0;
-  }
-`;
+  '& > h2': {
+    fontSize: '$30',
+    marginBottom: ' 0 0 2.5rem 0',
+    padding: '0',
+  },
+});
 
-const ToRegisterBlock = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 1.25em;
+const ToRegisterBlock = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  fontWeight: '$bold',
+  fontSize: '$20',
 
-  & > div {
-    font-weight: 400;
-  }
-`;
+  '& > div': {
+    fontWeight: '$regular',
+  },
+});
 
-const SNSBlock = styled.div`
-  text-align: center;
-  width: 100%;
+const SNSBlock = styled('div', {
+  textAlign: 'center',
+  width: '100%',
+  fontSize: '$20',
 
-  margin-bottom: 8.625rem;
+  marginBottom: '8.625rem',
 
-  & > p {
-    font-weight: 400;
-    font-size: 1.25em;
-    margin: 0 0 1.313rem 0;
-  }
+  '& > p': {
+    fontWeight: '$regular',
+    margin: '0 0 1.313rem 0',
+  },
 
-  & > label {
-    margin-top: 2.5rem;
-    display: flex;
-    align-items: center;
-    color: ${palette.Gray[2]};
-    font-size: 1.25em;
-    & > input {
-      width: 1.25em;
-      height: 1.25em;
-      margin-right: 0.5rem;
-    }
-  }
-`;
+  '& > label': {
+    marginTop: '2.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    color: '$darkGray',
 
-const SelectSNSItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+    '& > input': {
+      width: '1.25em',
+      height: '1.25em',
+      marginRight: '0.5rem',
+    },
+  },
+});
 
-const SNSItemTemplate = styled.div`
-  background-color: ${palette.Gray[1]};
-  cursor: pointer;
+const SelectSNSItem = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+});
 
-  width: 65px;
-  height: 65px;
-  border-radius: 50px;
+const SNSItemTemplate = styled('div', {
+  backgroundColor: '$gray',
+  cursor: 'pointer',
 
-  &:hover {
-    background-color: ${palette.Gray[0]};
-  }
-`;
+  width: '65px',
+  height: '65px',
+  borderRadius: '50px',
 
-const SNSItemTemplateForTest = styled.div`
-  background-color: green;
-  cursor: pointer;
+  '&:hover': {
+    backgroundColor: '$lightGray',
+  },
+});
 
-  width: 65px;
-  height: 65px;
-  border-radius: 50px;
+const SNSItemTemplateForTest = styled('div', {
+  backgroundColor: 'green',
+  cursor: 'pointer',
 
-  &:hover {
-    background-color: lightgreen;
-  }
-`;
+  width: '65px',
+  height: '65px',
+  borderRadius: '50px',
+
+  '&:hover': {
+    backgroundColor: 'lightgreen',
+  },
+});
 
 export default LoginForm;

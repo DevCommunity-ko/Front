@@ -51,7 +51,6 @@
     "array-bracket-newline": ["error", "consistent"],
     "arrow-spacing": ["error", { "before": true, "after": true }],
     "array-element-newline": ["off", { "multiline": true, "minItems": 3 }],
-    "quote-props": ["error", "consistent-as-needed"],
     "object-curly-spacing": ["error", "always"],
     "object-curly-newline": [
       "error",

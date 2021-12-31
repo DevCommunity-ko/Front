@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import { RegisterAgreement, RegisterDetail } from '../../components/auth';
+import { styled } from '../../lib/styles/stitches.config';
+import { RegisterAgreement } from '../../components/auth';
 import { RegisterField } from '../../components/auth/RegisterField';
 
 import type { RegisterPayload } from '../../store/modules/auth';
@@ -32,7 +32,7 @@ export const RegisterForm = () => {
 
   return (
     <RegisterBlock>
-      <h2>{pageTitle[pageStats]}</h2>
+      <TitleArea>{pageTitle[pageStats]}</TitleArea>
       {pageStats === 0 && (
         <RegisterAgreement
           toPageNext={toPageNext}
@@ -41,13 +41,6 @@ export const RegisterForm = () => {
         />
       )}
       {pageStats === 1 && (
-        <RegisterDetail
-          toPageNext={toPageNext}
-          registerForm={registerForm}
-          setRegisterForm={setRegisterForm}
-        />
-      )}
-      {pageStats === 2 && (
         <RegisterField
           registerForm={registerForm}
           setRegisterForm={setRegisterForm}
@@ -57,14 +50,14 @@ export const RegisterForm = () => {
   );
 };
 
-const RegisterBlock = styled.div`
-  width: 30rem;
+const TitleArea = styled('h2', {
+  fontSize: '$30',
+  marginBottom: '0 0 2.5rem 0',
+  padding: '0',
+});
 
-  & > h2 {
-    font-size: 1.875em;
-    margin-bottom: 0 0 2.5rem 0;
-    padding: 0;
-  }
-`;
+const RegisterBlock = styled('div', {
+  width: '30rem',
+});
 
 export default RegisterForm;

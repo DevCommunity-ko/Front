@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 
-import palette from '../../lib/styles/palette';
+import { styled } from '../../lib/styles/stitches.config';
 
 type CheckboxItemProps = {
   visibility: boolean,
@@ -56,118 +55,111 @@ export const CheckboxItem = ({
   );
 };
 
-const SubHeadBlock = styled.p`
-  margin: 1.25rem 0 1.25rem 0;
-  font-weight: 400;
-  word-break: keep-all;
-  color: ${palette.Gray[2]};
-`;
+const SubHeadBlock = styled('p', {
+  margin: '1.25rem 0',
+  fontWeight: '$regular',
+  wordBreak: 'keep-all',
+  color: '$darkGray',
+});
 
-const TitleBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.625rem;
-  align-items: center;
-`;
+const TitleBlock = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '0.625rem',
+  alignItems: 'center',
+});
 
-const ShowMore = styled.span`
-  text-decoration: underline;
-  color: ${palette.Gray[2]};
-  cursor: pointer;
-  font-weight: 700;
+const ShowMore = styled('span', {
+  textDecoration: 'underline',
+  color: '$darkGray',
+  cursor: 'pointer',
+  fontWeight: '$bold',
 
-  &:hover {
-    color: ${palette.Font[0]};
-  }
-`;
+  '&:hover': {
+    color: '$font',
+  },
+});
 
-const StyledLabel = styled.label`
-  font-size: 1.125em;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
+const StyledLabel = styled('label', {
+  fontSize: '$20',
+  fontWeight: '$regular',
+  display: 'flex',
+  alignItems: 'center',
+});
 
-  & > input {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 0 0.375rem 0 0;
-  }
-`;
+const StyledInput = styled('input', {
+  width: '1.5rem',
+  height: '1.5rem',
+  margin: '0 0.375rem 0 0',
 
-interface InputType {
-  required: boolean;
-  isTitle: boolean;
-}
+  '& + div::after': {
+    marginLeft: '0.25rem',
+    content: '(선택)',
+  },
 
-const StyledInput = styled.input<InputType>`
-  & + div::after {
-    margin-left: 0.25rem;
+  variants: {
+    required: {
+      true: {
+        '& + div::after': {
+          content: '(필수)',
+          color: '$alert',
+        },
+      },
+    },
+    isTitle: {
+      true: {
+        '& + div': {
+          fontWeight: '$bold',
+        },
+        '& + div::after': {
+          content: '',
+        },
+      },
+    },
+  },
+});
 
-    content: '(선택)';
+const FormBlock = styled('div', {
+  height: 'max-content',
+  marginBottom: '1.25rem',
 
-    ${(props) =>
-    props.required &&
-      css`
-        content: '(필수)';
-        color: ${palette.Alert};
-      `}
-  }
+  variants: {
+    isVisible: {
+      false: {
+        display: 'none',
+      },
+    },
+  },
+});
 
-  ${(props) =>
-    props.isTitle &&
-    css`
-      & + div {
-        font-weight: 700;
-      }
+const TermBlock = styled('div', {
+  width: '100%',
+  height: '7.625rem',
+  border: '0.5px solid $darkGray',
+  backgroundColor: '$lightGray',
+  color: '$darkGray',
+  fontWeight: '$regular',
+  overflowY: 'scroll',
+  padding: '2rem 0.594rem 0 1.438rem',
 
-      & + div::after {
-        content: '';
-      }
-    `}
-`;
+  '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
+    width: '14px',
+    borderRadius: '14px',
+    backgroundClip: 'padding-box',
+  },
 
-const FormBlock = styled.div<{ isVisible: boolean }>`
-  height: max-content;
-  visibility: visible;
-  margin-bottom: 1.25rem;
+  '&::-webkit-scrollbar-thumb': {
+    color: '$lightBlue',
+    boxShadow: 'inset 0 0 0 10px',
+    border: '4.24px solid transparent',
+  },
 
-  ${(props) =>
-    !props.isVisible &&
-    css`
-      display: none;
-    `}
-`;
-
-const TermBlock = styled.div`
-  width: 100%;
-  height: 7.625rem;
-  border: 0.5px solid ${palette.Gray[2]};
-  background-color: ${palette.Gray[0]};
-  color: ${palette.Gray[2]};
-  font-weight: 400;
-  overflow-y: scroll;
-  padding: 2rem 0.594rem 0 1.438rem;
-  scrollbar-color: red;
-
-  &::-webkit-scrollbar,
-  &::-webkit-scrollbar-thumb {
-    width: 14px;
-    border-radius: 14px;
-    background-clip: padding-box;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    color: ${palette.Blue[1]};
-    box-shadow: inset 0 0 0 10px;
-    border: 4.24px solid transparent;
-  }
-
-  &::-webkit-scrollbar-track {
-    margin: 4.84px 0;
-    background-color: ${palette.Gray[1]};
-    width: 14px;
-    border-radius: 14px;
-    background-clip: padding-box;
-    border: 5.16px solid transparent;
-  }
-`;
+  '&::-webkit-scrollbar-track': {
+    margin: '4.84px 0',
+    backgroundColor: '$gray',
+    width: '14px',
+    borderRadius: '14px',
+    backgroundClip: 'padding-box',
+    border: '5.16px solid transparent',
+  },
+});

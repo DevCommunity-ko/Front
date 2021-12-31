@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Router from 'next/router';
 
+import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
 import { RegisterFormFieldItems } from '../../lib/texts/texts';
 
@@ -19,7 +19,7 @@ export const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) 
     '', // careerLength
   ]);
 
-  const onClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const onClickRegister = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const newRegisterForm = {
       ...registerForm,
@@ -50,30 +50,34 @@ export const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) 
         />
       ))}
       <Spacer />
-      <RoundButton onClick={(e: React.MouseEvent<HTMLSpanElement>) => onClick(e)}>가입하기</RoundButton>
+      <RoundButton
+        onClick={onClickRegister}
+      >
+        가입하기
+      </RoundButton>
       <AnchorBlock>
-        <a onClick={onClick}>나중에 입력할게요</a>
+        <a onClick={() => {/* noop */}}>나중에 입력할게요</a>
       </AnchorBlock>
     </Container>
   );
 };
 
-const Container = styled.form`
-  box-sizing: border-box;
-  padding-top: 1.75rem;
-`;
+export default RegisterField;
 
-const Spacer = styled.div`
-  height: 2rem;
-`;
+const Container = styled('form', {
+  boxSizing: 'border-box',
+  paddingTop: '1.75rem',
+});
 
-const AnchorBlock = styled.div`
-  margin-top: 3.75rem;
-  display: flex;
-  justify-content: center;
+const Spacer = styled('div', { height: '2rem' });
 
-  & > a {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-`;
+const AnchorBlock = styled('div', {
+  'marginTop': '3.75rem',
+  'display': 'flex',
+  'justifyContent': 'center',
+
+  '& > a': {
+    cursor: 'pointer',
+    textDecoration: 'underline',
+  },
+});

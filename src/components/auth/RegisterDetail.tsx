@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
+import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
-import palette from '../../lib/styles/palette';
 import { RegisterFormDetailItems } from '../../lib/texts/texts';
 
 import { TextInputBox } from './TextInputBox';
@@ -159,43 +158,47 @@ export const RegisterDetail = ({
           ),
         )}
         <Spacer />
-        <RoundButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => onButtonClick(e)}>다음</RoundButton>
+        <RoundButton
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => onButtonClick(e)}
+        >
+          다음
+        </RoundButton>
       </FormBlock>
     </>
   );
 };
 
-const Spacer = styled.div`
-  height: 2.5rem;
-`;
+const Spacer = styled('div', {
+  height: '2.5rem',
+});
 
-const AccountConnectedTemplate = styled.div`
-  height: 3.813rem;
-  width: 100%;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
+const AccountConnectedTemplate = styled('div', {
+  height: '3.813rem',
+  width: '100%',
+  borderRadius: '30px',
+  display: 'flex',
+  alignItems: 'center',
 
-  padding: 0 2.438rem;
+  padding: '0 2.438rem',
 
-  background-color: ${palette.Gray[1]};
-  margin-bottom: 2.5rem;
-`;
+  backgroundColor: '$gray',
+  marginBottom: '2.5rem',
+});
 
-const SocialIconTemp = styled.div`
-  background-color: ${palette.Gray[1]};
-  margin-right: 1.25rem;
-  font-weight: 600;
-  font-size: 1.875em;
-  color: ${palette.Font};
-`;
+const SocialIconTemp = styled('div', {
+  backgroundColor: '$gray',
+  marginRight: '1.25rem',
+  fontWeight: '600',
+  fontSize: '1.875em',
+  color: '$font',
+});
 
-const SocialAccountDiscription = styled.div`
-  color: ${palette.Font};
-  font-size: 1.25em;
-  font-weight: 400;
-`;
+const SocialAccountDiscription = styled('div', {
+  color: '$font',
+  fontSize: '$20',
+  fontWeight: '$regular',
+});
 
-const FormBlock = styled.form`
-  margin-bottom: 8.625rem;
-`;
+const FormBlock = styled('form', {
+  marginBottom: '8.625rem',
+});
