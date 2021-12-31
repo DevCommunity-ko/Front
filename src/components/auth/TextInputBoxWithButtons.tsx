@@ -3,15 +3,15 @@ import React from 'react';
 import { styled } from '../../lib/styles/stitches.config';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
-  label: string;
-  index: number;
-  DataList: string[];
-  setDataList: React.Dispatch<React.SetStateAction<string[]>>;
-  errorStatus?: boolean;
-  errorMsg?: string;
-  dropdown?: string[];
-  buttonList?: Array<{ label: string; value: string }>;
-  buttonText?: string;
+  label: string,
+  index: number,
+  DataList: string[],
+  setDataList: React.Dispatch<React.SetStateAction<string[]>>,
+  errorStatus?: boolean,
+  errorMsg?: string,
+  dropdown?: string[],
+  buttonList?: Array<{ label: string, value: string }>,
+  buttonText?: string,
 };
 
 export const TextInputBoxWithButtons = ({

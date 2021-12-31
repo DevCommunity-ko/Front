@@ -8,8 +8,8 @@ import { RegisterFormFieldItems } from '../../lib/texts/texts';
 import { TextInputBox } from './TextInputBox';
 
 type RegFieldProps = {
-  registerForm: object;
-  setRegisterForm: CallableFunction;
+  registerForm: object,
+  setRegisterForm: CallableFunction,
 };
 
 export const RegisterField = ({
@@ -54,7 +54,7 @@ export const RegisterField = ({
       ))}
       <Spacer />
       <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
-      <AnchorBlock onClick={() => { /* noop */}}>나중에 입력할게요</AnchorBlock>
+      <AnchorBlock onClick={() => { /* noop */ }}>나중에 입력할게요</AnchorBlock>
     </Container>
   );
 };

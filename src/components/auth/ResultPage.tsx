@@ -6,7 +6,7 @@ import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
 
 type ResultProps = {
-  isSucceed: boolean;
+  isSucceed: boolean,
 };
 
 export const ResultPage = ({ isSucceed }: ResultProps) => {

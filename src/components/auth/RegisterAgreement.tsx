@@ -8,9 +8,9 @@ import { RoundButton } from '../common';
 import { CheckboxItem } from './CheckboxItem';
 
 type AgreementProps = {
-  toPageNext: CallableFunction;
-  registerForm: RegisterPayload;
-  setRegisterForm: CallableFunction;
+  toPageNext: CallableFunction,
+  registerForm: RegisterPayload,
+  setRegisterForm: CallableFunction,
 };
 
 export const RegisterAgreement = ({
