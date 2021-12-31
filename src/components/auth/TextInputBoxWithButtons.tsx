@@ -3,15 +3,15 @@ import React from 'react';
 import { styled } from '../../lib/styles/stitches.config';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
-  label: string,
-  index: number,
-  DataList: string[],
-  setDataList: React.Dispatch<React.SetStateAction<string[]>>,
-  errorStatus?: boolean,
-  errorMsg?: string,
-  dropdown?: string[],
-  buttonList?: Array<{ label: string, value: string }>,
-  buttonText?: string,
+  label: string;
+  index: number;
+  DataList: string[];
+  setDataList: React.Dispatch<React.SetStateAction<string[]>>;
+  errorStatus?: boolean;
+  errorMsg?: string;
+  dropdown?: string[];
+  buttonList?: Array<{ label: string; value: string }>;
+  buttonText?: string;
 };
 
 export const TextInputBoxWithButtons = ({
@@ -41,12 +41,13 @@ export const TextInputBoxWithButtons = ({
   };
 
   return (
-    <InputBlock errorStatus={errorStatus}>
+    <InputBlock>
       <InputLabel htmlFor={'textInput' + label}>
         <div>{label}</div>
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
+          errorStatus={errorStatus}
           name={`textInput${label}`}
           type={type}
           placeholder={placeholder}
@@ -95,15 +96,6 @@ const InputLabel = styled('label', {
 const InputBlock = styled('div', {
   paddingBottom: '0.438rem',
   boxSizing: 'border-box',
-  variants: {
-    errorStatus: {
-      true: {
-        '& > div > input::placeholder': {
-          color: '$alert',
-        },
-      },
-    },
-  },
 });
 
 const InputLine = styled('div', {
@@ -121,9 +113,9 @@ const InputLine = styled('div', {
 });
 
 const InputItem = styled('input', {
-  'border': 'none',
-  'fontSize': '1rem',
-  'width': '100%',
+  border: 'none',
+  fontSize: '1rem',
+  width: '100%',
 
   '&:focus': {
     outline: 'none',
@@ -133,6 +125,16 @@ const InputItem = styled('input', {
     fontSize: '1rem',
     color: '$gray',
   },
+
+  variants: {
+    errorStatus: {
+      true: {
+        '&::placeholder': {
+          color: '$alert',
+        },
+      },
+    },
+  },
 });
 
 const ButtonArea = styled('div', {
@@ -141,7 +143,7 @@ const ButtonArea = styled('div', {
 });
 
 const LabelGender = styled('label', {
-  'width': 'max-content',
+  width: 'max-content',
 
   '&:not(label:last-child)': {
     marginRight: '0.25rem',
@@ -149,7 +151,7 @@ const LabelGender = styled('label', {
 });
 
 const InputItemGender = styled('input', {
-  'display': 'none',
+  display: 'none',
 
   '&:checked + div': {
     backgroundColor: '$font',

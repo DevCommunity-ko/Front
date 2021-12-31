@@ -21,19 +21,19 @@ const LoginForm = () => {
 
   return (
     <Wrapper>
-      <h2>로그인하기</h2>
+      <TitleArea>로그인하기</TitleArea>
       <SNSBlock>
-        <p>SNS 계정으로 간편하게 시작하기</p>
+        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
           <SNSItemTemplateForTest onClick={loginNaver} />
           <SNSItemTemplate />
           <SNSItemTemplate />
           <SNSItemTemplate />
         </SelectSNSItem>
-        <label>
-          <input type="checkbox" />
+        <LabelKeepLoggedIn>
+          <CheckboxKeepLoggedIn type="checkbox" />
           로그인 유지
-        </label>
+        </LabelKeepLoggedIn>
       </SNSBlock>
       <ToRegisterBlock>
         <div>아직 마그넷 회원이 아니신가요?</div>
@@ -45,12 +45,17 @@ const LoginForm = () => {
 
 const Wrapper = styled('div', {
   width: '22.5rem',
+});
 
-  '& > h2': {
-    fontSize: '$30',
-    marginBottom: ' 0 0 2.5rem 0',
-    padding: '0',
-  },
+const TitleArea = styled('h2', {
+  fontSize: '$30',
+  marginBottom: '0 0 2.5rem 0',
+  padding: '0',
+});
+
+const SNSSubtitle = styled('p', {
+  fontSize: '$20',
+  margin: '0 0 1.313rem 0',
 });
 
 const ToRegisterBlock = styled('div', {
@@ -71,24 +76,19 @@ const SNSBlock = styled('div', {
   fontSize: '$20',
 
   marginBottom: '8.625rem',
+});
 
-  '& > p': {
-    fontWeight: '$regular',
-    margin: '0 0 1.313rem 0',
-  },
+const LabelKeepLoggedIn = styled('label', {
+  marginTop: '2.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  color: '$darkGray',
+});
 
-  '& > label': {
-    marginTop: '2.5rem',
-    display: 'flex',
-    alignItems: 'center',
-    color: '$darkGray',
-
-    '& > input': {
-      width: '1.25em',
-      height: '1.25em',
-      marginRight: '0.5rem',
-    },
-  },
+const CheckboxKeepLoggedIn = styled('input', {
+  width: '1.25em',
+  height: '1.25em',
+  marginRight: '0.5rem',
 });
 
 const SelectSNSItem = styled('div', {

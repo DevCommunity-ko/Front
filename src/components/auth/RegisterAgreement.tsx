@@ -7,11 +7,10 @@ import { RoundButton } from '../common';
 
 import { CheckboxItem } from './CheckboxItem';
 
-
 type AgreementProps = {
-  toPageNext: CallableFunction,
-  registerForm: RegisterPayload,
-  setRegisterForm: CallableFunction,
+  toPageNext: CallableFunction;
+  registerForm: RegisterPayload;
+  setRegisterForm: CallableFunction;
 };
 
 export const RegisterAgreement = ({
@@ -58,7 +57,7 @@ export const RegisterAgreement = ({
   return (
     <>
       <SNSBlock>
-        <p>SNS 계정으로 간편하게 시작하기</p>
+        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
           <SNSItemTemporary />
           <SNSItemTemporary />
@@ -92,11 +91,11 @@ const SNSBlock = styled('div', {
   textAlign: 'center',
   width: '100%',
   marginBottom: '3.75rem',
+});
 
-  '& > p': {
-    fontSize: '$20',
-    margin: '0 0 1.313rem 0',
-  },
+const SNSSubtitle = styled('p', {
+  fontSize: '$20',
+  margin: '0 0 1.313rem 0',
 });
 
 const SelectSNSItem = styled('div', {

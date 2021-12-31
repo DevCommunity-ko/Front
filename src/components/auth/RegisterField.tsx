@@ -8,11 +8,14 @@ import { RegisterFormFieldItems } from '../../lib/texts/texts';
 import { TextInputBox } from './TextInputBox';
 
 type RegFieldProps = {
-  registerForm: object,
-  setRegisterForm: CallableFunction,
+  registerForm: object;
+  setRegisterForm: CallableFunction;
 };
 
-export const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
+export const RegisterField = ({
+  registerForm,
+  setRegisterForm,
+}: RegFieldProps) => {
   const [fieldDataList, setFieldDataList] = useState([
     '', // workfield
     '', // workSpecified
@@ -50,14 +53,8 @@ export const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) 
         />
       ))}
       <Spacer />
-      <RoundButton
-        onClick={onClickRegister}
-      >
-        가입하기
-      </RoundButton>
-      <AnchorBlock>
-        <a onClick={() => {/* noop */}}>나중에 입력할게요</a>
-      </AnchorBlock>
+      <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
+      <AnchorBlock onClick={() => { /* noop */}}>나중에 입력할게요</AnchorBlock>
     </Container>
   );
 };
@@ -71,13 +68,13 @@ const Container = styled('form', {
 
 const Spacer = styled('div', { height: '2rem' });
 
-const AnchorBlock = styled('div', {
-  'marginTop': '3.75rem',
-  'display': 'flex',
-  'justifyContent': 'center',
-
-  '& > a': {
-    cursor: 'pointer',
-    textDecoration: 'underline',
-  },
+const AnchorBlock = styled('button', {
+  margin: '3.75rem auto 0 auto',
+  display: 'flex',
+  cursor: 'pointer',
+  textDecoration: 'underline',
+  border: 'none',
+  background: 'transparent',
+  fontSize: '$16',
+  fontWeight: '$regular',
 });

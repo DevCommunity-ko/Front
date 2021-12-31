@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
 import { RegisterField } from '../../components/auth/RegisterField';
+import { RegisterDetail } from '../../components';
 
 import type { RegisterPayload } from '../../store/modules/auth';
 
@@ -41,6 +42,13 @@ export const RegisterForm = () => {
         />
       )}
       {pageStats === 1 && (
+        <RegisterDetail
+          toPageNext={toPageNext}
+          registerForm={registerForm}
+          setRegisterForm={setRegisterForm}
+        />
+      )}
+      {pageStats === 2 && (
         <RegisterField
           registerForm={registerForm}
           setRegisterForm={setRegisterForm}

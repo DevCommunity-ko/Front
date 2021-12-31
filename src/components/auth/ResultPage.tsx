@@ -6,7 +6,7 @@ import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
 
 type ResultProps = {
-  isSucceed: boolean,
+  isSucceed: boolean;
 };
 
 export const ResultPage = ({ isSucceed }: ResultProps) => {
@@ -72,8 +72,8 @@ const MessageFailed = styled('p', {
 const BlockSucceed = styled(BlockTemplate, {});
 
 const BlockFailed = styled(BlockTemplate, {
-  'paddingTop': '5.875rem',
-  'width': '17rem',
+  paddingTop: '5.875rem',
+  width: '17rem',
 
   '& > *': {
     fontSize: '$20',

@@ -3,13 +3,13 @@ import React from 'react';
 import { styled } from '../../lib/styles/stitches.config';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
-  label: string,
-  index: number,
-  DataList: string[],
-  setDataList: React.Dispatch<React.SetStateAction<string[]>>,
-  errorStatus?: boolean,
-  errorMsg?: string,
-  dropdown?: string[],
+  label: string;
+  index: number;
+  DataList: string[];
+  setDataList: React.Dispatch<React.SetStateAction<string[]>>;
+  errorStatus?: boolean;
+  errorMsg?: string;
+  dropdown?: string[];
 };
 
 export const TextInputBox = ({
@@ -37,6 +37,7 @@ export const TextInputBox = ({
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
+          errorStatus={errorStatus}
           name={`textInput${label}`}
           type={type}
           placeholder={placeholder}
@@ -95,9 +96,9 @@ const InputLine = styled('div', {
 });
 
 const InputItem = styled('input', {
-  'border': 'none',
-  'fontSize': '1rem',
-  'width': '100%',
+  border: 'none',
+  fontSize: '1rem',
+  width: '100%',
 
   '&:focus': {
     outline: 'none',
@@ -108,7 +109,7 @@ const InputItem = styled('input', {
     color: '$gray',
   },
 
-  'variants': {
+  variants: {
     errorStatus: {
       true: {
         '&::placeholder': {
