@@ -1,7 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+
 import { Header, AuthTemplate } from '../../components/index';
-import RegisterForm from '../../containers/auth/RegisterForm';
+import { RegisterForm } from '../../containers/auth/RegisterForm';
 
 const register = () => {
   return (

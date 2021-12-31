@@ -1,15 +1,16 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../lib/styles/palette';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
-  label: string;
-  index: number;
-  DataList: string[];
-  setDataList: Function;
-  errorStatus?: boolean;
-  errorMsg?: string;
-  dropdown?: string[];
+  label: string,
+  index: number,
+  DataList: string[],
+  setDataList: React.Dispatch<React.SetStateAction<string[]>>,
+  errorStatus?: boolean,
+  errorMsg?: string,
+  dropdown?: string[],
 };
 
 export const TextInputBox = ({
@@ -25,7 +26,7 @@ export const TextInputBox = ({
   setDataList,
 }: TextInputProps) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let ChangedList = [...DataList];
+    const ChangedList = [...DataList];
     ChangedList[index] = e.target.value;
     setDataList(ChangedList);
   };
@@ -37,17 +38,17 @@ export const TextInputBox = ({
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
-          name={'textInput' + label}
+          name={`textInput${label}`}
           type={type}
           placeholder={placeholder}
-          list={'datalist_' + index}
+          list={`datalist_${index}`}
           required={required}
           value={DataList[index]}
           onChange={(e) => onChange(e)}
           maxLength={index === 1 ? 10 : 524288} // 생일인경우 10글자('YYYY-MM-DD') 제한, 생일이 아닌 경우 기본값.
         />
         {dropdown && (
-          <datalist id={'datalist_' + index}>
+          <datalist id={`datalist_${index}`}>
             {dropdown.map((dItem, i) => (
               <option key={i}>{dItem}</option>
             ))}

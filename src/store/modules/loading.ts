@@ -10,7 +10,7 @@ const loadingSlice = createSlice({
       action.payload = true;
     },
     finishLoading(state, action) {
-      action.payload.false;
+      action.payload = false;
     },
   },
 });

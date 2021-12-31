@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
+
 import palette from '../../lib/styles/palette';
 
 const LoginForm = () => {

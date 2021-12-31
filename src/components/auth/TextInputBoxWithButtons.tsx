@@ -1,17 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../lib/styles/palette';
 
 type TextInputProps = React.HTMLProps<HTMLInputElement> & {
-  label: string;
-  index: number;
-  DataList: string[];
-  setDataList: Function;
-  errorStatus?: boolean;
-  errorMsg?: string;
-  dropdown?: string[];
-  buttonList?: Array<{ label: string; value: string }>;
-  buttonText?: string;
+  label: string,
+  index: number,
+  DataList: string[],
+  setDataList: React.Dispatch<React.SetStateAction<string[]>>,
+  errorStatus?: boolean,
+  errorMsg?: string,
+  dropdown?: string[],
+  buttonList?: Array<{ label: string, value: string }>,
+  buttonText?: string,
 };
 
 export const TextInputBoxWithButtons = ({
@@ -28,13 +29,13 @@ export const TextInputBoxWithButtons = ({
   setDataList,
 }: TextInputProps) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let ChangedList = [...DataList];
+    const ChangedList = [...DataList];
     ChangedList[index] = e.target.value;
     setDataList(ChangedList);
   };
 
   const onGenderChange = (value: string) => {
-    let ChangedList = [...DataList];
+    const ChangedList = [...DataList];
     ChangedList[5] = value;
 
     setDataList(ChangedList);
@@ -47,17 +48,17 @@ export const TextInputBoxWithButtons = ({
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
-          name={'textInput' + label}
+          name={`textInput${label}`}
           type={type}
           placeholder={placeholder}
-          list={'datalist_' + index}
+          list={`datalist_${index}`}
           required={required}
           value={DataList[index]}
           onChange={(e) => onChange(e)}
           maxLength={index === 1 ? 10 : 524288} // 생일인경우 10글자('YYYY-MM-DD') 제한, 생일이 아닌 경우 기본값.
         />
         {dropdown && (
-          <datalist id={'datalist_' + index}>
+          <datalist id={`datalist_${index}`}>
             {dropdown.map((dItem, i) => (
               <option key={i}>{dItem}</option>
             ))}
@@ -162,14 +163,6 @@ const RoundButtonGender = styled.div`
 
   height: 1.5rem;
   width: fit-content;
-
-  cursor: pointer;
-`;
-
-const TextButton = styled.div`
-  font-weight: 400;
-  font-size: 1.125em;
-  width: max-content;
 
   cursor: pointer;
 `;

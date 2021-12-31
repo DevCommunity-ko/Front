@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 const CallbackNaver = () => {
   useEffect(() => {
     const href = window.location.href;
-    let params = new URL(href).searchParams;
-    let code = params.get('code');
-    let state = params.get('state');
+    const params = new URL(href).searchParams;
+    const code = params.get('code');
+    const state = params.get('state');
     console.log({ code });
     console.log({ state });
     /*

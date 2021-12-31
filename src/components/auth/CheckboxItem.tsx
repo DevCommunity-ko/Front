@@ -1,21 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../lib/styles/palette';
 
 type CheckboxItemProps = {
-  visibility: boolean;
+  visibility: boolean,
   formItem: {
-    isRequired: boolean;
-    text: string;
-    showAll: boolean;
-    subHead?: string;
-    terms?: string;
-  };
-  checkedState: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleCheckAll: React.ChangeEventHandler<HTMLInputElement>;
-  isShowAll: boolean;
-  onClickShowMore?: React.MouseEventHandler<HTMLSpanElement>;
+    isRequired: boolean,
+    text: string,
+    showAll: boolean,
+    subHead?: string,
+    terms?: string,
+  },
+  checkedState: boolean,
+  onChange: React.ChangeEventHandler<HTMLInputElement>,
+  handleCheckAll: React.ChangeEventHandler<HTMLInputElement>,
+  isShowAll: boolean,
+  onClickShowMore?: React.MouseEventHandler<HTMLSpanElement>,
 };
 
 export const CheckboxItem = ({
@@ -105,7 +106,7 @@ const StyledInput = styled.input<InputType>`
     content: '(선택)';
 
     ${(props) =>
-      props.required &&
+    props.required &&
       css`
         content: '(필수)';
         color: ${palette.Alert};

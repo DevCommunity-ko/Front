@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { TextInputBox, TextInputBoxWithButtons } from '.';
-import { RoundButton } from '..';
+
+import { RoundButton } from '../common';
 import palette from '../../lib/styles/palette';
 import { RegisterFormDetailItems } from '../../lib/texts/texts';
 
+import { TextInputBox } from './TextInputBox';
+import { TextInputBoxWithButtons } from './TextInputBoxWithButtons';
+
 type DetailProps = {
-  toPageNext: Function;
-  registerForm: object;
-  setRegisterForm: Function;
+  toPageNext: CallableFunction,
+  registerForm: object,
+  setRegisterForm: CallableFunction,
 };
 
 export const RegisterDetail = ({
@@ -16,7 +19,6 @@ export const RegisterDetail = ({
   registerForm,
   setRegisterForm,
 }: DetailProps) => {
-  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [errorStatusList, setErrorStatusList] = useState([
     false, //name
     false, //bod
@@ -41,7 +43,7 @@ export const RegisterDetail = ({
       //이메일 정규식
       const emailRegex =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      let ErrorList = [...errorStatusList];
+      const ErrorList = [...errorStatusList];
       if (detailDataList[0] === '') {
         // name 필드 유효하지 않은 경우
         ErrorList[0] = true;
@@ -99,7 +101,7 @@ export const RegisterDetail = ({
       return;
     }
 
-    let newRegisterForm = {
+    const newRegisterForm = {
       ...registerForm,
       name: detailDataList[0],
       dob: detailDataList[1],
@@ -157,7 +159,7 @@ export const RegisterDetail = ({
           ),
         )}
         <Spacer />
-        <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
+        <RoundButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => onButtonClick(e)}>다음</RoundButton>
       </FormBlock>
     </>
   );

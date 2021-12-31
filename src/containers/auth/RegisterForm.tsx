@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { RegisterAgreement, RegisterDetail } from '../../components/auth';
-import RegisterField from '../../components/auth/RegisterField';
-import useUser from '../../store/modules/authHook';
+import { RegisterField } from '../../components/auth/RegisterField';
+
 import type { RegisterPayload } from '../../store/modules/auth';
 
 export const RegisterForm = () => {

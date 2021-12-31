@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import palette from '../../lib/styles/palette';
 
-export const RoundButton = ({ children, onClick, ...rest }) => {
-  return <RoundButtonBlock {...rest} onClick={onClick}>{children}</RoundButtonBlock>;
+type Props = {
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+};
+
+export const RoundButton: React.FC<Props> = ({ children, onClick  }) => {
+  return <RoundButtonBlock onClick={onClick}>{children}</RoundButtonBlock>;
 };
 
 const RoundButtonBlock = styled.button`
@@ -21,7 +26,3 @@ const RoundButtonBlock = styled.button`
     background-color: ${palette.Gray[0]};
   }
 `;
-
-
-
-// export default RoundButton;

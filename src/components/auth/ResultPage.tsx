@@ -1,16 +1,17 @@
 import React from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
-import { RoundButton } from '..';
+
+import { RoundButton } from '../common';
 import palette from '../../lib/styles/palette';
 
 type ResultProps = {
-  isSucceed: boolean;
+  isSucceed: boolean,
 };
 
 export const ResultPage = ({ isSucceed }: ResultProps) => {
   const onClick = () => {
-    Router.push("/");
+    void Router.push('/');
   };
   return (
     <>

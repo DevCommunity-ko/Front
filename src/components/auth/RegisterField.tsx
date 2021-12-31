@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
-import { TextInputBox } from '.';
-import { RoundButton } from '..';
+
+import { RoundButton } from '../common';
 import { RegisterFormFieldItems } from '../../lib/texts/texts';
 
+import { TextInputBox } from './TextInputBox';
+
 type RegFieldProps = {
-  registerForm: object;
-  setRegisterForm: Function;
+  registerForm: object,
+  setRegisterForm: CallableFunction,
 };
 
-const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
+export const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
   const [fieldDataList, setFieldDataList] = useState([
     '', // workfield
     '', // workSpecified
@@ -19,7 +21,7 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
 
   const onClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
-    let newRegisterForm = {
+    const newRegisterForm = {
       ...registerForm,
       workfield: fieldDataList[0],
       workSpecified: fieldDataList[1],
@@ -30,7 +32,7 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
       이 부분에서 모든 필드가 입력되었는지 확인한 후, 백엔드 서버로 전송하는 과정이 필요합니다.
       socialToken 부분이 완성되고, 백엔드 API가 완성되면 작성합니다.
     */
-    Router.push('register/result');
+    void Router.push('register/result');
   };
 
   return (
@@ -48,15 +50,13 @@ const RegisterField = ({ registerForm, setRegisterForm }: RegFieldProps) => {
         />
       ))}
       <Spacer />
-      <RoundButton onClick={(e) => onClick(e)}>가입하기</RoundButton>
+      <RoundButton onClick={(e: React.MouseEvent<HTMLSpanElement>) => onClick(e)}>가입하기</RoundButton>
       <AnchorBlock>
         <a onClick={onClick}>나중에 입력할게요</a>
       </AnchorBlock>
     </Container>
   );
 };
-
-export default RegisterField;
 
 const Container = styled.form`
   box-sizing: border-box;

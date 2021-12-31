@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../lib/styles/palette';
-import { CheckboxItem } from '.';
 import { registerFormItems } from '../../lib/texts/texts';
-import { RoundButton } from '..';
 import { RegisterPayload } from '../../store/modules/auth';
+import { RoundButton } from '../common';
+
+import { CheckboxItem } from './CheckboxItem';
+
 
 type AgreementProps = {
-  toPageNext: Function;
-  registerForm: RegisterPayload;
-  setRegisterForm: Function;
+  toPageNext: CallableFunction,
+  registerForm: RegisterPayload,
+  setRegisterForm: CallableFunction,
 };
 
 export const RegisterAgreement = ({
@@ -70,7 +73,7 @@ export const RegisterAgreement = ({
             key={index}
             visibility={index ? isShowAll : true}
             formItem={item}
-            checkedState={index == 0 ? isCheckedAll : checkedList[index - 1]}
+            checkedState={index === 0 ? isCheckedAll : checkedList[index - 1]}
             onChange={() => handleChecked(index - 1)}
             handleCheckAll={handleCheckAll}
             onClickShowMore={onClickShowMore}
@@ -80,7 +83,7 @@ export const RegisterAgreement = ({
         <SpacerWithErrorMsg isShowAll={isShowAll}>
           {isErrorShown && '필수 항목에 동의해주세요'}
         </SpacerWithErrorMsg>
-        <RoundButton onClick={(e) => onButtonClick(e)}>다음</RoundButton>
+        <RoundButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => onButtonClick(e)}>다음</RoundButton>
       </FormBlock>
     </>
   );
