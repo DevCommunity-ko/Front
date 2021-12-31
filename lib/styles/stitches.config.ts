@@ -1,4 +1,5 @@
 import { createStitches } from '@stitches/react';
+import { em } from 'polished';
 
 export const { styled, css } = createStitches({
   theme: {
@@ -21,11 +22,11 @@ export const { styled, css } = createStitches({
     },
     fontSizes: {
       // Unit: pt to em
-      16: '1em',
-      18: '1.125em',
-      20: '1.25em',
-      22: '1.375em',
-      30: '1.875em',
+      16: em('16px'),
+      18: em('18px'),
+      20: em('20px'),
+      22: em('22px'),
+      30: em('30px'),
     },
   },
   media: {
