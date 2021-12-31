@@ -1,23 +1,23 @@
 import { createStitches } from '@stitches/react';
 
-export const { styled, css, createTheme } = createStitches({
+export const { styled, css } = createStitches({
   theme: {
     colors: {
       // 아직 확정되지 않은 팔레트입니다.
-      Alert: '#FF8080',
-      Font: '#333333',
-      LightGray: '#EDEDED',
-      Gray: '#C4C4C4',
-      DarkGray: '#A1A4AF',
-      DarkBlue: '#0057FF',
-      LightBlue: '#849EFF',
-      Background: '#F6F6F6',
+      alert: '#FF8080',
+      font: '#333333',
+      lightGray: '#EDEDED',
+      gray: '#C4C4C4',
+      darkGray: '#A1A4AF',
+      darkBlue: '#0057FF',
+      lightBlue: '#849EFF',
+      background: '#F6F6F6',
     },
     fontWeights: {
       /* Noto Sans Regular400 , Medium 500, Bold 700*/
-      Regular: 400,
-      Medium: 500,
-      Bold: 700,
+      regular: 400,
+      medium: 500,
+      bold: 700,
     },
     fontSizes: {
       // Unit: pt to em
@@ -30,15 +30,8 @@ export const { styled, css, createTheme } = createStitches({
   },
   media: {
     // mobile 360 / tablet 1024 / laptop 1334 / desktop 1920.
-    Mobile: '(max-width: 340px)',
-    Tablet: '(max-width: 1334px)',
-    Laptop: '(man-width: 1920px)',
-  },
-});
-
-const darkTheme = createTheme('dark-theme', {
-  colors: {
-    Background: 'N/A',
-    Font: 'N/A',
+    mobile: '(max-width: 340px)',
+    tablet: '(max-width: 1334px)',
+    laptop: '(man-width: 1920px)',
   },
 });

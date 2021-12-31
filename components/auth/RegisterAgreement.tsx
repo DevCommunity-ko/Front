@@ -79,11 +79,7 @@ export const RegisterAgreement = ({
         <SpacerWithErrorMsg isShowAll={isShowAll}>
           {isErrorShown && '필수 항목에 동의해주세요'}
         </SpacerWithErrorMsg>
-        <RoundButton
-          onClick={(e: React.MouseEvent<HTMLSpanElement>) => onButtonClick(e)}
-        >
-          다음
-        </RoundButton>
+        <RoundButton onClick={onButtonClick}>다음</RoundButton>
       </FormBlock>
     </>
   );
@@ -107,7 +103,7 @@ const SelectSNSItem = styled('div', {
 });
 
 const SNSItemTemporary = styled('div', {
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   cursor: 'pointer',
 
   width: '65px',
@@ -115,17 +111,11 @@ const SNSItemTemporary = styled('div', {
   borderRadius: '50px',
 
   '&:hover': {
-    backgroundColor: '$LightGray',
+    backgroundColor: '$lightGray',
   },
 });
 
 const FormBlock = styled('form', {
-  '& > p ': {
-    margin: '0 0 1.25rem 0',
-    fontWeight: '$Regular',
-    wordBreak: 'keep-all',
-    color: '$DarkGray',
-  },
   variants: {
     isShowAll: {
       true: {
@@ -137,7 +127,7 @@ const FormBlock = styled('form', {
 
 const SpacerWithErrorMsg = styled('div', {
   height: '2.5rem',
-  color: '$Alert',
+  color: '$alert',
   textAlign: 'center',
   variants: {
     isShowAll: {

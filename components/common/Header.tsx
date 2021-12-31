@@ -58,7 +58,7 @@ const MenuBlock = styled('div', {
   },
 
   '&:hover > div:not(div:hover)': {
-    color: '$DarkGray',
+    color: '$darkGray',
   },
 });
 
@@ -71,7 +71,7 @@ const LoginButton = styled('div', {
   height: '1.875rem',
   padding: '0 0.625rem',
   borderRadius: '1rem',
-  border: '0.5px solid $Font',
+  border: '0.5px solid $font',
   fontSize: '$20',
   cursor: 'pointer',
   marginRight: '0.625rem',
@@ -82,7 +82,7 @@ const LoginButton = styled('div', {
 const LogoTemp = styled('div', {
   width: '6.563rem',
   height: '2.813rem',
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -90,14 +90,14 @@ const LogoTemp = styled('div', {
   cursor: 'pointer',
 
   '&:hover': {
-    backgroundColor: '$LightGray',
+    backgroundColor: '$lightGray',
   },
 });
 
 const PersonIconTemp = styled('div', {
   width: '1.875rem',
   height: '1.875rem',
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   borderRadius: '30px',
   cursor: 'pointer',
 });

@@ -31,7 +31,7 @@ export const RegisterForm = () => {
 
   return (
     <RegisterBlock>
-      <h2>{pageTitle[pageStats]}</h2>
+      <TitleArea>{pageTitle[pageStats]}</TitleArea>
       {pageStats === 0 && (
         <RegisterAgreement
           toPageNext={toPageNext}
@@ -49,14 +49,14 @@ export const RegisterForm = () => {
   );
 };
 
+const TitleArea = styled('h2', {
+  fontSize: '$30',
+  marginBottom: '0 0 2.5rem 0',
+  padding: '0',
+});
+
 const RegisterBlock = styled('div', {
   width: '30rem',
-
-  '& > h2': {
-    fontSize: '$30',
-    marginBottom: '0 0 2.5rem 0',
-    padding: '0',
-  },
 });
 
 export default RegisterForm;

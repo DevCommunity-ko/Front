@@ -179,22 +179,22 @@ const AccountConnectedTemplate = styled('div', {
 
   padding: '0 2.438rem',
 
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   marginBottom: '2.5rem',
 });
 
 const SocialIconTemp = styled('div', {
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   marginRight: '1.25rem',
   fontWeight: '600',
   fontSize: '1.875em',
-  color: '$Font',
+  color: '$font',
 });
 
 const SocialAccountDiscription = styled('div', {
-  color: '$Font',
+  color: '$font',
   fontSize: '$20',
-  fontWeight: '$Regular',
+  fontWeight: '$regular',
 });
 
 const FormBlock = styled('form', {

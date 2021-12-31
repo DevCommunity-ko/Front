@@ -19,16 +19,16 @@ export const RoundButton = ({
 
 const RoundButtonBlock = styled('button', {
   width: '100%',
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   borderRadius: '30px',
   border: 'none',
   fontSize: '1.1em',
-  fontWeight: '$Bold',
+  fontWeight: '$bold',
   height: '3rem',
 
   cursor: 'pointer',
 
   '&:hover': {
-    backgroundColor: '$LightGray',
+    backgroundColor: '$lightGray',
   },
 });

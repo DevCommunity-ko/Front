@@ -86,7 +86,7 @@ export const TextInputBoxWithButtons = ({
 const InputLabel = styled('label', {
   '& > div': {
     margin: '0',
-    fontWeight: '$Regular',
+    fontWeight: '$regular',
     marginBottom: '1.875rem',
   },
 });
@@ -98,7 +98,7 @@ const InputBlock = styled('div', {
     errorStatus: {
       true: {
         '& > div > input::placeholder': {
-          color: '$Alert',
+          color: '$alert',
         },
       },
     },
@@ -109,11 +109,11 @@ const InputLine = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   paddingBottom: '0.625rem',
-  borderBottom: '0.5px solid $Font',
+  borderBottom: '0.5px solid $font',
   variants: {
     errorStatus: {
       true: {
-        borderBottom: '0.5px solid $Alert',
+        borderBottom: '0.5px solid $alert',
       },
     },
   },
@@ -130,7 +130,7 @@ const InputItem = styled('input', {
 
   '&::placeholder': {
     fontSize: '1rem',
-    color: '$Gray',
+    color: '$gray',
   },
 });
 
@@ -151,14 +151,14 @@ const InputItemGender = styled('input', {
   display: 'none',
 
   '&:checked + div': {
-    backgroundColor: '$Font',
+    backgroundColor: '$font',
     color: 'white',
   },
 });
 
 const RoundButtonGender = styled('div', {
   padding: '0 0.625rem',
-  border: '0.5px solid $Font',
+  border: '0.5px solid $font',
   borderRadius: '30px',
 
   height: '1.5rem',
@@ -170,7 +170,7 @@ const RoundButtonGender = styled('div', {
 const ErrorBox = styled('div', {
   float: 'right',
   fontSize: '1em',
-  color: '$Alert',
-  fontWeight: '$Regular',
+  color: '$alert',
+  fontWeight: '$regular',
   marginBottom: '1.25rem',
 });

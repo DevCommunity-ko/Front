@@ -56,11 +56,11 @@ const ToRegisterBlock = styled('div', {
   width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
-  fontWeight: '$Bold',
+  fontWeight: '$bold',
   fontSize: '$20',
 
   '& > div': {
-    fontWeight: '$Regular',
+    fontWeight: '$regular',
   },
 });
 
@@ -72,7 +72,7 @@ const SNSBlock = styled('div', {
   marginBottom: '8.625rem',
 
   '& > p': {
-    fontWeight: '$Regular',
+    fontWeight: '$regular',
     margin: '0 0 1.313rem 0',
   },
 
@@ -80,7 +80,7 @@ const SNSBlock = styled('div', {
     marginTop: '2.5rem',
     display: 'flex',
     alignItems: 'center',
-    color: '$DarkGray',
+    color: '$darkGray',
 
     '& > input': {
       width: '1.25em',
@@ -96,7 +96,7 @@ const SelectSNSItem = styled('div', {
 });
 
 const SNSItemTemplate = styled('div', {
-  backgroundColor: '$Gray',
+  backgroundColor: '$gray',
   cursor: 'pointer',
 
   width: '65px',
@@ -104,7 +104,7 @@ const SNSItemTemplate = styled('div', {
   borderRadius: '50px',
 
   '&:hover': {
-    backgroundColor: '$LightGray',
+    backgroundColor: '$lightGray',
   },
 });
 

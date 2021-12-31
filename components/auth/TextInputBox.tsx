@@ -36,6 +36,7 @@ export const TextInputBox = ({
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
+          errorStatus={errorStatus}
           name={'textInput' + label}
           type={type}
           placeholder={placeholder}
@@ -61,7 +62,7 @@ export const TextInputBox = ({
 const InputLabel = styled('label', {
   '& > div': {
     margin: '0',
-    fontWeight: '$Regular',
+    fontWeight: '$regular',
     marginBottom: '1.875rem',
   },
 });
@@ -69,12 +70,11 @@ const InputLabel = styled('label', {
 const InputBlock = styled('div', {
   paddingBottom: '0.438rem',
   boxSizing: 'border-box',
+
   variants: {
     errorStatus: {
       true: {
-        '& > div > input::placeholder': {
-          color: '$Alert',
-        },
+        paddingBottom: '0',
       },
     },
   },
@@ -84,11 +84,11 @@ const InputLine = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   paddingBottom: '0.625rem',
-  borderBottom: '0.5px solid $Font',
+  borderBottom: '0.5px solid $font',
   variants: {
     errorStatus: {
       true: {
-        borderBottom: '0.5px solid $Alert',
+        borderBottom: '0.5px solid $alert',
       },
     },
   },
@@ -105,14 +105,23 @@ const InputItem = styled('input', {
 
   '&::placeholder': {
     fontSize: '1rem',
-    color: '$Gray',
+    color: '$gray',
+  },
+
+  variants: {
+    errorStatus: {
+      true: {
+        '&::placeholder': {
+          color: '$alert',
+        },
+      },
+    },
   },
 });
 
 const ErrorBox = styled('div', {
-  float: 'right',
+  textAlign: 'right',
   fontSize: '1em',
-  color: '$Alert',
-  fontWeight: '$Regular',
-  marginBottom: '1.25rem',
+  color: '$alert',
+  fontWeight: '$regular',
 });
