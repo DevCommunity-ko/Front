@@ -75,6 +75,6 @@ const ButtonLater = styled('button', {
   textDecoration: 'underline',
   border: 'none',
   background: 'transparent',
-  fontSize: '$16',
+  fontSize: '$text',
   fontWeight: '$regular',
 });

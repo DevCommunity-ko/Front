@@ -21,12 +21,10 @@ export const { styled, css } = createStitches({
       bold: 700,
     },
     fontSizes: {
-      // Unit: pt to em
-      16: rem(16),
-      18: rem(18),
-      20: rem(20),
-      22: rem(22),
-      30: rem(30),
+      text: rem(16),
+      subtitle: rem(20),
+      title: rem(30),
+      button: rem(22),
     },
   },
   media: {

@@ -48,13 +48,13 @@ const Wrapper = styled('div', {
 });
 
 const Title = styled('h2', {
-  fontSize: '$30',
+  fontSize: '$title',
   marginBottom: '0 0 2.5rem 0',
   padding: '0',
 });
 
 const SNSSubtitle = styled('p', {
-  fontSize: '$20',
+  fontSize: '$subtitle',
   margin: '0 0 1.313rem 0',
 });
 
@@ -63,7 +63,7 @@ const ToRegisterBlock = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   fontWeight: '$bold',
-  fontSize: '$20',
+  fontSize: '$subtitle',
 
   '& > div': {
     fontWeight: '$regular',
@@ -73,7 +73,7 @@ const ToRegisterBlock = styled('div', {
 const SNSBlock = styled('div', {
   textAlign: 'center',
   width: '100%',
-  fontSize: '$20',
+  fontSize: '$subtitle',
 
   marginBottom: '8.625rem',
 });

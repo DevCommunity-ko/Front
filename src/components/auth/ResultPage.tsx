@@ -15,7 +15,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
   };
   return (
     <>
-      {isSucceed ? (
+      {!isSucceed ? (
         <BlockSucceed>
           <TitleSucceed>마그넷 가입완료</TitleSucceed>
           <SubTitleSucceed>
@@ -46,24 +46,24 @@ const BlockTemplate = styled('div', {
 });
 
 const TitleSucceed = styled('h1', {
-  fontSize: '$30',
+  fontSize: '$title',
   marginBottom: '0.625rem',
 });
 
 const SubTitleSucceed = styled('h4', {
   fontWeight: '$regular',
-  fontSize: '$20',
+  fontSize: '$subtitle',
 });
 
 const MessageSucceed = styled('p', {
   margin: '6.25rem 0',
-  fontSize: '$30',
+  fontSize: '$title',
   fontWeight: '$regular',
 });
 
 const MessageFailed = styled('p', {
   a: {
-    fontSize: '1em',
+    fontSize: '$subtitle',
     fontWeight: '$bold',
     textDecoration: 'underline',
   },
@@ -76,7 +76,7 @@ const BlockFailed = styled(BlockTemplate, {
   width: '17rem',
 
   '& > *': {
-    fontSize: '$20',
+    fontSize: '$subtitle',
     fontWeight: '$medium',
   },
 });

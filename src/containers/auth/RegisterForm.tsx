@@ -59,7 +59,7 @@ export const RegisterForm = () => {
 };
 
 const TitleArea = styled('h2', {
-  fontSize: '$30',
+  fontSize: '$title',
   marginBottom: '0 0 2.5rem 0',
   padding: '0',
 });

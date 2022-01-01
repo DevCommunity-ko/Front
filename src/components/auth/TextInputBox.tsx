@@ -97,7 +97,7 @@ const InputLine = styled('div', {
 
 const InputItem = styled('input', {
   border: 'none',
-  fontSize: '1rem',
+  fontSize: '$text',
   width: '100%',
 
   '&:focus': {
@@ -105,7 +105,7 @@ const InputItem = styled('input', {
   },
 
   '&::placeholder': {
-    fontSize: '1rem',
+    fontSize: '$text',
     color: '$gray',
   },
 
@@ -122,7 +122,7 @@ const InputItem = styled('input', {
 
 const ErrorBox = styled('div', {
   textAlign: 'right',
-  fontSize: '1em',
+  fontSize: '$text',
   color: '$alert',
   fontWeight: '$regular',
 });

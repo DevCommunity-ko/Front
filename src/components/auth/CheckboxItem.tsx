@@ -81,7 +81,7 @@ const ShowMore = styled('span', {
 });
 
 const StyledLabel = styled('label', {
-  fontSize: '$20',
+  fontSize: '$subtitle',
   fontWeight: '$regular',
   display: 'flex',
   alignItems: 'center',

@@ -23,7 +23,7 @@ const RoundButtonBlock = styled('button', {
   'backgroundColor': '$gray',
   'borderRadius': '30px',
   'border': 'none',
-  'fontSize': '1.1em',
+  'fontSize': '$button',
   'fontWeight': '$bold',
   'height': '3rem',
 

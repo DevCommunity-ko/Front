@@ -94,7 +94,7 @@ const SNSBlock = styled('div', {
 });
 
 const SNSSubtitle = styled('p', {
-  fontSize: '$20',
+  fontSize: '$subtitle',
   margin: '0 0 1.313rem 0',
 });
 

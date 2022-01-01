@@ -195,7 +195,7 @@ const SocialIconTemp = styled('div', {
 
 const SocialAccountDiscription = styled('div', {
   color: '$font',
-  fontSize: '$20',
+  fontSize: '$subtitle',
   fontWeight: '$regular',
 });
 
