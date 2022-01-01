@@ -37,6 +37,7 @@ export const TextInputBox = ({
       </InputLabel>
       <InputLine errorStatus={errorStatus}>
         <InputItem
+          errorStatus={errorStatus}
           name={`textInput${label}`}
           type={type}
           placeholder={placeholder}
@@ -95,20 +96,20 @@ const InputLine = styled('div', {
 });
 
 const InputItem = styled('input', {
-  'border': 'none',
-  'fontSize': '1rem',
-  'width': '100%',
+  border: 'none',
+  fontSize: '$text',
+  width: '100%',
 
   '&:focus': {
     outline: 'none',
   },
 
   '&::placeholder': {
-    fontSize: '1rem',
+    fontSize: '$text',
     color: '$gray',
   },
 
-  'variants': {
+  variants: {
     errorStatus: {
       true: {
         '&::placeholder': {
@@ -121,7 +122,7 @@ const InputItem = styled('input', {
 
 const ErrorBox = styled('div', {
   textAlign: 'right',
-  fontSize: '1em',
+  fontSize: '$text',
   color: '$alert',
   fontWeight: '$regular',
 });

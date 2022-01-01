@@ -67,7 +67,7 @@ const MenuBlock = styled('div', {
 });
 
 const MenuItem = styled('div', {
-  fontSize: '$20',
+  fontSize: '$subtitle',
   cursor: 'pointer',
 });
 
@@ -76,7 +76,7 @@ const LoginButton = styled('div', {
   padding: '0 0.625rem',
   borderRadius: '1rem',
   border: '0.5px solid $font',
-  fontSize: '$20',
+  fontSize: '$subtitle',
   cursor: 'pointer',
   marginRight: '0.625rem',
 });

@@ -46,24 +46,24 @@ const BlockTemplate = styled('div', {
 });
 
 const TitleSucceed = styled('h1', {
-  fontSize: '$30',
+  fontSize: '$title',
   marginBottom: '0.625rem',
 });
 
 const SubTitleSucceed = styled('h4', {
   fontWeight: '$regular',
-  fontSize: '$20',
+  fontSize: '$subtitle',
 });
 
 const MessageSucceed = styled('p', {
   margin: '6.25rem 0',
-  fontSize: '$30',
+  fontSize: '$title',
   fontWeight: '$regular',
 });
 
 const MessageFailed = styled('p', {
   a: {
-    fontSize: '1em',
+    fontSize: '$subtitle',
     fontWeight: '$bold',
     textDecoration: 'underline',
   },
@@ -72,11 +72,11 @@ const MessageFailed = styled('p', {
 const BlockSucceed = styled(BlockTemplate, {});
 
 const BlockFailed = styled(BlockTemplate, {
-  'paddingTop': '5.875rem',
-  'width': '17rem',
+  paddingTop: '5.875rem',
+  width: '17rem',
 
   '& > *': {
-    fontSize: '$20',
+    fontSize: '$subtitle',
     fontWeight: '$medium',
   },
 });
