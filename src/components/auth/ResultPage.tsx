@@ -15,7 +15,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
   };
   return (
     <>
-      {!isSucceed ? (
+      {isSucceed ? (
         <BlockSucceed>
           <TitleSucceed>마그넷 가입완료</TitleSucceed>
           <SubTitleSucceed>
