@@ -151,6 +151,7 @@ const LabelGender = styled('label', {
 });
 
 const InputItemGender = styled('input', {
+  // hide input to use div as input(radio)
   display: 'none',
 
   '&:checked + div': {

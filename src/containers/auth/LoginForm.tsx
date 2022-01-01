@@ -21,7 +21,7 @@ const LoginForm = () => {
 
   return (
     <Wrapper>
-      <TitleArea>로그인하기</TitleArea>
+      <Title>로그인하기</Title>
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
@@ -47,7 +47,7 @@ const Wrapper = styled('div', {
   width: '22.5rem',
 });
 
-const TitleArea = styled('h2', {
+const Title = styled('h2', {
   fontSize: '$30',
   marginBottom: '0 0 2.5rem 0',
   padding: '0',

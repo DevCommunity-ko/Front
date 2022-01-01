@@ -54,7 +54,7 @@ export const RegisterField = ({
       ))}
       <Spacer />
       <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
-      <AnchorBlock onClick={() => { /* noop */ }}>나중에 입력할게요</AnchorBlock>
+      <ButtonLater onClick={() => { /* noop */ }}>나중에 입력할게요</ButtonLater>
     </Container>
   );
 };
@@ -68,7 +68,7 @@ const Container = styled('form', {
 
 const Spacer = styled('div', { height: '2rem' });
 
-const AnchorBlock = styled('button', {
+const ButtonLater = styled('button', {
   margin: '3.75rem auto 0 auto',
   display: 'flex',
   cursor: 'pointer',
