@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
 import { RegisterField } from '../../components/auth/RegisterField';
-import { RegisterDetail } from '../../components';
 
 import type { RegisterPayload } from '../../store/modules/auth';
 
