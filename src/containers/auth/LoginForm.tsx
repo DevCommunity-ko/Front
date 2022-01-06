@@ -21,20 +21,24 @@ const LoginForm = () => {
 
   return (
     <Wrapper>
-      <Title>로그인하기</Title>
-      <SNSBlock>
-        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
-        <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={loginNaver} />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-        </SelectSNSItem>
-        <LabelKeepLoggedIn>
-          <CheckboxKeepLoggedIn type="checkbox" />
-          로그인 유지
-        </LabelKeepLoggedIn>
-      </SNSBlock>
+      <InnerWrapperMobile>
+        <Title>로그인하기</Title>
+        <InnerBlockMobile>
+          <SNSBlock>
+            <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
+            <SelectSNSItem>
+              <SNSItemTemplateForTest onClick={loginNaver} />
+              <SNSItemTemplate />
+              <SNSItemTemplate />
+              <SNSItemTemplate />
+            </SelectSNSItem>
+            <LabelKeepLoggedIn>
+              <CheckboxKeepLoggedIn type="checkbox" />
+              로그인 유지
+            </LabelKeepLoggedIn>
+          </SNSBlock>
+        </InnerBlockMobile>
+      </InnerWrapperMobile>
       <ToRegisterBlock>
         <div>아직 마그넷 회원이 아니신가요?</div>
         <Link href="/register">회원가입</Link>
@@ -45,17 +49,42 @@ const LoginForm = () => {
 
 const Wrapper = styled('div', {
   width: '22.5rem',
+  '@mobile': {
+    textAlign: 'center',
+    width: '17.688rem',
+  },
+});
+
+const InnerWrapperMobile = styled('div', {
+  '@mobile': {
+    textAlign: 'left',
+    display: 'inline-block',
+    width: '13.125rem',
+  },
+});
+
+const InnerBlockMobile = styled('div', {
+  '@mobile': {
+    textAlign: 'center',
+  },
 });
 
 const Title = styled('h2', {
   fontSize: '$title',
   marginBottom: '0 0 2.5rem 0',
   padding: '0',
+  '@mobile': {
+    fontSize: '$subtitle',
+    fontWeight: '$medium',
+  },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
   margin: '0 0 1.313rem 0',
+  '@mobile': {
+    fontSize: '$smallMobile',
+  },
 });
 
 const ToRegisterBlock = styled('div', {
@@ -68,6 +97,10 @@ const ToRegisterBlock = styled('div', {
   '& > div': {
     fontWeight: '$regular',
   },
+
+  '@mobile': {
+    fontSize: '$text',
+  },
 });
 
 const SNSBlock = styled('div', {
@@ -76,6 +109,10 @@ const SNSBlock = styled('div', {
   fontSize: '$subtitle',
 
   marginBottom: '8.625rem',
+
+  '@mobile': {
+    marginBottom: '4.563rem',
+  },
 });
 
 const LabelKeepLoggedIn = styled('label', {
@@ -83,12 +120,23 @@ const LabelKeepLoggedIn = styled('label', {
   display: 'flex',
   alignItems: 'center',
   color: '$darkGray',
+
+  '@mobile': {
+    fontSize: '$smallMobile',
+    fontWeight: '$bold',
+    marginTop: '1.188rem',
+  },
 });
 
 const CheckboxKeepLoggedIn = styled('input', {
   width: '1.25em',
   height: '1.25em',
   marginRight: '0.5rem',
+
+  '@mobile': {
+    width: '1.125rem',
+    height: '1.125rem',
+  },
 });
 
 const SelectSNSItem = styled('div', {
@@ -107,6 +155,11 @@ const SNSItemTemplate = styled('div', {
   '&:hover': {
     backgroundColor: '$lightGray',
   },
+
+  '@mobile': {
+    width: '45px',
+    height: '45px',
+  },
 });
 
 const SNSItemTemplateForTest = styled('div', {
@@ -119,6 +172,11 @@ const SNSItemTemplateForTest = styled('div', {
 
   '&:hover': {
     backgroundColor: 'lightgreen',
+  },
+
+  '@mobile': {
+    width: '45px',
+    height: '45px',
   },
 });
 

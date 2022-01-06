@@ -25,11 +25,12 @@ export const { styled, css } = createStitches({
       subtitle: rem(20), // weight medium
       title: rem(30), // weight bold
       button: rem(22), // weight bold
+      smallMobile: rem(12),
     },
   },
   media: {
-    // mobile 360 / tablet 1024 / laptop 1334 / desktop 1920.
-    mobile: '(max-width: 360px)',
+    // mobile 640 / tablet 1024 / laptop 1334 / desktop 1920.
+    mobile: '(max-width: 640px)',
     tablet: '(max-width: 1024px)',
     laptop: '(max-width: 1334px)',
   },
