@@ -10,7 +10,7 @@ const AuthTemplateBlock = styled('main', {
   '@laptop': {
     marginTop: '6.875rem',
   },
-  '@mobile': {
+  '@mobileLarge': {
     marginTop: '6.25rem',
   },
 });

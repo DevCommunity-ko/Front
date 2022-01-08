@@ -21,24 +21,20 @@ const LoginForm = () => {
 
   return (
     <Wrapper>
-      <InnerWrapperMobile>
-        <Title>로그인하기</Title>
-        <InnerBlockMobile>
-          <SNSBlock>
-            <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
-            <SelectSNSItem>
-              <SNSItemTemplateForTest onClick={loginNaver} />
-              <SNSItemTemplate />
-              <SNSItemTemplate />
-              <SNSItemTemplate />
-            </SelectSNSItem>
-            <LabelKeepLoggedIn>
-              <CheckboxKeepLoggedIn type="checkbox" />
-              로그인 유지
-            </LabelKeepLoggedIn>
-          </SNSBlock>
-        </InnerBlockMobile>
-      </InnerWrapperMobile>
+      <Title>로그인하기</Title>
+      <SNSBlock>
+        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
+        <SelectSNSItem>
+          <SNSItemTemplateForTest onClick={loginNaver} />
+          <SNSItemTemplate />
+          <SNSItemTemplate />
+          <SNSItemTemplate />
+        </SelectSNSItem>
+        <LabelKeepLoggedIn>
+          <CheckboxKeepLoggedIn type="checkbox" />
+          로그인 유지
+        </LabelKeepLoggedIn>
+      </SNSBlock>
       <ToRegisterBlock>
         <div>아직 마그넷 회원이 아니신가요?</div>
         <Link href="/register">회원가입</Link>
@@ -49,14 +45,18 @@ const LoginForm = () => {
 
 const Wrapper = styled('div', {
   width: '22.5rem',
-  '@mobile': {
-    textAlign: 'center',
-    width: '17.688rem',
+  '@mobileLarge': {
+    width: '23.750rem',
+    paddingTop: '6.25rem',
+  },
+  '@mobileSmall': {
+    width: '13.188rem',
+    paddingTop: '0',
   },
 });
 
 const InnerWrapperMobile = styled('div', {
-  '@mobile': {
+  '@asd': {
     textAlign: 'left',
     display: 'inline-block',
     width: '13.125rem',
@@ -64,26 +64,36 @@ const InnerWrapperMobile = styled('div', {
 });
 
 const InnerBlockMobile = styled('div', {
-  '@mobile': {
+  '@asd': {
     textAlign: 'center',
   },
 });
 
 const Title = styled('h2', {
   fontSize: '$title',
-  marginBottom: '0 0 2.5rem 0',
+  margin: '0 0 2.5rem 0',
   padding: '0',
-  '@mobile': {
+  '@mobileLarge': {
+    padding: '0 0 0 0.625rem',
+  },
+  '@mobileSmall': {
     fontSize: '$subtitle',
-    fontWeight: '$medium',
+    fontWeight: '@medium',
+    padding: '0',
+    margin: '0 0 1.25rem 0',
   },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
   margin: '0 0 1.313rem 0',
-  '@mobile': {
+  '@mobileLarge': {
+    margin: '0 0 1.25rem 0',
+  },
+  '@mobileSmall': {
     fontSize: '$smallMobile',
+    fontWeight: '$regular',
+    margin: '0 0 0.625rem 0',
   },
 });
 
@@ -98,8 +108,9 @@ const ToRegisterBlock = styled('div', {
     fontWeight: '$regular',
   },
 
-  '@mobile': {
-    fontSize: '$text',
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+    fontWeight: '$medium',
   },
 });
 
@@ -110,8 +121,11 @@ const SNSBlock = styled('div', {
 
   marginBottom: '8.625rem',
 
-  '@mobile': {
-    marginBottom: '4.563rem',
+  '@mobileLarge': {
+    marginBottom: '8.75rem',
+  },
+  '@mobileSmall': {
+    marginBottom: '4.438rem',
   },
 });
 
@@ -121,10 +135,15 @@ const LabelKeepLoggedIn = styled('label', {
   alignItems: 'center',
   color: '$darkGray',
 
-  '@mobile': {
-    fontSize: '$smallMobile',
+  '@mobileLarge': {
+    fontSize: '$subtitle',
     fontWeight: '$bold',
-    marginTop: '1.188rem',
+    marginTop: '1.563rem',
+  },
+  '@mobileSmall': {
+    marginTop: '1.25rem',
+    fontSize: '$text',
+    fontWeight: '$medium',
   },
 });
 
@@ -133,7 +152,7 @@ const CheckboxKeepLoggedIn = styled('input', {
   height: '1.25em',
   marginRight: '0.5rem',
 
-  '@mobile': {
+  '@mobileLarge': {
     width: '1.125rem',
     height: '1.125rem',
   },
@@ -156,7 +175,12 @@ const SNSItemTemplate = styled('div', {
     backgroundColor: '$lightGray',
   },
 
-  '@mobile': {
+  '@mobileLarge': {
+    width: '80px',
+    height: '80px',
+  },
+
+  '@mobileSmall': {
     width: '45px',
     height: '45px',
   },
@@ -174,7 +198,12 @@ const SNSItemTemplateForTest = styled('div', {
     backgroundColor: 'lightgreen',
   },
 
-  '@mobile': {
+  '@mobileLarge': {
+    width: '80px',
+    height: '80px',
+  },
+
+  '@mobileSmall': {
     width: '45px',
     height: '45px',
   },
