@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -53,20 +54,22 @@ const HelloBlock = styled('div', {
   fontWeight: '$medium',
   width: 'max-content',
   '& > span': {
-    // 내정보 보기거나 로그아웃을 위한 더보기 버튼으로 추정되는데,
-    // 역할이 확정되거나 내정보 페이지가 만들어지면 해당 페이지로의 Link로 수정할 것.
     textDecoration: 'underline',
     cursor: 'pointer',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    maxWidth: '6.875rem', // length of 5 letters in korean
   },
   '@laptop': {
     marginLeft: '2.438rem',
+    fontSize: '$text',
   },
   '@tablet': {
     marginLeft: '2.063rem',
   },
-  '@mobile': {
+  '@mobileLarge': {
     marginLeft: '0',
-    fontSize: '$text',
   },
 });
 
@@ -78,7 +81,7 @@ const HeaderBlock = styled('header', {
   background: 'white',
   height: '5rem',
 
-  '@mobile': {
+  '@mobileSmall': {
     height: '3.125rem',
   },
 });
@@ -111,7 +114,7 @@ const MenuBlock = styled('div', {
     },
   },
 
-  '@mobile': {
+  '@mobileLarge': {
     display: 'none',
   },
 });
@@ -122,7 +125,11 @@ const MenuItem = styled('div', {
 
   '&:hover': {
     fontWeight: '$bold',
-    // 우선 regular / bold 설정해뒀습니다. 디자인 변경 가능성 있습니다.
+    textDecoration: 'underline',
+  },
+
+  '@laptop': {
+    fontSize: '$text',
   },
 });
 
@@ -156,15 +163,18 @@ const LoginButton = styled('div', {
   '@tablet': {
     marginLeft: '2.063rem',
   },
-  '@mobile': {
+  '@mobileLarge': {
     marginLeft: '0',
+    fontSize: rem(30),
+    fontWeight: '$medium',
+    height: '2.688rem',
+    borderRadius: '1.25rem',
+  },
+  '@mobileSmall': {
+    height: '1.438rem',
     fontSize: '$text',
     fontWeight: '$regular',
-    height: '1.5rem',
   },
-
-  // marginRight: '0.625rem',
-  // 오른쪽 아이콘이 빠지는 디자인이 반영되면, 오른쪽 마진도 적용이 필요할 수 있습니다.
 });
 
 /* 임시아이콘은 SVG 파일 받은 후 대체될 예정입니다. */
@@ -183,10 +193,13 @@ const LogoTemp = styled('div', {
     backgroundColor: '$lightGray',
   },
 
-  '@mobile': {
+  '@mobileLarge': {
+    width: '7.188rem',
+    height: '2.813rem',
+  },
+  '@mobileSmall': {
     width: '5.625rem',
     height: '1.875rem',
-    fontSize: '$text',
   },
 });
 
@@ -198,7 +211,7 @@ const PersonIconTemp = styled('div', {
   cursor: 'pointer',
   marginLeft: '0.625rem',
 
-  '@mobile': {
+  '@mobileSmall': {
     width: '1.5rem',
     height: '1.5rem',
   },
@@ -207,7 +220,7 @@ const PersonIconTemp = styled('div', {
 // 헤더 fixed이므로 Spacer 설정함
 const Spacer = styled('div', {
   height: '5rem',
-  '@mobile': {
+  '@mobileSmall': {
     height: '3.125rem',
   },
 });

@@ -8,7 +8,7 @@ const ResponsiveBlock = styled('div', {
 
   '@laptop': {},
   '@tablet': {},
-  '@mobile': {},  
+  '@mobileLarge': {},  
 });
 
 export const Responsive: React.FC = ({ children, ...rest }) => {
