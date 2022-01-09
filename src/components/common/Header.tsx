@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -76,12 +75,13 @@ const HelloBlock = styled('div', {
 const HeaderBlock = styled('header', {
   fontWeight: '$regular',
   position: 'fixed',
+  top: '0',
   width: '100%',
   verticalAlign: 'middle',
   background: 'white',
   height: '5rem',
 
-  '@mobileSmall': {
+  '@mobileLarge': {
     height: '3.125rem',
   },
 });
@@ -100,6 +100,10 @@ const Wrapper = styled('div', {
 
   '@laptop': {
     margin: '0 1.25rem',
+  },
+
+  '@mobileLarge': {
+    height: '3.125rem',
   },
 });
 
@@ -164,13 +168,6 @@ const LoginButton = styled('div', {
     marginLeft: '2.063rem',
   },
   '@mobileLarge': {
-    marginLeft: '0',
-    fontSize: rem(30),
-    fontWeight: '$medium',
-    height: '2.688rem',
-    borderRadius: '1.25rem',
-  },
-  '@mobileSmall': {
     height: '1.438rem',
     fontSize: '$text',
     fontWeight: '$regular',
@@ -194,10 +191,6 @@ const LogoTemp = styled('div', {
   },
 
   '@mobileLarge': {
-    width: '7.188rem',
-    height: '2.813rem',
-  },
-  '@mobileSmall': {
     width: '5.625rem',
     height: '1.875rem',
   },
@@ -220,7 +213,7 @@ const PersonIconTemp = styled('div', {
 // 헤더 fixed이므로 Spacer 설정함
 const Spacer = styled('div', {
   height: '5rem',
-  '@mobileSmall': {
-    height: '3.125rem',
+  '@mobileLarge': {
+    display: 'none',
   },
 });

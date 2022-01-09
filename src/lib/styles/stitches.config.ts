@@ -29,7 +29,7 @@ export const { styled, css } = createStitches({
     },
   },
   media: {
-    // mobile 360 & 640 / tablet 1024 / laptop 1334 / desktop 1920.
+    // mobileSmall 360 / mobileLarge 640 / tablet 1024 / laptop 1334 / desktop 1920.
     mobileSmall: '(max-width: 360px)',
     mobileLarge: '(max-width: 640px)',
     tablet: '(max-width: 1024px)',
