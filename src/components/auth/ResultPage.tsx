@@ -28,7 +28,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
         <BlockFailed>
           <h2>죄송합니다</h2>
           <MessageFailed>
-            다시 <Link href="/login">로그인</Link>하시거나
+            다시 <Link href="/login">로그인</Link>하시거나&nbsp;
             <Link href="/register">회원가입</Link>을 시도해 주시기 바랍니다.
           </MessageFailed>
         </BlockFailed>
@@ -48,17 +48,32 @@ const BlockTemplate = styled('div', {
 const TitleSucceed = styled('h1', {
   fontSize: '$title',
   marginBottom: '0.625rem',
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    fontWeight: '$medium',
+    marginBottom: '0.688rem',
+  },
 });
 
 const SubTitleSucceed = styled('h4', {
   fontWeight: '$regular',
   fontSize: '$subtitle',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+  },
 });
 
 const MessageSucceed = styled('p', {
   margin: '6.25rem 0',
   fontSize: '$title',
   fontWeight: '$regular',
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    margin: '3.75rem 0',
+  },
 });
 
 const MessageFailed = styled('p', {
@@ -69,7 +84,11 @@ const MessageFailed = styled('p', {
   },
 });
 
-const BlockSucceed = styled(BlockTemplate, {});
+const BlockSucceed = styled(BlockTemplate, {
+  '@mobileLarge': {
+    width: '100%',
+  },
+});
 
 const BlockFailed = styled(BlockTemplate, {
   paddingTop: '5.875rem',
