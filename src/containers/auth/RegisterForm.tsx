@@ -28,11 +28,10 @@ export const RegisterForm = () => {
     setPageStats(pageStats + 1);
   };
 
-  // 소셜 로그인 구현이 완료되면, 회원가입이 완료되어 로그인 상태인 경우, register 페이지에 진입시 redirect 될 수 있도록 구현합니다.
-
+  // 소셜 로그인 구현이 완료되면, 회원가입이 완료되어 로그인 상태인 경우, register 페이지에 진입시 redirect 될 수 있도록 구현해야 합니다.
   return (
     <RegisterBlock>
-      <TitleArea>{pageTitle[pageStats]}</TitleArea>
+      <TitleArea toLeft={pageStats !== 0}>{pageTitle[pageStats]}</TitleArea>
       {pageStats === 0 && (
         <RegisterAgreement
           toPageNext={toPageNext}
@@ -52,12 +51,35 @@ export const RegisterForm = () => {
 
 const TitleArea = styled('h2', {
   fontSize: '$title',
-  marginBottom: '0 0 2.5rem 0',
+  margin: '0 0 2.5rem 0',
   padding: '0',
+
+  variants: {
+    toLeft: {
+      true: {
+        '@mobileLarge': {
+          textAlign: 'left',
+        },
+      },
+    },
+  },
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    margin: '0 0 1.25rem 0',
+    fontWeight: '$medium',
+  },
 });
 
 const RegisterBlock = styled('div', {
   width: '30rem',
+
+  '@mobileLarge': {
+    height: '100vh',
+    width: '100%',
+    paddingTop: '9.375rem',
+    textAlign: 'center',
+  },
 });
 
 export default RegisterForm;

@@ -32,4 +32,10 @@ const RoundButtonBlock = styled('button', {
   '&:hover': {
     backgroundColor: '$lightGray',
   },
+
+  '@mobileLarge': {
+    height: '1.938em',
+    fontSize: '$text',
+    fontWeight: '$medium',
+  },
 });

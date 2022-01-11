@@ -66,6 +66,12 @@ const InputLabel = styled('label', {
     fontWeight: '$regular',
     marginBottom: '1.875rem',
   },
+
+  '@mobileLarge': {
+    '& > div': {
+      marginBottom: '1rem',
+    },
+  },
 });
 
 const InputBlock = styled('div', {
@@ -78,6 +84,10 @@ const InputBlock = styled('div', {
         paddingBottom: '0',
       },
     },
+  },
+
+  '@mobileLarge': {
+    marginBottom: '1.25rem',
   },
 });
 
@@ -107,6 +117,10 @@ const InputItem = styled('input', {
   '&::placeholder': {
     fontSize: '$text',
     color: '$gray',
+
+    '@mobileLarge': {
+      fontSize: '$smallMobile',
+    },
   },
 
   variants: {

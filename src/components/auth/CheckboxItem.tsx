@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -60,6 +61,13 @@ const SubHeadBlock = styled('p', {
   fontWeight: '$regular',
   wordBreak: 'keep-all',
   color: '$darkGray',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+    textAlign: 'left',
+    wordBreak: 'break-word',
+    margin: '0',
+  },
 });
 
 const TitleBlock = styled('div', {
@@ -67,6 +75,10 @@ const TitleBlock = styled('div', {
   justifyContent: 'space-between',
   marginBottom: '0.625rem',
   alignItems: 'center',
+
+  '@mobileLarge': {
+    marginBottom: '0.688rem',
+  },
 });
 
 const ShowMore = styled('span', {
@@ -78,6 +90,10 @@ const ShowMore = styled('span', {
   '&:hover': {
     color: '$font',
   },
+
+  '@mobileLarge': {
+    fontSize: rem(10),
+  },
 });
 
 const StyledLabel = styled('label', {
@@ -85,6 +101,10 @@ const StyledLabel = styled('label', {
   fontWeight: '$regular',
   display: 'flex',
   alignItems: 'center',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+  },
 });
 
 const StyledInput = styled('input', {
@@ -110,12 +130,21 @@ const StyledInput = styled('input', {
       true: {
         '& + div': {
           fontWeight: '$bold',
+          '@mobileLarge': {
+            fontWeight: '$medium',
+          },
         },
         '& + div::after': {
           content: '',
         },
       },
     },
+  },
+
+  '@mobileLarge': {
+    width: '1.15rem',
+    height: '1.15rem',
+    margin: '0 0.313rem 0 0',
   },
 });
 
@@ -161,5 +190,11 @@ const TermBlock = styled('div', {
     borderRadius: '14px',
     backgroundClip: 'padding-box',
     border: '5.16px solid transparent',
+  },
+
+  '@mobileLarge': {
+    padding: '1.291rem 0.094rem 0 0.938rem',
+    textAlign: 'left',
+    fontSize: '$smallMobile',
   },
 });

@@ -40,18 +40,20 @@ export const RegisterField = ({
 
   return (
     <Container>
-      {RegisterFormFieldItems.map((item, index) => (
-        <TextInputBox
-          key={index}
-          label={item.label}
-          type={item.type}
-          index={index}
-          placeholder={item.placeholder}
-          dropdown={item.dropdown}
-          DataList={fieldDataList}
-          setDataList={setFieldDataList}
-        />
-      ))}
+      <MobileBlock>
+        {RegisterFormFieldItems.map((item, index) => (
+          <TextInputBox
+            key={index}
+            label={item.label}
+            type={item.type}
+            index={index}
+            placeholder={item.placeholder}
+            dropdown={item.dropdown}
+            DataList={fieldDataList}
+            setDataList={setFieldDataList}
+          />
+        ))}
+      </MobileBlock>
       <Spacer />
       <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
       <ButtonLater onClick={() => { /* noop */ }}>나중에 입력할게요</ButtonLater>
@@ -61,12 +63,24 @@ export const RegisterField = ({
 
 export default RegisterField;
 
+const MobileBlock = styled('div', {
+  '@mobileLarge': {
+    textAlign: 'left',
+  },
+});
+
 const Container = styled('form', {
   boxSizing: 'border-box',
   paddingTop: '1.75rem',
 });
 
-const Spacer = styled('div', { height: '2rem' });
+const Spacer = styled('div', {
+  height: '2rem',
+
+  '@mobileLarge': {
+    height: '2.5rem',
+  },
+});
 
 const ButtonLater = styled('button', {
   margin: '3.75rem auto 0 auto',
@@ -77,4 +91,8 @@ const ButtonLater = styled('button', {
   background: 'transparent',
   fontSize: '$text',
   fontWeight: '$regular',
+
+  '@mobileLarge': {
+    paddingBottom: '3rem',
+  },
 });

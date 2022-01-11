@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
@@ -18,6 +18,7 @@ export const RegisterAgreement = ({
   registerForm,
   setRegisterForm,
 }: AgreementProps) => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isShowAll, setIsShowAll] = useState(false);
   const [isErrorShown, setIsErrorShown] = useState(false);
   const [isCheckedAll, setIsCheckedAll] = useState(false);
@@ -54,12 +55,42 @@ export const RegisterAgreement = ({
     toPageNext();
   };
 
+  const screenChange = (event: { matches: boolean }) => {
+    const matches: boolean = event.matches;
+    setIsMobile(matches);
+  };
+
+  useEffect(() => {
+    setIsMobile((window.innerWidth < 640) ? true : false);
+    const mql = window.matchMedia('screen and (max-width: 640px)');
+    mql.addEventListener('change', screenChange);
+    return () => mql.removeEventListener('change', screenChange);
+  }, []);
+
+  // api/auth쪽으로 분리하는게 나을까요??
+  const loginNaver = () => {
+    const client_id = 'qco1iLqUirs5dpGJHK_L';
+    const redirect_uri = encodeURI(
+      'http://localhost:3000/login/authSocial/naver',
+    );
+    const state_string = Math.random().toString(36).substr(2, 11);
+    const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
+
+    window.open(
+      request_url,
+      'windowname',
+      'width=430, height=500, location=no, status=no, scrollbars=yes',
+    );
+  };
+
   return (
     <>
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
-          <SNSItemTemporary />
+          <SNSItemTemplateForTest onClick={loginNaver}>
+            {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정으로 가입하기</>}
+          </SNSItemTemplateForTest>
           <SNSItemTemporary />
           <SNSItemTemporary />
           <SNSItemTemporary />
@@ -91,17 +122,33 @@ const SNSBlock = styled('div', {
   textAlign: 'center',
   width: '100%',
   marginBottom: '3.75rem',
+
+  '@mobileLarge': {
+    marginBottom: '1.813rem',
+  },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
   margin: '0 0 1.313rem 0',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+    color: '$darkGray',
+    fontWeight: '$regular',
+    margin: '0 0 0.688rem 0',
+  },
 });
 
 const SelectSNSItem = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   margin: '0 3.75rem',
+
+  '@mobileLarge': {
+    display: 'block',
+    margin: '0',
+  },
 });
 
 const SNSItemTemporary = styled('div', {
@@ -115,6 +162,43 @@ const SNSItemTemporary = styled('div', {
   '&:hover': {
     backgroundColor: '$lightGray',
   },
+
+  '@mobileLarge': {
+    display: 'none',
+  },
+});
+
+const SNSItemTemplateForTest = styled('button', {
+  backgroundColor: '#04cf5c',
+  cursor: 'pointer',
+  border: 'none',
+
+  width: '65px',
+  height: '65px',
+  borderRadius: '50px',
+
+  '&:hover': {
+    backgroundColor: '#08ff6b',
+  },
+
+  '@mobileLarge': {
+    position: 'relative',
+    width: '100%',
+    height: '2.5rem',
+    padding: '0',
+    color: 'white',
+    fontSize: '$smallMobile',
+    fontWeight: '$medium',
+  },
+});
+
+const SocialIconTemp = styled('div', {
+  // 아이콘 받으면 아이콘으로 대체
+  fontWeight: '600',
+  fontSize: '1.875em',
+  position: 'absolute',
+  left: '1.875rem',
+  top: '0.43rem',
 });
 
 const FormBlock = styled('form', {
@@ -137,5 +221,11 @@ const SpacerWithErrorMsg = styled('div', {
         height: '3.75rem',
       },
     },
+  },
+
+  '@mobileLarge': {
+    marginTop: '1.5rem',
+    fontSize: '$text',
+    fontWeight: '$regular',
   },
 });
