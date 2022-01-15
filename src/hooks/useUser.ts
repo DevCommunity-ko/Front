@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import * as AuthSlice from './auth';
+import * as AuthSlice from '../store/modules/auth';
 
-import type { LoginPayload,  RegisterPayload } from './auth';
+import type { LoginPayload,  RegisterPayload } from '../store/modules/auth';
 
 export default function useUser() {
   const dispatch = useDispatch();
