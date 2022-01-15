@@ -1,23 +1,23 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import * as AuthSlice from '../store/modules/auth';
+import { actions } from '../stores/auth';
 
-import type { LoginPayload,  RegisterPayload } from '../store/modules/auth';
+import type { LoginPayload,  RegisterPayload } from '../stores/auth';
 
 export default function useUser() {
   const dispatch = useDispatch();
 
   const login = useCallback((payload: LoginPayload) => {
-    dispatch(AuthSlice.login(payload));
+    dispatch(actions.login(payload));
   }, []);
 
   const logout = useCallback(() => {
-    dispatch(AuthSlice.logout());
+    dispatch(actions.logout());
   }, []);
 
   const register = useCallback((payload: RegisterPayload) => {
-    dispatch(AuthSlice.register(payload));
+    dispatch(actions.register(payload));
   }, []);
 
   return { login, logout, register };

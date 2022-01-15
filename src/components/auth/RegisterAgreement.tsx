@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
-import { RegisterPayload } from '../../store/modules/auth';
 import { RoundButton } from '../common';
 
 import { CheckboxItem } from './CheckboxItem';
+
+import type { RegisterPayload } from '../../stores/auth';
 
 type AgreementProps = {
   toPageNext: CallableFunction,

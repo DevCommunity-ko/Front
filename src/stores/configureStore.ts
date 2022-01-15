@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
-import rootReducer from './modules';
+import rootReducer from '.';
 
 const store = () => {
   // 미들웨어 추가시 다음과 같은 형식으로 추가

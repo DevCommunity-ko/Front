@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import wrapper from '../store/configureStore';
+import wrapper from '../stores/configureStore';
 
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
