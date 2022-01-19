@@ -55,19 +55,20 @@ export const RegisterAgreement = ({
     toPageNext();
   };
 
-  const screenChange = (event: { matches: boolean }) => {
-    const matches: boolean = event.matches;
+  const screenChange = (event: MediaQueryListEvent ) => {
+    const { matches } = event;
     setIsMobile(matches);
   };
 
   useEffect(() => {
-    setIsMobile((window.innerWidth < 640) ? true : false);
+    const mobileWidthLarge = 640; // @mobileLarge
+    setIsMobile((window.innerWidth < mobileWidthLarge) ? true : false);
     const mql = window.matchMedia('screen and (max-width: 640px)');
     mql.addEventListener('change', screenChange);
     return () => mql.removeEventListener('change', screenChange);
   }, []);
 
-  // api/auth쪽으로 분리하는게 나을까요??
+  // TODO : redux 통합 이후 slice action으로 분리하기
   const loginNaver = () => {
     const client_id = 'qco1iLqUirs5dpGJHK_L';
     const redirect_uri = encodeURI(

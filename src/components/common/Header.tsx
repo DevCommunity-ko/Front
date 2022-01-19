@@ -10,8 +10,8 @@ export const Header = () => {
 
   useEffect(() => {
     // isButtonLogin 상태 체크 구문
-    const regGetLastPath = /\/([a-zA-Z0-9._]+)(?:\?.*)?$/;
-    const lastPath = regGetLastPath.test(window.location.href) && RegExp.$1;
+    const pathnames = location.pathname.split('/');
+    const lastPath = pathnames.pop() || pathnames.pop();
     (lastPath === 'login') ? setIsButtonLogin(false) : setIsButtonLogin(true);
     // isLoggedIn 상태 체크 구문
     /*

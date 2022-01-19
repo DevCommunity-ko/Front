@@ -6,13 +6,14 @@ import { styled } from '../../lib/styles/stitches.config';
 const LoginForm = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  const screenChange = (event: { matches: boolean }) => {
-    const matches: boolean = event.matches;
+  const screenChange = (event: MediaQueryListEvent ) => {
+    const { matches } = event;
     setIsMobile(matches);
   };
 
   useEffect(() => {
-    setIsMobile((window.innerWidth < 640) ? true : false);
+    const mobileWidthLarge = 640; // @mobileLarge
+    setIsMobile((window.innerWidth < mobileWidthLarge) ? true : false);
     const mql = window.matchMedia('screen and (max-width: 640px)');
     mql.addEventListener('change', screenChange);
     return () => mql.removeEventListener('change', screenChange);
