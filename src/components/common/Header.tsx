@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -36,7 +37,7 @@ export const Header = () => {
             {isLoggedIn ?
               (<><HelloBlock>반가워요,&nbsp;<span>{user}</span>님</HelloBlock><PersonIconTemp /></>) :
               (<Link href={isButtonLogin ? '/login' : '/register'} passHref={true}>
-                <LoginButton isButtonLogin={isButtonLogin}>{isButtonLogin ? '로그인' : '회원가입'}</LoginButton>
+                <LoginButton>{isButtonLogin ? '로그인' : '회원가입'}</LoginButton>
               </Link>)}
           </div>
         </Wrapper>
@@ -47,7 +48,6 @@ export const Header = () => {
 };
 
 const HelloBlock = styled('div', {
-  marginLeft: '5.688rem',
   display: 'flex',
   fontSize: '$subtitle',
   fontWeight: '$medium',
@@ -61,14 +61,7 @@ const HelloBlock = styled('div', {
     maxWidth: '6.875rem', // length of 5 letters in korean
   },
   '@laptop': {
-    marginLeft: '2.438rem',
     fontSize: '$text',
-  },
-  '@tablet': {
-    marginLeft: '2.063rem',
-  },
-  '@mobileLarge': {
-    marginLeft: '0',
   },
 });
 
@@ -79,17 +72,18 @@ const HeaderBlock = styled('header', {
   width: '100%',
   verticalAlign: 'middle',
   background: 'white',
-  height: '5rem',
+  height: rem(80),
+  zIndex: '10', // 헤더보다 위는 10 이상, 헤더 아래는 10 이하를 사용할 수 있도록 임의의 기준값으로 '10'을 주었습니다. 
 
   '@mobileLarge': {
-    height: '3.125rem',
+    height: rem(50),
   },
 });
 
 const Wrapper = styled('div', {
   margin: '0 9.375%',
   'display': 'flex',
-  'height': '5rem',
+  'height': rem(80),
   'alignItems': 'center',
   'justifyContent': 'space-between',
 
@@ -99,11 +93,11 @@ const Wrapper = styled('div', {
   },
 
   '@laptop': {
-    margin: '0 1.25rem',
+    margin: `0 ${rem(20)}`,
   },
 
   '@mobileLarge': {
-    height: '3.125rem',
+    height: rem(50),
   },
 });
 
@@ -111,10 +105,10 @@ const MenuBlock = styled('div', {
   'display': 'flex',
   'alignItems': 'center',
 
-  '& > div:not(div:last-child)': {
-    marginRight: '3.75rem',
+  '& > div': {
+    marginRight: rem(60),
     '@tablet': {
-      marginRight: '3.125rem',
+      marginRight: rem(50),
     },
   },
 
@@ -138,47 +132,26 @@ const MenuItem = styled('div', {
 });
 
 const LoginButton = styled('div', {
-  variants: {
-    isButtonLogin: {
-      true: {
-        marginLeft: '9.688rem',
-        '@laptop': {
-          marginLeft: '6.438rem',
-        },
-        '@tablet': {
-          marginLeft: '3.188rem',
-        },
-      },
-    },
-  },
-
-  marginLeft: '8.563rem',
   fontWeight: '$bold',
-  height: '1.875rem',
-  padding: '0 0.625rem',
-  borderRadius: '1rem',
+  height: rem(30),
+  padding: `0 ${rem(10)}`,
+  borderRadius: rem(16),
   border: '0.5px solid $font',
   fontSize: '$subtitle',
   cursor: 'pointer',
 
-  '@laptop': {
-    marginLeft: '5.313rem',
-  },
-  '@tablet': {
-    marginLeft: '2.063rem',
-  },
   '@mobileLarge': {
-    height: '1.438rem',
+    height: rem(24),
     fontSize: '$text',
     fontWeight: '$regular',
   },
 });
 
-/* 임시아이콘은 SVG 파일 받은 후 대체될 예정입니다. */
 
+/* 임시아이콘은 SVG 파일 받은 후 대체될 예정입니다. */
 const LogoTemp = styled('div', {
-  'width': '6.563rem',
-  'height': '2.813rem',
+  'width': rem(105),
+  'height': rem(45),
   'backgroundColor': '$gray',
   'display': 'flex',
   'alignItems': 'center',
@@ -191,28 +164,32 @@ const LogoTemp = styled('div', {
   },
 
   '@mobileLarge': {
-    width: '5.625rem',
-    height: '1.875rem',
+    width: rem(90),
+    height: rem(30),
   },
 });
 
+/* 임시아이콘은 SVG 파일 받은 후 대체될 예정입니다. */
 const PersonIconTemp = styled('div', {
-  width: '1.875rem',
-  height: '1.875rem',
+  width: rem(30),
+  height: rem(30),
   backgroundColor: '$gray',
-  borderRadius: '30px',
+  borderRadius: rem(30), // make it circle
   cursor: 'pointer',
   marginLeft: '0.625rem',
 
-  '@mobileSmall': {
-    width: '1.5rem',
-    height: '1.5rem',
+  '@mobileLarge': {
+    width: rem(24),
+    height: rem(24),
+    borderRadius: rem(24), // make it circle
   },
 });
 
 // 헤더 fixed이므로 Spacer 설정함
 const Spacer = styled('div', {
-  height: '5rem',
+  height: rem(80),
+  
+  //mobile에서는 화면의 기준이 상단이 아닌 화면 중앙이므로 별도의 Spacer를 설정하지 않습니다.
   '@mobileLarge': {
     display: 'none',
   },

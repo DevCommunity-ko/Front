@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
@@ -38,7 +39,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
 };
 
 const BlockTemplate = styled('div', {
-  width: '30rem',
+  width: rem(480),
   textAlign: 'center',
   color: '$font',
   margin: '0',
@@ -47,12 +48,12 @@ const BlockTemplate = styled('div', {
 
 const TitleSucceed = styled('h1', {
   fontSize: '$title',
-  marginBottom: '0.625rem',
+  marginBottom: rem(10),
 
   '@mobileLarge': {
     fontSize: '$subtitle',
     fontWeight: '$medium',
-    marginBottom: '0.688rem',
+    marginBottom: rem(11),
   },
 });
 
@@ -66,13 +67,13 @@ const SubTitleSucceed = styled('h4', {
 });
 
 const MessageSucceed = styled('p', {
-  margin: '6.25rem 0',
+  margin: `${rem(100)} 0`,
   fontSize: '$title',
   fontWeight: '$regular',
 
   '@mobileLarge': {
     fontSize: '$subtitle',
-    margin: '3.75rem 0',
+    margin: `${rem(60)} 0`,
   },
 });
 
@@ -91,8 +92,8 @@ const BlockSucceed = styled(BlockTemplate, {
 });
 
 const BlockFailed = styled(BlockTemplate, {
-  paddingTop: '5.875rem',
-  width: '17rem',
+  paddingTop: rem(94),
+  width: '17rem', // 컨텐츠가 의도한 대로 표시될 수 있는 임의 너비
 
   '& > *': {
     fontSize: '$subtitle',

@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
 const LoginForm = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  const screenChange = (event: MediaQueryListEvent ) => {
+  const screenChange = (event: MediaQueryListEvent) => {
     const { matches } = event;
     setIsMobile(matches);
   };
@@ -67,7 +68,7 @@ const LoginForm = () => {
 };
 
 const SocialIconTemp = styled('div', {
-  // 아이콘 받으면 아이콘으로 대체
+  // 아이콘 받으면 아이콘으로 대체 (매직넘버 하드코딩)
   fontWeight: '600',
   fontSize: '1.875em',
   position: 'absolute',
@@ -83,7 +84,7 @@ const MobileBlock = styled('div', {
 });
 
 const Wrapper = styled('div', {
-  width: '22.5rem',
+  width: rem(360),
 
   '@mobileLarge': {
     textAlign: 'center',
@@ -93,21 +94,23 @@ const Wrapper = styled('div', {
 
 const Title = styled('h2', {
   fontSize: '$title',
-  margin: '0 0 2.5rem 0',
+  margin: `0 0 ${rem(40)} 0`,
   padding: '0',
 
   '@mobileLarge': {
     fontSize: '$subtitle',
     fontWeight: '$medium',
-    margin: '0 0 2.563rem 0',
+    margin: `0 0 ${rem(41)} 0`,
   },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
-  margin: '0 0 1.313rem 0',
+  fontWeight: '$regular',
+  margin: `0 0 ${rem(21)} 0`,
 
   '@mobileLarge': {
+    margin: `0 0 ${rem(10)} 0`,
     fontSize: '$text',
     color: '$gray',
     fontWeight: '$regular',
@@ -117,7 +120,7 @@ const SNSSubtitle = styled('p', {
 const AbsoluteBlock = styled('div', {
   '@mobileLarge': {
     position: 'absolute',
-    bottom: '3.5rem',
+    bottom: rem(56),
     left: '50%',
     transform: 'translate(-50%, 0)',
   },
@@ -140,7 +143,7 @@ const ToRegisterBlock = styled('div', {
     width: 'max-content',
 
     '& > div': {
-      marginRight: '0.375rem',
+      marginRight: rem(6),
     },
   },
 });
@@ -150,30 +153,33 @@ const SNSBlock = styled('div', {
   width: '100%',
   fontSize: '$subtitle',
 
-  marginBottom: '8.625rem',
+  marginBottom: rem(138),
+
+  '@mobileLarge': {
+    marginBottom: '0',
+  },
 });
 
 const LabelKeepLoggedIn = styled('label', {
-  marginTop: '2.5rem',
+  marginTop: rem(40),
   display: 'flex',
   alignItems: 'center',
   color: '$darkGray',
   right: '0',
 
   '@mobileLarge': {
-    marginTop: '1.438rem',
-    fontSize: '$smallMobile',
+    marginTop: rem(20),
+    fontSize: '$text',
   },
 });
 
 const CheckboxKeepLoggedIn = styled('input', {
-  width: '1.25em',
-  height: '1.25em',
-  marginRight: '0.5rem',
+  width: rem(18),
+  height: rem(18),
+  marginRight: rem(8),
 
   '@mobileLarge': {
-    width: '1.125rem',
-    height: '1.125rem',
+    marginRight: rem(5),
   },
 });
 
@@ -184,18 +190,20 @@ const SelectSNSItem = styled('div', {
   '@mobileLarge': {
     display: 'block',
     width: '100%',
-    height: '2.5rem', // 내부 요소 개수만큼 설정. button 하면 왜 추가 영역이 생기는지 모르겠음
+    height: rem(40), // rem(40) * 내부 요소 개수만큼 설정. button 하면 왜 추가 영역이 생기는지 모르겠음
   },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
 const SNSItemTemplate = styled('div', {
   backgroundColor: '$gray',
   cursor: 'pointer',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: rem(65), // make it circle
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '$lightGray',
   },
@@ -205,15 +213,17 @@ const SNSItemTemplate = styled('div', {
   },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
 const SNSItemTemplateForTest = styled('button', {
-  backgroundColor: '#04cf5c',
+  backgroundColor: '#04cf5c', // 임의 색상입니다.
   cursor: 'pointer',
   border: 'none',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: rem(65), // make it circle
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '#08ff6b',
   },
@@ -221,7 +231,7 @@ const SNSItemTemplateForTest = styled('button', {
   '@mobileLarge': {
     position: 'relative',
     width: '100%',
-    height: '2.5rem',
+    height: rem(40),
     padding: '0',
     color: 'white',
     fontSize: '$smallMobile',

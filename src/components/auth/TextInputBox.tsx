@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -64,18 +65,18 @@ const InputLabel = styled('label', {
   '& > div': {
     margin: '0',
     fontWeight: '$regular',
-    marginBottom: '1.875rem',
+    marginBottom: rem(30),
   },
 
   '@mobileLarge': {
     '& > div': {
-      marginBottom: '1rem',
+      marginBottom: rem(16),
     },
   },
 });
 
 const InputBlock = styled('div', {
-  paddingBottom: '0.438rem',
+  paddingBottom: rem(7),
   boxSizing: 'border-box',
 
   variants: {
@@ -87,14 +88,14 @@ const InputBlock = styled('div', {
   },
 
   '@mobileLarge': {
-    marginBottom: '1.25rem',
+    marginBottom: rem(20),
   },
 });
 
 const InputLine = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  paddingBottom: '0.625rem',
+  paddingBottom: rem(10),
   borderBottom: '0.5px solid $font',
   variants: {
     errorStatus: {

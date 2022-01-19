@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
@@ -51,7 +52,7 @@ export const RegisterForm = () => {
 
 const TitleArea = styled('h2', {
   fontSize: '$title',
-  margin: '0 0 2.5rem 0',
+  margin: `0 0 ${rem(40)} 0`,
   padding: '0',
 
   variants: {
@@ -66,18 +67,18 @@ const TitleArea = styled('h2', {
 
   '@mobileLarge': {
     fontSize: '$subtitle',
-    margin: '0 0 1.25rem 0',
+    margin: `0 0 ${rem(20)} 0`,
     fontWeight: '$medium',
   },
 });
 
 const RegisterBlock = styled('div', {
-  width: '30rem',
+  width: rem(480),
 
   '@mobileLarge': {
     height: '100vh',
     width: '100%',
-    paddingTop: '9.375rem',
+    paddingTop: rem(150), // 상단고정, 헤더에 Spacer 없으므로 150 전체 패딩 적용
     textAlign: 'center',
   },
 });

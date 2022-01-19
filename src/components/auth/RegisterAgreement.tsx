@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
@@ -55,7 +56,7 @@ export const RegisterAgreement = ({
     toPageNext();
   };
 
-  const screenChange = (event: MediaQueryListEvent ) => {
+  const screenChange = (event: MediaQueryListEvent) => {
     const { matches } = event;
     setIsMobile(matches);
   };
@@ -122,29 +123,30 @@ export const RegisterAgreement = ({
 const SNSBlock = styled('div', {
   textAlign: 'center',
   width: '100%',
-  marginBottom: '3.75rem',
+  marginBottom: rem(60),
 
   '@mobileLarge': {
-    marginBottom: '1.813rem',
+    marginBottom: rem(29),
   },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
-  margin: '0 0 1.313rem 0',
+  fontWeight: '$regular',
+  margin: `0 0 ${rem(21)} 0`,
 
   '@mobileLarge': {
     fontSize: '$text',
     color: '$darkGray',
     fontWeight: '$regular',
-    margin: '0 0 0.688rem 0',
+    margin: `0 0 ${rem(10)} 0`,
   },
 });
 
 const SelectSNSItem = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  margin: '0 3.75rem',
+  margin: `0 ${rem(60)}`,
 
   '@mobileLarge': {
     display: 'block',
@@ -152,14 +154,16 @@ const SelectSNSItem = styled('div', {
   },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
 const SNSItemTemporary = styled('div', {
   backgroundColor: '$gray',
   cursor: 'pointer',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: rem(50),
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '$lightGray',
   },
@@ -169,15 +173,17 @@ const SNSItemTemporary = styled('div', {
   },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
 const SNSItemTemplateForTest = styled('button', {
   backgroundColor: '#04cf5c',
   cursor: 'pointer',
   border: 'none',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: rem(50),
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '#08ff6b',
   },
@@ -185,7 +191,7 @@ const SNSItemTemplateForTest = styled('button', {
   '@mobileLarge': {
     position: 'relative',
     width: '100%',
-    height: '2.5rem',
+    height: rem(40),
     padding: '0',
     color: 'white',
     fontSize: '$smallMobile',
@@ -193,8 +199,8 @@ const SNSItemTemplateForTest = styled('button', {
   },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
 const SocialIconTemp = styled('div', {
-  // 아이콘 받으면 아이콘으로 대체
   fontWeight: '600',
   fontSize: '1.875em',
   position: 'absolute',
@@ -206,27 +212,39 @@ const FormBlock = styled('form', {
   variants: {
     isShowAll: {
       true: {
-        marginBottom: '8.625rem',
+        // 버튼이 화면 아래에 딱 붙지 않도록 하는 여백 공간입니다. 높이는 확정된 크기입니다.
+        marginBottom: rem(138),
       },
     },
   },
 });
 
 const SpacerWithErrorMsg = styled('div', {
-  height: '2.5rem',
+  height: rem(40), // 60 - 20(CheckboxItem의 하단 여백)
   color: '$alert',
   textAlign: 'center',
+  fontWeight: '$regular',
+  lineHeight: rem(40),
   variants: {
     isShowAll: {
       true: {
-        height: '3.75rem',
+        height: rem(42),
       },
     },
   },
 
   '@mobileLarge': {
-    marginTop: '1.5rem',
+    marginTop: rem(24),
     fontSize: '$text',
-    fontWeight: '$regular',
+
+    variants: {
+      isShowAll: {
+        true: {
+          lineHeight: rem(33),
+          marginTop: rem(9),
+          height: rem(33),
+        },
+      },
+    },
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
@@ -39,7 +40,7 @@ export const RegisterField = ({
   };
 
   return (
-    <Container>
+    <Container className="Container">
       <MobileBlock>
         {RegisterFormFieldItems.map((item, index) => (
           <TextInputBox
@@ -71,19 +72,19 @@ const MobileBlock = styled('div', {
 
 const Container = styled('form', {
   boxSizing: 'border-box',
-  paddingTop: '1.75rem',
+  paddingTop: rem(67 - 40), // 표시되어야 할 여백 - TitleArea(RegisterForm)의 하단 마진
 });
 
 const Spacer = styled('div', {
-  height: '2rem',
+  height: rem(52 - 20), // 표시되어야 할 여백 - TextInputBox의 하단 마진
 
   '@mobileLarge': {
-    height: '2.5rem',
+    height: rem(60 - 20), // 표시되어야 할 여백 - TextInputBox의 하단 마진
   },
 });
 
 const ButtonLater = styled('button', {
-  margin: '3.75rem auto 0 auto',
+  margin: `${rem(60)} auto 0 auto`,
   display: 'flex',
   cursor: 'pointer',
   textDecoration: 'underline',
@@ -93,6 +94,6 @@ const ButtonLater = styled('button', {
   fontWeight: '$regular',
 
   '@mobileLarge': {
-    paddingBottom: '3rem',
+    paddingBottom: rem(40),
   },
 });

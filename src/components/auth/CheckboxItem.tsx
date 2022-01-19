@@ -57,7 +57,7 @@ export const CheckboxItem = ({
 };
 
 const SubHeadBlock = styled('p', {
-  margin: '1.25rem 0',
+  margin: `${rem(20)} 0`,
   fontWeight: '$regular',
   wordBreak: 'keep-all',
   color: '$darkGray',
@@ -73,11 +73,11 @@ const SubHeadBlock = styled('p', {
 const TitleBlock = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  marginBottom: '0.625rem',
+  marginBottom: rem(10),
   alignItems: 'center',
 
   '@mobileLarge': {
-    marginBottom: '0.688rem',
+    marginBottom: rem(12),
   },
 });
 
@@ -108,12 +108,13 @@ const StyledLabel = styled('label', {
 });
 
 const StyledInput = styled('input', {
-  width: '1.5rem',
-  height: '1.5rem',
-  margin: '0 0.375rem 0 0',
+  // TODO: 체크박스 리소스를 받은 뒤에는, label로 감싼 뒤 내부에 요소를 넣어 기본 체크박스를 감춘 뒤 스타일된 체크박스가 나타날 수 있도록 합니다.
+  width: rem(24),
+  height: rem(24),
+  margin: `0 ${rem(6)} 0 0`,
 
   '& + div::after': {
-    marginLeft: '0.25rem',
+    marginLeft: rem(4),
     content: '(선택)',
   },
 
@@ -142,15 +143,15 @@ const StyledInput = styled('input', {
   },
 
   '@mobileLarge': {
-    width: '1.15rem',
-    height: '1.15rem',
-    margin: '0 0.313rem 0 0',
+    width: rem(18), // 디자인은 rem(20)인데, 너무 빈 틈 없이 짜주셔서 디바이스에 따라 폰트 크기가 달라지면 해당 내용이 올바르게 표시되지 못하여, 임의로 크기를 조금 줄였습니다.
+    height: rem(18),
+    margin: `0 ${rem(5)} 0 0`,
   },
 });
 
 const FormBlock = styled('div', {
   height: 'max-content',
-  marginBottom: '1.25rem',
+  marginBottom: rem(20),
 
   variants: {
     isVisible: {
@@ -163,38 +164,62 @@ const FormBlock = styled('div', {
 
 const TermBlock = styled('div', {
   width: '100%',
-  height: '7.625rem',
+  height: rem(122),
   border: '0.5px solid $darkGray',
   backgroundColor: '$lightGray',
   color: '$darkGray',
   fontWeight: '$regular',
   overflowY: 'scroll',
-  padding: '2rem 0.594rem 0 1.438rem',
+  // padding right = 표시되어야 할 글자 우측 패딩 너비 - 스크롤바 너비
+  padding: `${rem(32)} ${rem(25 - 13.44)} 0 ${rem(25)}`,
 
   '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
-    width: '14px',
-    borderRadius: '14px',
+    width: rem(13.44),
+    borderRadius: rem(13.44),
     backgroundClip: 'padding-box',
   },
 
   '&::-webkit-scrollbar-thumb': {
     color: '$lightBlue',
-    boxShadow: 'inset 0 0 0 10px',
-    border: '4.24px solid transparent',
+    boxShadow: `inset 0 0 0 ${rem(10)}`,
+    border: `${rem(3.84)} solid transparent`,
   },
 
   '&::-webkit-scrollbar-track': {
-    margin: '4.84px 0',
+    margin: `${rem(10)} 0`,
     backgroundColor: '$gray',
-    width: '14px',
-    borderRadius: '14px',
+    width: rem(13.44),
+    borderRadius: rem(13.44),
     backgroundClip: 'padding-box',
-    border: '5.16px solid transparent',
+    border: `${rem(3.84 + 0.96)} solid transparent`,
   },
 
   '@mobileLarge': {
-    padding: '1.291rem 0.094rem 0 0.938rem',
+    // padding right = 표시되어야 할 글자 우측 패딩 너비 - 스크롤바 너비
+    padding: `${rem(20.98)} ${rem(18 - 8.96)} 0 ${rem(15.33)}`,
+    height: rem(80),
     textAlign: 'left',
     fontSize: '$smallMobile',
+
+    '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
+      width: rem(8.96),
+      borderRadius: rem(8.96),
+      backgroundClip: 'padding-box',
+    },
+
+    '&::-webkit-scrollbar-thumb': {
+      color: '$lightBlue',
+      boxShadow: `inset 0 0 0 ${rem(10)}`,
+      border: `${rem(2.56)} solid transparent`,
+    },
+
+    '&::-webkit-scrollbar-track': {
+      margin: `${rem(6.56)} 0`,
+      backgroundColor: '$gray',
+      width: rem(8.96),
+      borderRadius: rem(8.96),
+      backgroundClip: 'padding-box',
+      border: `${rem(2.56 + 0.64)} solid transparent`,
+    },
   },
 });
