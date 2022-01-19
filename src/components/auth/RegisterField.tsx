@@ -39,6 +39,12 @@ export const RegisterField = ({
     void Router.push('register/result');
   };
 
+  const proceedRegister = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // 내부적으로 로그인 과정은 완료되었기 때문에, 추가 작업 없이 결과 페이지로 이동합니다.
+    e.preventDefault();
+    void Router.push('register/result');
+  };
+
   return (
     <Container className="Container">
       <MobileBlock>
@@ -57,7 +63,7 @@ export const RegisterField = ({
       </MobileBlock>
       <Spacer />
       <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
-      <ButtonLater onClick={() => { /* noop */ }}>나중에 입력할게요</ButtonLater>
+      <ButtonLater onClick={proceedRegister}>나중에 입력할게요</ButtonLater>
     </Container>
   );
 };
