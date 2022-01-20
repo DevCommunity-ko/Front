@@ -46,29 +46,46 @@ export const RegisterField = ({
   };
 
   return (
-    <Container className="Container">
-      <MobileBlock>
-        {RegisterFormFieldItems.map((item, index) => (
-          <TextInputBox
-            key={index}
-            label={item.label}
-            type={item.type}
-            index={index}
-            placeholder={item.placeholder}
-            dropdown={item.dropdown}
-            DataList={fieldDataList}
-            setDataList={setFieldDataList}
-          />
-        ))}
-      </MobileBlock>
-      <Spacer />
-      <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
-      <ButtonLater onClick={proceedRegister}>나중에 입력할게요</ButtonLater>
-    </Container>
+    <>
+      <TitleArea>추가 정보 입력</TitleArea>
+      <Container className="Container">
+        <MobileBlock>
+          {RegisterFormFieldItems.map((item, index) => (
+            <TextInputBox
+              key={index}
+              label={item.label}
+              type={item.type}
+              index={index}
+              placeholder={item.placeholder}
+              dropdown={item.dropdown}
+              DataList={fieldDataList}
+              setDataList={setFieldDataList}
+            />
+          ))}
+        </MobileBlock>
+        <Spacer />
+        <RoundButton onClick={onClickRegister}>가입하기</RoundButton>
+        <ButtonLater onClick={proceedRegister}>나중에 입력할게요</ButtonLater>
+      </Container>
+    </>
   );
 };
 
 export default RegisterField;
+
+const TitleArea = styled('h2', {
+  fontSize: '$title',
+  margin: `0 0 ${rem(40)} 0`,
+  paddingTop: rem(141),
+  textAlign: 'left',
+
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    margin: `0 0 ${rem(20)} 0`,
+    fontWeight: '$medium',
+  },
+});
 
 const MobileBlock = styled('div', {
   '@mobileLarge': {

@@ -87,6 +87,7 @@ export const RegisterAgreement = ({
 
   return (
     <>
+      <TitleArea isShowAll={isShowAll}>가입하기</TitleArea>
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
@@ -119,6 +120,26 @@ export const RegisterAgreement = ({
     </>
   );
 };
+
+const TitleArea = styled('h2', {
+  fontSize: '$title',
+  margin: `0 0 ${rem(40)} 0`,
+  padding: '0',
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    margin: `0 0 ${rem(20)} 0`,
+    fontWeight: '$medium',
+  },
+
+  variants: {
+    isShowAll: {
+      true: {
+        paddingTop: rem(150),
+      },
+    },
+  },
+});
 
 const SNSBlock = styled('div', {
   textAlign: 'center',
