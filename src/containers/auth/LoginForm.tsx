@@ -72,8 +72,13 @@ const SocialIconTemp = styled('div', {
   fontWeight: '600',
   fontSize: '1.875em',
   position: 'absolute',
-  left: '1.875rem',
-  top: '0.43rem',
+  left: rem(30),
+  top: rem(4),
+
+  '@mobileSmall': {
+    left: rem(27),
+    top: rem(3),
+  },
 });
 
 const MobileBlock = styled('div', {
@@ -102,6 +107,10 @@ const Title = styled('h2', {
     fontWeight: '$medium',
     margin: `0 0 ${rem(41)} 0`,
   },
+  '@mobileSmall': {
+    fontSize: '$text',
+    margin: `0 0 ${rem(20)} 0`,
+  },
 });
 
 const SNSSubtitle = styled('p', {
@@ -115,6 +124,9 @@ const SNSSubtitle = styled('p', {
     color: '$gray',
     fontWeight: '$regular',
   },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+  },
 });
 
 const AbsoluteBlock = styled('div', {
@@ -123,6 +135,9 @@ const AbsoluteBlock = styled('div', {
     bottom: rem(56),
     left: '50%',
     transform: 'translate(-50%, 0)',
+  },
+  '@mobileSmall': {
+    bottom: rem(30.44),
   },
 });
 
@@ -145,6 +160,9 @@ const ToRegisterBlock = styled('div', {
     '& > div': {
       marginRight: rem(6),
     },
+  },
+  '@mobileSmall': {
+    fontWeight: '$bold',
   },
 });
 
@@ -171,6 +189,10 @@ const LabelKeepLoggedIn = styled('label', {
     marginTop: rem(20),
     fontSize: '$text',
   },
+  '@mobileSmall': {
+    marginTop: rem(11),
+    fontSize: '$smallMobile',
+  },
 });
 
 const CheckboxKeepLoggedIn = styled('input', {
@@ -180,6 +202,11 @@ const CheckboxKeepLoggedIn = styled('input', {
 
   '@mobileLarge': {
     marginRight: rem(5),
+  },
+  '@mobileSmall': {
+    width: rem(15),
+    height: rem(15),
+    marginRight: rem(7.5),
   },
 });
 
@@ -234,8 +261,12 @@ const SNSItemTemplateForTest = styled('button', {
     height: rem(40),
     padding: '0',
     color: 'white',
-    fontSize: '$smallMobile',
+    fontSize: '$text',
     fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    height: rem(30),
+    fontSize: '$smallMobile',
   },
 });
 

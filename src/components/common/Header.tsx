@@ -63,6 +63,9 @@ const HelloBlock = styled('div', {
   '@laptop': {
     fontSize: '$text',
   },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+  },
 });
 
 const HeaderBlock = styled('header', {
@@ -77,6 +80,9 @@ const HeaderBlock = styled('header', {
 
   '@mobileLarge': {
     height: rem(50),
+  },
+  '@mobileSmall': {
+    height: rem(37),
   },
 });
 
@@ -95,9 +101,11 @@ const Wrapper = styled('div', {
   '@laptop': {
     margin: `0 ${rem(20)}`,
   },
-
   '@mobileLarge': {
     height: rem(50),
+  },
+  '@mobileSmall': {
+    height: rem(37),
   },
 });
 
@@ -145,6 +153,10 @@ const LoginButton = styled('div', {
     fontSize: '$text',
     fontWeight: '$regular',
   },
+  '@mobileSmall': {
+    height: rem(17),
+    fontSize: '$smallMobile',
+  },
 });
 
 
@@ -167,6 +179,10 @@ const LogoTemp = styled('div', {
     width: rem(90),
     height: rem(30),
   },
+  '@mobileSmall': {
+    width: rem(49),
+    height: rem(17),
+  },
 });
 
 /* 임시아이콘은 SVG 파일 받은 후 대체될 예정입니다. */
@@ -188,7 +204,7 @@ const PersonIconTemp = styled('div', {
 // 헤더 fixed이므로 Spacer 설정함
 const Spacer = styled('div', {
   height: rem(80),
-  
+
   //mobile에서는 화면의 기준이 상단이 아닌 화면 중앙이므로 별도의 Spacer를 설정하지 않습니다.
   '@mobileLarge': {
     display: 'none',

@@ -25,6 +25,9 @@ const AuthTemplateBlock = styled('main', {
     alignItems: 'flex-start',
     flexDirection: 'row',
   },
+  '@mobileSmall': {
+    padding: `0 ${rem(10)}`,
+  },
 });
 
 const SafeCenterBlock = styled('div', {
