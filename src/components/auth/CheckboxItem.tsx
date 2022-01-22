@@ -68,6 +68,9 @@ const SubHeadBlock = styled('p', {
     wordBreak: 'break-word',
     margin: '0',
   },
+  '@mobileSmall': {
+    fontSize: rem(10),
+  },
 });
 
 const TitleBlock = styled('div', {
@@ -75,6 +78,7 @@ const TitleBlock = styled('div', {
   justifyContent: 'space-between',
   marginBottom: rem(10),
   alignItems: 'center',
+  flexWrap: 'wrap',
 
   '@mobileLarge': {
     marginBottom: rem(12),
@@ -86,6 +90,7 @@ const ShowMore = styled('span', {
   color: '$darkGray',
   cursor: 'pointer',
   fontWeight: '$bold',
+  marginLeft: 'auto',
 
   '&:hover': {
     color: '$font',
@@ -104,6 +109,9 @@ const StyledLabel = styled('label', {
 
   '@mobileLarge': {
     fontSize: '$text',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
   },
 });
 
@@ -134,6 +142,9 @@ const StyledInput = styled('input', {
           '@mobileLarge': {
             fontWeight: '$medium',
           },
+          '@mobileSmall': {
+            fontWeight: '$regular',
+          },
         },
         '& + div::after': {
           content: '',
@@ -143,15 +154,19 @@ const StyledInput = styled('input', {
   },
 
   '@mobileLarge': {
-    width: rem(18), // 디자인은 rem(20)인데, 너무 빈 틈 없이 짜주셔서 디바이스에 따라 폰트 크기가 달라지면 해당 내용이 올바르게 표시되지 못하여, 임의로 크기를 조금 줄였습니다.
-    height: rem(18),
+    width: rem(20),
+    height: rem(20),
     margin: `0 ${rem(5)} 0 0`,
+  },
+  '@mobileSmall': {
+    width: rem(16),
+    height: rem(16),
   },
 });
 
 const FormBlock = styled('div', {
   height: 'max-content',
-  marginBottom: rem(20),
+  marginBottom: rem(23),
 
   variants: {
     isVisible: {
@@ -159,6 +174,10 @@ const FormBlock = styled('div', {
         display: 'none',
       },
     },
+  },
+
+  '@mobileSmall': {
+    marginBottom: rem(10),
   },
 });
 

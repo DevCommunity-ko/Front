@@ -62,6 +62,7 @@ export const TextInputBox = ({
 };
 
 const InputLabel = styled('label', {
+  // div 잡아야 marginBottom 적용 가능
   '& > div': {
     margin: '0',
     fontWeight: '$regular',
@@ -70,7 +71,13 @@ const InputLabel = styled('label', {
 
   '@mobileLarge': {
     '& > div': {
-      marginBottom: rem(16),
+      marginBottom: rem(18),
+    },
+  },
+  '@mobileSmall': {
+    '& > div': {
+      fontSize: '$smallMobile',
+      marginBottom: rem(10),
     },
   },
 });

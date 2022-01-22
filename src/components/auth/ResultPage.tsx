@@ -30,7 +30,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
           <h2>죄송합니다</h2>
           <MessageFailed>
             다시 <Link href="/login">로그인</Link>하시거나&nbsp;
-            <Link href="/register">회원가입</Link>을 시도해 주시기 바랍니다.
+            <Link href="/register">회원가입</Link>을<br /> 시도해 주시기 바랍니다.
           </MessageFailed>
         </BlockFailed>
       )}
@@ -55,14 +55,22 @@ const TitleSucceed = styled('h1', {
     fontWeight: '$medium',
     marginBottom: rem(11),
   },
+  '@mobileSmall': {
+    fontSize: '$text',
+    marginBottom: rem(4),
+  },
 });
 
 const SubTitleSucceed = styled('h4', {
   fontWeight: '$regular',
   fontSize: '$subtitle',
+  margin: 0,
 
   '@mobileLarge': {
     fontSize: '$text',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
   },
 });
 
@@ -75,6 +83,10 @@ const MessageSucceed = styled('p', {
     fontSize: '$subtitle',
     margin: `${rem(60)} 0`,
   },
+  '@mobileSmall': {
+    fontSize: '$text',
+    margin: `${rem(30)} 0 ${rem(50)} 0`,
+  },
 });
 
 const MessageFailed = styled('p', {
@@ -82,6 +94,10 @@ const MessageFailed = styled('p', {
     fontSize: '$subtitle',
     fontWeight: '$bold',
     textDecoration: 'underline',
+
+    '@mobileSmall': {
+      fontSize: '$text',
+    },
   },
 });
 
@@ -93,10 +109,18 @@ const BlockSucceed = styled(BlockTemplate, {
 
 const BlockFailed = styled(BlockTemplate, {
   paddingTop: rem(94),
-  width: '17rem', // 컨텐츠가 의도한 대로 표시될 수 있는 임의 너비
 
   '& > *': {
     fontSize: '$subtitle',
     fontWeight: '$medium',
+
+    '@mobileSmall': {
+      fontSize: '$text',
+    },
+  },
+
+  '@mobileLarge': {
+    paddingTop: 0,
+    width: '100%',
   },
 });

@@ -112,14 +112,37 @@ export const RegisterAgreement = ({
             isShowAll={isShowAll}
           />
         ))}
+      </FormBlock>
+      <AbsoluteBlock isShowAll={isShowAll}>
         <SpacerWithErrorMsg isShowAll={isShowAll}>
           {isErrorShown && '필수 항목에 동의해주세요'}
         </SpacerWithErrorMsg>
         <RoundButton onClick={onButtonClick}>다음</RoundButton>
-      </FormBlock>
+      </AbsoluteBlock>
     </>
   );
 };
+
+const AbsoluteBlock = styled('div', {
+  variants: {
+    isShowAll: {
+      true: {
+        // 버튼이 화면 아래에 딱 붙지 않도록 하는 여백 공간입니다. 높이는 확정된 크기입니다.
+        marginBottom: rem(138),
+      },
+      false: {
+        '@mobileSmall': {
+          position: 'absolute',
+          bottom: rem(30.44),
+          width: '100%',
+          left: '50%',
+          transform: 'translate(-50%, 0)',
+        },
+      },
+    },
+  },
+});
+
 
 const TitleArea = styled('h2', {
   fontSize: '$title',
@@ -130,6 +153,9 @@ const TitleArea = styled('h2', {
     fontSize: '$subtitle',
     margin: `0 0 ${rem(20)} 0`,
     fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    fontSize: '$text',
   },
 
   variants: {
@@ -161,6 +187,9 @@ const SNSSubtitle = styled('p', {
     color: '$darkGray',
     fontWeight: '$regular',
     margin: `0 0 ${rem(10)} 0`,
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
   },
 });
 
@@ -215,8 +244,12 @@ const SNSItemTemplateForTest = styled('button', {
     height: rem(40),
     padding: '0',
     color: 'white',
-    fontSize: '$smallMobile',
+    fontSize: '$text',
     fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    height: rem(30),
+    fontSize: '$smallMobile',
   },
 });
 
@@ -225,16 +258,22 @@ const SocialIconTemp = styled('div', {
   fontWeight: '600',
   fontSize: '1.875em',
   position: 'absolute',
-  left: '1.875rem',
-  top: '0.43rem',
+  left: rem(30),
+  top: rem(4),
+
+  '@mobileSmall': {
+    left: rem(27),
+    top: rem(3),
+  },
 });
 
 const FormBlock = styled('form', {
   variants: {
     isShowAll: {
       true: {
-        // 버튼이 화면 아래에 딱 붙지 않도록 하는 여백 공간입니다. 높이는 확정된 크기입니다.
-        marginBottom: rem(138),
+        '@mobileSmall': {
+          marginBottom: rem(20),
+        },
       },
     },
   },
@@ -246,10 +285,20 @@ const SpacerWithErrorMsg = styled('div', {
   textAlign: 'center',
   fontWeight: '$regular',
   lineHeight: rem(40),
+
   variants: {
     isShowAll: {
       true: {
         height: rem(42),
+        '@mobileLarge': {
+          lineHeight: rem(33),
+          marginTop: rem(9),
+          height: rem(33),
+        },
+        '@mobileSmall': {
+          marginTop: 0,
+          height: 'fit-content',
+        },
       },
     },
   },
@@ -257,15 +306,8 @@ const SpacerWithErrorMsg = styled('div', {
   '@mobileLarge': {
     marginTop: rem(24),
     fontSize: '$text',
-
-    variants: {
-      isShowAll: {
-        true: {
-          lineHeight: rem(33),
-          marginTop: rem(9),
-          height: rem(33),
-        },
-      },
-    },
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
   },
 });

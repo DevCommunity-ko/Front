@@ -27,6 +27,7 @@ const RoundButtonBlock = styled('button', {
   'fontSize': '$button',
   'fontWeight': '$bold',
   'height': rem(60),
+  'padding': '0',
 
   'cursor': 'pointer',
 
@@ -36,8 +37,12 @@ const RoundButtonBlock = styled('button', {
   },
 
   '@mobileLarge': {
-    height: rem(31),
+    height: rem(30),
     fontSize: '$text',
     fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+    fontWeight: '$bold',
   },
 });

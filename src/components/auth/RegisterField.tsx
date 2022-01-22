@@ -84,6 +84,12 @@ const TitleArea = styled('h2', {
     fontSize: '$subtitle',
     margin: `0 0 ${rem(20)} 0`,
     fontWeight: '$medium',
+    paddingTop: rem(91 + 50), // 91 + Header
+  },
+  '@mobileSmall': {
+    fontSize: '$text',
+    margin: `0 0 ${rem(40)} 0`,
+    paddingTop: rem(40 + 37), // 40 + Header
   },
 });
 
@@ -118,5 +124,10 @@ const ButtonLater = styled('button', {
 
   '@mobileLarge': {
     paddingBottom: rem(40),
+    margin: `${rem(39)} auto 0 auto`,
+  },
+  '@mobileSmall': {
+    margin: `${rem(5)} auto 0 auto`,
+    fontSize: '$smallMobile',
   },
 });

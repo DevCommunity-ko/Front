@@ -67,8 +67,8 @@ const LoginForm = () => {
   );
 };
 
+// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
 const SocialIconTemp = styled('div', {
-  // 아이콘 받으면 아이콘으로 대체 (매직넘버 하드코딩)
   fontWeight: '600',
   fontSize: '1.875em',
   position: 'absolute',

@@ -92,6 +92,18 @@ const InputLabel = styled('label', {
     fontWeight: '$regular',
     marginBottom: rem(30),
   },
+
+  '@mobileLarge': {
+    '& > div': {
+      marginBottom: rem(18),
+    },
+  },
+  '@mobileSmall': {
+    '& > div': {
+      fontSize: '$smallMobile',
+      marginBottom: rem(10),
+    },
+  },
 });
 
 const InputBlock = styled('div', {
