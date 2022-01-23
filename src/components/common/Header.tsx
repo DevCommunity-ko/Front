@@ -7,7 +7,7 @@ import { styled } from '../../lib/styles/stitches.config';
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isButtonLogin, setIsButtonLogin] = useState(false);
-  const user = '수민'; // Redux 작업 하시면서 변경 부탁드릴게요!
+  const user = '수민'; // TODO : Redux 연동 이후 Redux 형태에 맞게 사용할 수 있도록 변동 가능한 값으로 수정하기
 
   useEffect(() => {
     // isButtonLogin 상태 체크 구문
@@ -16,7 +16,7 @@ export const Header = () => {
     (lastPath === 'login') ? setIsButtonLogin(false) : setIsButtonLogin(true);
     // isLoggedIn 상태 체크 구문
     /*
-       여기에 Redux와 연동된 setIsLoggedIn() 구문이 필요합니다.
+       TODO : Redux 연동 후 setIsLoggedIn() 구문 작성하기.
     */
   }, []);
 
@@ -190,14 +190,14 @@ const PersonIconTemp = styled('div', {
   width: rem(30),
   height: rem(30),
   backgroundColor: '$gray',
-  borderRadius: rem(30), // make it circle
+  borderRadius: '100%',
   cursor: 'pointer',
   marginLeft: '0.625rem',
 
   '@mobileLarge': {
     width: rem(24),
     height: rem(24),
-    borderRadius: rem(24), // make it circle
+    borderRadius: '100%',
   },
 });
 

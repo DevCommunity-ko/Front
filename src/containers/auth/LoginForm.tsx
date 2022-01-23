@@ -13,9 +13,9 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    const mobileWidthLarge = 640; // @mobileLarge
-    setIsMobile((window.innerWidth < mobileWidthLarge) ? true : false);
-    const mql = window.matchMedia('screen and (max-width: 640px)');
+    const mobileLargeWidth = 640; // @mobileLarge
+    setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
+    const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
     mql.addEventListener('change', screenChange);
     return () => mql.removeEventListener('change', screenChange);
   }, []);
@@ -228,7 +228,7 @@ const SNSItemTemplate = styled('div', {
 
   width: rem(65),
   height: rem(65),
-  borderRadius: rem(65), // make it circle
+  borderRadius: '100%',
 
   // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
@@ -248,7 +248,7 @@ const SNSItemTemplateForTest = styled('button', {
 
   width: rem(65),
   height: rem(65),
-  borderRadius: rem(65), // make it circle
+  borderRadius: '100%',
 
   // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {

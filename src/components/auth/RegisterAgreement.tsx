@@ -62,9 +62,9 @@ export const RegisterAgreement = ({
   };
 
   useEffect(() => {
-    const mobileWidthLarge = 640; // @mobileLarge
-    setIsMobile((window.innerWidth < mobileWidthLarge) ? true : false);
-    const mql = window.matchMedia('screen and (max-width: 640px)');
+    const mobileLargeWidth = 640; // @mobileLarge
+    setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
+    const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
     mql.addEventListener('change', screenChange);
     return () => mql.removeEventListener('change', screenChange);
   }, []);
