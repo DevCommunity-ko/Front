@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
 import { RegisterField } from '../../components/auth/RegisterField';
-import { RegisterDetail } from '../../components';
 
 import type { RegisterPayload } from '../../store/modules/auth';
 
 export const RegisterForm = () => {
   const [pageStats, setPageStats] = useState(0);
-  const pageTitle = ['가입하기', '추가 정보 입력'];
 
   const [registerForm, setRegisterForm] = useState<RegisterPayload>({
     userId: '',
@@ -29,11 +28,9 @@ export const RegisterForm = () => {
     setPageStats(pageStats + 1);
   };
 
-  // 소셜 로그인 구현이 완료되면, 회원가입이 완료되어 로그인 상태인 경우, register 페이지에 진입시 redirect 될 수 있도록 구현합니다.
-
+  // 소셜 로그인 구현이 완료되면, 회원가입이 완료되어 로그인 상태인 경우, register 페이지에 진입시 redirect 될 수 있도록 구현해야 합니다.
   return (
     <RegisterBlock>
-      <TitleArea>{pageTitle[pageStats]}</TitleArea>
       {pageStats === 0 && (
         <RegisterAgreement
           toPageNext={toPageNext}
@@ -51,14 +48,13 @@ export const RegisterForm = () => {
   );
 };
 
-const TitleArea = styled('h2', {
-  fontSize: '$title',
-  marginBottom: '0 0 2.5rem 0',
-  padding: '0',
-});
-
 const RegisterBlock = styled('div', {
-  width: '30rem',
+  width: rem(480),
+
+  '@mobileLarge': {
+    textAlign: 'center',
+    width: '100%',
+  },
 });
 
 export default RegisterForm;

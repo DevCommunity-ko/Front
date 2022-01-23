@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -21,15 +22,27 @@ export const RoundButton = ({
 const RoundButtonBlock = styled('button', {
   'width': '100%',
   'backgroundColor': '$gray',
-  'borderRadius': '30px',
+  'borderRadius': rem(30),
   'border': 'none',
   'fontSize': '$button',
   'fontWeight': '$bold',
-  'height': '3rem',
+  'height': rem(60),
+  'padding': '0',
 
   'cursor': 'pointer',
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '$lightGray',
+  },
+
+  '@mobileLarge': {
+    height: rem(30),
+    fontSize: '$text',
+    fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+    fontWeight: '$bold',
   },
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -56,17 +57,32 @@ export const CheckboxItem = ({
 };
 
 const SubHeadBlock = styled('p', {
-  margin: '1.25rem 0',
+  margin: `${rem(20)} 0`,
   fontWeight: '$regular',
   wordBreak: 'keep-all',
   color: '$darkGray',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+    textAlign: 'left',
+    wordBreak: 'break-word',
+    margin: '0',
+  },
+  '@mobileSmall': {
+    fontSize: rem(10),
+  },
 });
 
 const TitleBlock = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  marginBottom: '0.625rem',
+  marginBottom: rem(10),
   alignItems: 'center',
+  flexWrap: 'wrap',
+
+  '@mobileLarge': {
+    marginBottom: rem(12),
+  },
 });
 
 const ShowMore = styled('span', {
@@ -74,9 +90,14 @@ const ShowMore = styled('span', {
   color: '$darkGray',
   cursor: 'pointer',
   fontWeight: '$bold',
+  marginLeft: 'auto',
 
   '&:hover': {
     color: '$font',
+  },
+
+  '@mobileLarge': {
+    fontSize: rem(10),
   },
 });
 
@@ -85,15 +106,23 @@ const StyledLabel = styled('label', {
   fontWeight: '$regular',
   display: 'flex',
   alignItems: 'center',
+
+  '@mobileLarge': {
+    fontSize: '$text',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+  },
 });
 
 const StyledInput = styled('input', {
-  width: '1.5rem',
-  height: '1.5rem',
-  margin: '0 0.375rem 0 0',
+  // TODO: 체크박스 리소스를 받은 뒤에는, label로 감싼 뒤 내부에 요소를 넣어 기본 체크박스를 감춘 뒤 스타일된 체크박스가 나타날 수 있도록 합니다.
+  width: rem(24),
+  height: rem(24),
+  margin: `0 ${rem(6)} 0 0`,
 
   '& + div::after': {
-    marginLeft: '0.25rem',
+    marginLeft: rem(4),
     content: '(선택)',
   },
 
@@ -110,6 +139,12 @@ const StyledInput = styled('input', {
       true: {
         '& + div': {
           fontWeight: '$bold',
+          '@mobileLarge': {
+            fontWeight: '$medium',
+          },
+          '@mobileSmall': {
+            fontWeight: '$regular',
+          },
         },
         '& + div::after': {
           content: '',
@@ -117,11 +152,21 @@ const StyledInput = styled('input', {
       },
     },
   },
+
+  '@mobileLarge': {
+    width: rem(20),
+    height: rem(20),
+    margin: `0 ${rem(5)} 0 0`,
+  },
+  '@mobileSmall': {
+    width: rem(16),
+    height: rem(16),
+  },
 });
 
 const FormBlock = styled('div', {
   height: 'max-content',
-  marginBottom: '1.25rem',
+  marginBottom: rem(23),
 
   variants: {
     isVisible: {
@@ -130,36 +175,70 @@ const FormBlock = styled('div', {
       },
     },
   },
+
+  '@mobileSmall': {
+    marginBottom: rem(10),
+  },
 });
 
 const TermBlock = styled('div', {
   width: '100%',
-  height: '7.625rem',
+  height: rem(122),
   border: '0.5px solid $darkGray',
   backgroundColor: '$lightGray',
   color: '$darkGray',
   fontWeight: '$regular',
   overflowY: 'scroll',
-  padding: '2rem 0.594rem 0 1.438rem',
+  // padding right = 표시되어야 할 글자 우측 패딩 너비 - 스크롤바 너비
+  padding: `${rem(32)} ${rem(25 - 13.44)} 0 ${rem(25)}`,
 
   '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
-    width: '14px',
-    borderRadius: '14px',
+    width: rem(13.44),
+    borderRadius: rem(13.44),
     backgroundClip: 'padding-box',
   },
 
   '&::-webkit-scrollbar-thumb': {
     color: '$lightBlue',
-    boxShadow: 'inset 0 0 0 10px',
-    border: '4.24px solid transparent',
+    boxShadow: `inset 0 0 0 ${rem(10)}`,
+    border: `${rem(3.84)} solid transparent`,
   },
 
   '&::-webkit-scrollbar-track': {
-    margin: '4.84px 0',
+    margin: `${rem(10)} 0`,
     backgroundColor: '$gray',
-    width: '14px',
-    borderRadius: '14px',
+    width: rem(13.44),
+    borderRadius: rem(13.44),
     backgroundClip: 'padding-box',
-    border: '5.16px solid transparent',
+    border: `${rem(3.84 + 0.96)} solid transparent`,
+  },
+
+  '@mobileLarge': {
+    // padding right = 표시되어야 할 글자 우측 패딩 너비 - 스크롤바 너비
+    padding: `${rem(20.98)} ${rem(18 - 8.96)} 0 ${rem(15.33)}`,
+    height: rem(80),
+    textAlign: 'left',
+    fontSize: '$smallMobile',
+
+    '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
+      width: rem(8.96),
+      borderRadius: rem(8.96),
+      backgroundClip: 'padding-box',
+    },
+
+    '&::-webkit-scrollbar-thumb': {
+      color: '$lightBlue',
+      boxShadow: `inset 0 0 0 ${rem(10)}`,
+      border: `${rem(2.56)} solid transparent`,
+    },
+
+    '&::-webkit-scrollbar-track': {
+      margin: `${rem(6.56)} 0`,
+      backgroundColor: '$gray',
+      width: rem(8.96),
+      borderRadius: rem(8.96),
+      backgroundClip: 'padding-box',
+      border: `${rem(2.56 + 0.64)} solid transparent`,
+    },
   },
 });

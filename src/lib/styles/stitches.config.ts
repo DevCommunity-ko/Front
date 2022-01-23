@@ -21,16 +21,18 @@ export const { styled, css } = createStitches({
       bold: 700,
     },
     fontSizes: {
-      text: rem(16),
-      subtitle: rem(20),
-      title: rem(30),
-      button: rem(22),
+      text: rem(16), // weight regular / medium / bold
+      subtitle: rem(20), // weight medium
+      title: rem(30), // weight bold
+      button: rem(22), // weight bold
+      smallMobile: rem(12),
     },
   },
   media: {
-    // mobile 360 / tablet 1024 / laptop 1334 / desktop 1920.
-    mobile: '(max-width: 340px)',
-    tablet: '(max-width: 1334px)',
-    laptop: '(man-width: 1920px)',
+    // mobileSmall 360 / mobileLarge 640 / tablet 1024 / laptop 1334 / desktop 1920.
+    mobileSmall: '(max-width: 360px)',
+    mobileLarge: '(max-width: 640px)',
+    tablet: '(max-width: 1024px)',
+    laptop: '(max-width: 1334px)',
   },
 });

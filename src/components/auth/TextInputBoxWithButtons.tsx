@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -89,19 +90,31 @@ const InputLabel = styled('label', {
   '& > div': {
     margin: '0',
     fontWeight: '$regular',
-    marginBottom: '1.875rem',
+    marginBottom: rem(30),
+  },
+
+  '@mobileLarge': {
+    '& > div': {
+      marginBottom: rem(18),
+    },
+  },
+  '@mobileSmall': {
+    '& > div': {
+      fontSize: '$smallMobile',
+      marginBottom: rem(10),
+    },
   },
 });
 
 const InputBlock = styled('div', {
-  paddingBottom: '0.438rem',
+  paddingBottom: rem(7),
   boxSizing: 'border-box',
 });
 
 const InputLine = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  paddingBottom: '0.625rem',
+  paddingBottom: rem(10),
   borderBottom: '0.5px solid $font',
   variants: {
     errorStatus: {
@@ -114,7 +127,7 @@ const InputLine = styled('div', {
 
 const InputItem = styled('input', {
   border: 'none',
-  fontSize: '1rem',
+  fontSize: '$text',
   width: '100%',
 
   '&:focus': {
@@ -122,7 +135,7 @@ const InputItem = styled('input', {
   },
 
   '&::placeholder': {
-    fontSize: '1rem',
+    fontSize: '$text',
     color: '$gray',
   },
 
@@ -146,7 +159,7 @@ const LabelGender = styled('label', {
   width: 'max-content',
 
   '&:not(label:last-child)': {
-    marginRight: '0.25rem',
+    marginRight: rem(4),
   },
 });
 
@@ -161,11 +174,11 @@ const InputItemGender = styled('input', {
 });
 
 const RoundButtonGender = styled('div', {
-  padding: '0 0.625rem',
+  padding: `0 ${rem(10)}`,
   border: '0.5px solid $font',
-  borderRadius: '30px',
+  borderRadius: rem(30),
 
-  height: '1.5rem',
+  height: rem(24),
   width: 'fit-content',
 
   cursor: 'pointer',
@@ -176,5 +189,5 @@ const ErrorBox = styled('div', {
   fontSize: '1em',
   color: '$alert',
   fontWeight: '$regular',
-  marginBottom: '1.25rem',
+  marginBottom: rem(20),
 });
