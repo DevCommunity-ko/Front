@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import {
-  login, logout, register, 
+  sso, logout, additionalInfo, 
 } from './actions';
 
 import type { UserState } from './types';
@@ -19,11 +19,11 @@ const { reducer } = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(sso.fulfilled, (state, action) => {
       // TODO: 로그인 성공 후 서버에서 내려온 값을 state에 저장합니다.
     });
 
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(sso.rejected, (state, action) => {
       // TODO: 로그인 실패인 경우를 처리합니다.
     });
 
@@ -36,11 +36,11 @@ const { reducer } = createSlice({
       // 그냥 state를 초기화시켜도 되지 않을까 싶습니다.
     });
 
-    builder.addCase(register.fulfilled, (state, action) => {
+    builder.addCase(additionalInfo.fulfilled, (state, action) => {
       // TOOD: 회원가입 성공인 경우를 처리합니다.
     });
 
-    builder.addCase(register.rejected, (state, action) => {
+    builder.addCase(additionalInfo.rejected, (state, action) => {
       // TOOD: 회원가입 실패인 경우를 처리합니다.
     });
   },

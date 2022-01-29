@@ -4,8 +4,9 @@
 
 // 로그인 액션 페이로드 타입
 export type LoginPayload = {
-  userId: string,
-  socialToken: string,
+  provider: 'naver',
+  code: string,
+  state: string,
 };
   
 // 회원가입 액션 페이로드 타입

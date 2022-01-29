@@ -8,17 +8,17 @@ import type { LoginPayload,  RegisterPayload } from '../stores/auth';
 export default function useUser() {
   const dispatch = useDispatch();
 
-  const login = useCallback((payload: LoginPayload) => {
-    dispatch(actions.login(payload));
+  const sso = useCallback((payload: LoginPayload) => {
+    dispatch(actions.sso(payload));
   }, []);
 
   const logout = useCallback(() => {
     dispatch(actions.logout());
   }, []);
 
-  const register = useCallback((payload: RegisterPayload) => {
-    dispatch(actions.register(payload));
+  const additionalInfo = useCallback((payload: RegisterPayload) => {
+    dispatch(actions.additionalInfo(payload));
   }, []);
 
-  return { login, logout, register };
+  return { sso, logout, additionalInfo };
 }

@@ -3,11 +3,11 @@ import axios from 'axios';
 
 import type { LoginPayload, RegisterPayload } from './types';
 
-export const login = createAsyncThunk(
-  'auth/login',
+export const sso = createAsyncThunk(
+  'auth/sso',
   // FIXME: async thunk 내부 구현에서 axios 요청을 보내면서 await을 사용할 때 아래 eslint 무시 구문 제거하기
   // eslint-disable-next-line @typescript-eslint/require-await
-  async ({ userId, socialToken }: LoginPayload, thunkAPI) => {
+  async ({ provider }: LoginPayload, thunkAPI) => {
     try {
       // TODO: 로그인 요청을 하고 결과를 반환합니다.
       // 결과는 아래의 auth slice의 state에 저장될 값입니다.
@@ -29,7 +29,7 @@ export const logout = createAsyncThunk(
   },
 );
   
-export const register = createAsyncThunk(
+export const additionalInfo = createAsyncThunk(
   'auth/register',
   // FIXME: async thunk 내부 구현에서 axios 요청을 보내면서 await을 사용할 때 아래 eslint 무시 구문 제거하기
   // eslint-disable-next-line @typescript-eslint/require-await
