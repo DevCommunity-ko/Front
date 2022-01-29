@@ -37,11 +37,11 @@ const { reducer } = createSlice({
     });
 
     builder.addCase(additionalInfo.fulfilled, (state, action) => {
-      // TOOD: 회원가입 성공인 경우를 처리합니다.
+      // TOOD: 추가 개인 정보 입력에 성공한 경우를 처리합니다.
     });
 
     builder.addCase(additionalInfo.rejected, (state, action) => {
-      // TOOD: 회원가입 실패인 경우를 처리합니다.
+      // TOOD: 추가 개인 정보 입력에 실패한 경우를 처리합니다.
     });
   },
 });
