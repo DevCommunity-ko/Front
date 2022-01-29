@@ -1,9 +1,25 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
 const LoginForm = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const screenChange = (event: MediaQueryListEvent) => {
+    const { matches } = event;
+    setIsMobile(matches);
+  };
+
+  useEffect(() => {
+    const mobileLargeWidth = 640; // @mobileLarge
+    setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
+    const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
+    mql.addEventListener('change', screenChange);
+    return () => mql.removeEventListener('change', screenChange);
+  }, []);
+
   const loginNaver = () => {
     const client_id = 'qco1iLqUirs5dpGJHK_L';
     const redirect_uri = encodeURI(
@@ -20,42 +36,109 @@ const LoginForm = () => {
   };
 
   return (
-    <Wrapper>
-      <Title>로그인하기</Title>
-      <SNSBlock>
-        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
-        <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={loginNaver} />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-          <SNSItemTemplate />
-        </SelectSNSItem>
-        <LabelKeepLoggedIn>
-          <CheckboxKeepLoggedIn type="checkbox" />
-          로그인 유지
-        </LabelKeepLoggedIn>
-      </SNSBlock>
-      <ToRegisterBlock>
-        <div>아직 마그넷 회원이 아니신가요?</div>
-        <Link href="/register">회원가입</Link>
-      </ToRegisterBlock>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Title>로그인하기</Title>
+        <SNSBlock>
+          <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
+          <SelectSNSItem>
+            <SNSItemTemplateForTest onClick={loginNaver}>
+              {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
+            </SNSItemTemplateForTest>
+            <SNSItemTemplate />
+            <SNSItemTemplate />
+            <SNSItemTemplate />
+          </SelectSNSItem>
+          <MobileBlock>
+            <LabelKeepLoggedIn>
+              <CheckboxKeepLoggedIn type="checkbox" />
+              로그인 유지
+            </LabelKeepLoggedIn>
+          </MobileBlock>
+        </SNSBlock>
+        <AbsoluteBlock>
+          <ToRegisterBlock>
+            <div>아직 마그넷 회원이 아니신가요?</div>
+            <Link href="/register">회원가입</Link>
+          </ToRegisterBlock>
+        </AbsoluteBlock>
+      </Wrapper>
+    </>
   );
 };
 
+// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
+const SocialIconTemp = styled('div', {
+  fontWeight: '600',
+  fontSize: '1.875em',
+  position: 'absolute',
+  left: rem(30),
+  top: rem(4),
+
+  '@mobileSmall': {
+    left: rem(27),
+    top: rem(3),
+  },
+});
+
+const MobileBlock = styled('div', {
+  '@mobileLarge': {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+});
+
 const Wrapper = styled('div', {
-  width: '22.5rem',
+  width: rem(360),
+
+  '@mobileLarge': {
+    textAlign: 'center',
+    width: '100%',
+  },
 });
 
 const Title = styled('h2', {
   fontSize: '$title',
-  marginBottom: '0 0 2.5rem 0',
+  margin: `0 0 ${rem(40)} 0`,
   padding: '0',
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    fontWeight: '$medium',
+    margin: `0 0 ${rem(41)} 0`,
+  },
+  '@mobileSmall': {
+    fontSize: '$text',
+    margin: `0 0 ${rem(20)} 0`,
+  },
 });
 
 const SNSSubtitle = styled('p', {
   fontSize: '$subtitle',
-  margin: '0 0 1.313rem 0',
+  fontWeight: '$regular',
+  margin: `0 0 ${rem(21)} 0`,
+
+  '@mobileLarge': {
+    margin: `0 0 ${rem(10)} 0`,
+    fontSize: '$text',
+    color: '$gray',
+    fontWeight: '$regular',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+  },
+});
+
+const AbsoluteBlock = styled('div', {
+  '@mobileLarge': {
+    position: 'absolute',
+    bottom: rem(56),
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
+  '@mobileSmall': {
+    bottom: rem(30.44),
+  },
 });
 
 const ToRegisterBlock = styled('div', {
@@ -68,6 +151,19 @@ const ToRegisterBlock = styled('div', {
   '& > div': {
     fontWeight: '$regular',
   },
+
+  '@mobileLarge': {
+    fontSize: '$smallMobile',
+    fontWeight: '$medium',
+    width: 'max-content',
+
+    '& > div': {
+      marginRight: rem(6),
+    },
+  },
+  '@mobileSmall': {
+    fontWeight: '$bold',
+  },
 });
 
 const SNSBlock = styled('div', {
@@ -75,50 +171,102 @@ const SNSBlock = styled('div', {
   width: '100%',
   fontSize: '$subtitle',
 
-  marginBottom: '8.625rem',
+  marginBottom: rem(138),
+
+  '@mobileLarge': {
+    marginBottom: '0',
+  },
 });
 
 const LabelKeepLoggedIn = styled('label', {
-  marginTop: '2.5rem',
+  marginTop: rem(40),
   display: 'flex',
   alignItems: 'center',
   color: '$darkGray',
+  right: '0',
+
+  '@mobileLarge': {
+    marginTop: rem(20),
+    fontSize: '$text',
+  },
+  '@mobileSmall': {
+    marginTop: rem(11),
+    fontSize: '$smallMobile',
+  },
 });
 
 const CheckboxKeepLoggedIn = styled('input', {
-  width: '1.25em',
-  height: '1.25em',
-  marginRight: '0.5rem',
+  width: rem(18),
+  height: rem(18),
+  marginRight: rem(8),
+
+  '@mobileLarge': {
+    marginRight: rem(5),
+  },
+  '@mobileSmall': {
+    width: rem(15),
+    height: rem(15),
+    marginRight: rem(7.5),
+  },
 });
 
 const SelectSNSItem = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
+
+  '@mobileLarge': {
+    display: 'block',
+    width: '100%',
+    height: rem(40), // rem(40) * 내부 요소 개수만큼 설정. button 하면 왜 추가 영역이 생기는지 모르겠음
+  },
 });
 
+// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
 const SNSItemTemplate = styled('div', {
   backgroundColor: '$gray',
   cursor: 'pointer',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: '100%',
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
     backgroundColor: '$lightGray',
   },
+
+  '@mobileLarge': {
+    display: 'none',
+  },
 });
 
-const SNSItemTemplateForTest = styled('div', {
-  backgroundColor: 'green',
+// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
+const SNSItemTemplateForTest = styled('button', {
+  backgroundColor: '#04cf5c', // 임의 색상입니다.
   cursor: 'pointer',
+  border: 'none',
 
-  width: '65px',
-  height: '65px',
-  borderRadius: '50px',
+  width: rem(65),
+  height: rem(65),
+  borderRadius: '100%',
 
+  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
   '&:hover': {
-    backgroundColor: 'lightgreen',
+    backgroundColor: '#08ff6b',
+  },
+
+  '@mobileLarge': {
+    position: 'relative',
+    width: '100%',
+    height: rem(40),
+    padding: '0',
+    color: 'white',
+    fontSize: '$text',
+    fontWeight: '$medium',
+  },
+  '@mobileSmall': {
+    height: rem(30),
+    fontSize: '$smallMobile',
   },
 });
 

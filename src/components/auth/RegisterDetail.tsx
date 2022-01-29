@@ -1,3 +1,7 @@
+/*****************************************
+ * 이 페이지는 더 이상 업데이트 되지 않습니다.
+ * 더 이상 필요치 않다고 판단되면 삭제할 예정입니다.
+ *****************************************/
 import React, { useState } from 'react';
 
 import { styled } from '../../lib/styles/stitches.config';
@@ -84,10 +88,10 @@ export const RegisterDetail = ({
 
       resolve(
         ErrorList[0] ||
-          ErrorList[1] ||
-          ErrorList[2] ||
-          ErrorList[3] ||
-          ErrorList[4],
+        ErrorList[1] ||
+        ErrorList[2] ||
+        ErrorList[3] ||
+        ErrorList[4],
       );
     });
   };

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RoundButton } from '../common';
@@ -28,8 +29,8 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
         <BlockFailed>
           <h2>죄송합니다</h2>
           <MessageFailed>
-            다시 <Link href="/login">로그인</Link>하시거나
-            <Link href="/register">회원가입</Link>을 시도해 주시기 바랍니다.
+            다시 <Link href="/login">로그인</Link>하시거나&nbsp;
+            <Link href="/register">회원가입</Link>을<br /> 시도해 주시기 바랍니다.
           </MessageFailed>
         </BlockFailed>
       )}
@@ -38,7 +39,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
 };
 
 const BlockTemplate = styled('div', {
-  width: '30rem',
+  width: rem(480),
   textAlign: 'center',
   color: '$font',
   margin: '0',
@@ -47,18 +48,45 @@ const BlockTemplate = styled('div', {
 
 const TitleSucceed = styled('h1', {
   fontSize: '$title',
-  marginBottom: '0.625rem',
+  marginBottom: rem(10),
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    fontWeight: '$medium',
+    marginBottom: rem(11),
+  },
+  '@mobileSmall': {
+    fontSize: '$text',
+    marginBottom: rem(4),
+  },
 });
 
 const SubTitleSucceed = styled('h4', {
   fontWeight: '$regular',
   fontSize: '$subtitle',
+  margin: 0,
+
+  '@mobileLarge': {
+    fontSize: '$text',
+  },
+  '@mobileSmall': {
+    fontSize: '$smallMobile',
+  },
 });
 
 const MessageSucceed = styled('p', {
-  margin: '6.25rem 0',
+  margin: `${rem(100)} 0`,
   fontSize: '$title',
   fontWeight: '$regular',
+
+  '@mobileLarge': {
+    fontSize: '$subtitle',
+    margin: `${rem(60)} 0`,
+  },
+  '@mobileSmall': {
+    fontSize: '$text',
+    margin: `${rem(30)} 0 ${rem(50)} 0`,
+  },
 });
 
 const MessageFailed = styled('p', {
@@ -66,17 +94,33 @@ const MessageFailed = styled('p', {
     fontSize: '$subtitle',
     fontWeight: '$bold',
     textDecoration: 'underline',
+
+    '@mobileSmall': {
+      fontSize: '$text',
+    },
   },
 });
 
-const BlockSucceed = styled(BlockTemplate, {});
+const BlockSucceed = styled(BlockTemplate, {
+  '@mobileLarge': {
+    width: '100%',
+  },
+});
 
 const BlockFailed = styled(BlockTemplate, {
-  paddingTop: '5.875rem',
-  width: '17rem',
+  paddingTop: rem(94),
 
   '& > *': {
     fontSize: '$subtitle',
     fontWeight: '$medium',
+
+    '@mobileSmall': {
+      fontSize: '$text',
+    },
+  },
+
+  '@mobileLarge': {
+    paddingTop: 0,
+    width: '100%',
   },
 });

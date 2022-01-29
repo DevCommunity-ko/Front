@@ -1,4 +1,5 @@
 import React from 'react';
+import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
@@ -61,15 +62,28 @@ export const TextInputBox = ({
 };
 
 const InputLabel = styled('label', {
+  // div 잡아야 marginBottom 적용 가능
   '& > div': {
     margin: '0',
     fontWeight: '$regular',
-    marginBottom: '1.875rem',
+    marginBottom: rem(30),
+  },
+
+  '@mobileLarge': {
+    '& > div': {
+      marginBottom: rem(18),
+    },
+  },
+  '@mobileSmall': {
+    '& > div': {
+      fontSize: '$smallMobile',
+      marginBottom: rem(10),
+    },
   },
 });
 
 const InputBlock = styled('div', {
-  paddingBottom: '0.438rem',
+  paddingBottom: rem(7),
   boxSizing: 'border-box',
 
   variants: {
@@ -79,12 +93,16 @@ const InputBlock = styled('div', {
       },
     },
   },
+
+  '@mobileLarge': {
+    marginBottom: rem(20),
+  },
 });
 
 const InputLine = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  paddingBottom: '0.625rem',
+  paddingBottom: rem(10),
   borderBottom: '0.5px solid $font',
   variants: {
     errorStatus: {
@@ -107,6 +125,10 @@ const InputItem = styled('input', {
   '&::placeholder': {
     fontSize: '$text',
     color: '$gray',
+
+    '@mobileLarge': {
+      fontSize: '$smallMobile',
+    },
   },
 
   variants: {
