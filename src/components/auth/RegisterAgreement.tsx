@@ -71,7 +71,7 @@ export const RegisterAgreement = ({
 
   // TODO : redux 통합 이후 slice action으로 분리하기
   const loginNaver = () => {
-    const client_id = 'qco1iLqUirs5dpGJHK_L';
+    const client_id = 'uOV9tpI3J7iFOOG6YOOz';
     const redirect_uri = encodeURI(
       'http://localhost:3000/login/authSocial/naver',
     );
