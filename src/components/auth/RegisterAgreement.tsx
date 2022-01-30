@@ -5,8 +5,10 @@ import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RegisterPayload } from '../../store/modules/auth';
 import { RoundButton } from '../common';
+import { openNaverSSO } from '../../lib/api/auth';
 
 import { CheckboxItem } from './CheckboxItem';
+
 
 type AgreementProps = {
   toPageNext: CallableFunction,
@@ -69,29 +71,13 @@ export const RegisterAgreement = ({
     return () => mql.removeEventListener('change', screenChange);
   }, []);
 
-  // TODO : redux 통합 이후 slice action으로 분리하기
-  const loginNaver = () => {
-    const client_id = 'uOV9tpI3J7iFOOG6YOOz';
-    const redirect_uri = encodeURI(
-      'http://localhost:3000/login/authSocial/naver',
-    );
-    const state_string = Math.random().toString(36).substr(2, 11);
-    const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
-
-    window.open(
-      request_url,
-      'windowname',
-      'width=430, height=500, location=no, status=no, scrollbars=yes',
-    );
-  };
-
   return (
     <>
       <TitleArea isShowAll={isShowAll}>가입하기</TitleArea>
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={loginNaver}>
+          <SNSItemTemplateForTest onClick={openNaverSSO}>
             {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정으로 가입하기</>}
           </SNSItemTemplateForTest>
           <SNSItemTemporary />
