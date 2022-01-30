@@ -1,7 +1,7 @@
 export const login = ({/* noop */});
 
 export const openNaverSSO = () => {
-  const client_id = process.env.NEXT_NAVER_TOKEN_CID || '';
+  const client_id = process.env.NEXT_PUBLIC_NAVER_TOKEN_CID || '';
   const redirect_uri = encodeURI(
     `${process.env.NEXT_PUBLIC_URL || ''}/login/authSocial/naver`,
   );
