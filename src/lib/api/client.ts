@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
-const client = axios.create();
+const client = axios.create({
+  baseURL: process.env.NEXT_BACKEND_ADDR,
+});
 
 export default client;
