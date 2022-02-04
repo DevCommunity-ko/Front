@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
+import { openNaverSSO } from '../../lib/api/auth';
 
 const LoginForm = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -20,21 +21,6 @@ const LoginForm = () => {
     return () => mql.removeEventListener('change', screenChange);
   }, []);
 
-  const loginNaver = () => {
-    const client_id = 'qco1iLqUirs5dpGJHK_L';
-    const redirect_uri = encodeURI(
-      'http://localhost:3000/login/authSocial/naver',
-    );
-    const state_string = Math.random().toString(36).substr(2, 11);
-    const request_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state_string}&redirect_uri=${redirect_uri}`;
-
-    window.open(
-      request_url,
-      'windowname',
-      'width=430, height=500, location=no, status=no, scrollbars=yes',
-    );
-  };
-
   return (
     <>
       <Wrapper>
@@ -42,7 +28,7 @@ const LoginForm = () => {
         <SNSBlock>
           <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
           <SelectSNSItem>
-            <SNSItemTemplateForTest onClick={loginNaver}>
+            <SNSItemTemplateForTest onClick={openNaverSSO}>
               {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
             </SNSItemTemplateForTest>
             <SNSItemTemplate />
