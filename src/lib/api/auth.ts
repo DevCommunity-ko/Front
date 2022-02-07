@@ -10,7 +10,7 @@ export const openNaverSSO = () => {
 
   window.open(
     request_url,
-    'windowname',
+    'popup',
     'width=430, height=500, location=no, status=no, scrollbars=yes',
   );
 };
