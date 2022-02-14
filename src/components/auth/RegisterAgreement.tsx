@@ -4,7 +4,7 @@ import { rem } from 'polished';
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '../common';
-import { openNaverSSO } from '../../lib/api/auth';
+import { getNaverAuthUrl } from '../../lib/api/auth';
 import { useUser } from '../../hooks';
 
 import { CheckboxItem } from './CheckboxItem';
@@ -65,21 +65,16 @@ export const RegisterAgreement = ({
     setIsMobile(matches);
   };
 
+  const onClickNaverLogin = () => {
+    const naverAuthUrl = getNaverAuthUrl();
+    window.location.href = naverAuthUrl;
+  };
+
   useEffect(() => {
     const mobileLargeWidth = 640; // @mobileLarge
     setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
     const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
     mql.addEventListener('change', screenChange);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    window.onNaverAuthSuccess = ({ code, state }: { code: string, state: string }) => {
-      sso({
-        provider: 'naver',
-        code,
-        state,
-      });
-    };
     return () => mql.removeEventListener('change', screenChange);
   }, []);
 
@@ -89,7 +84,7 @@ export const RegisterAgreement = ({
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={openNaverSSO}>
+          <SNSItemTemplateForTest onClick={onClickNaverLogin}>
             {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정으로 가입하기</>}
           </SNSItemTemplateForTest>
           <SNSItemTemporary />

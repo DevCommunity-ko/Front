@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
-import { openNaverSSO } from '../../lib/api/auth';
+import { getNaverAuthUrl } from '../../lib/api/auth';
+import { rootSelector } from '../../stores';
 
 const LoginForm = () => {
   const [isMobile, setIsMobile] = useState(false);
+
+  rootSelector((state) => console.log(state.auth.userData));
 
   const screenChange = (event: MediaQueryListEvent) => {
     const { matches } = event;
@@ -28,7 +31,7 @@ const LoginForm = () => {
         <SNSBlock>
           <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
           <SelectSNSItem>
-            <SNSItemTemplateForTest onClick={openNaverSSO}>
+            <SNSItemTemplateForTest onClick={getNaverAuthUrl}>
               {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
             </SNSItemTemplateForTest>
             <SNSItemTemplate />

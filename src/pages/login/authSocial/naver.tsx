@@ -1,21 +1,31 @@
-import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+
+import { useUser } from '../../../hooks';
 
 const CallbackNaver = () => {
-  useEffect(() => {
-    const href = window.location.href;
-    const params = new URL(href).searchParams;
-    const code = params.get('code');
-    const state = params.get('state');
+  const { sso } = useUser();
+  const router = useRouter();
 
-    if (code === null || state === null) {
-      alert('정상적인 접근이 아닙니다.');
-      window.close();
-      return;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-    window.opener.onNaverAuthSuccess({ code, state });
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const params = new URL(window.location.href).searchParams;
+  const code = params.get('code');
+  const state = params.get('state');
+
+  if (code === null || state === null) {
+    alert('정상적인 접근이 아닙니다.');
     window.close();
-  }, []);
+    return;
+  }
+  sso({
+    provider: 'naver',
+    code,
+    state,
+  });
+  void router.push('/register');
   return null;
 };
 
