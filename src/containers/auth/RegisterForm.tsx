@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
 import { RegisterField } from '../../components/auth/RegisterField';
+import { rootSelector } from '../../stores';
 
 import type { RegisterPayload } from '../../stores/auth';
 
 export const RegisterForm = () => {
   const [pageStats, setPageStats] = useState(0);
+  const authState = rootSelector(state => state.auth);
 
   const [registerForm, setRegisterForm] = useState<RegisterPayload>({
     userId: '',
@@ -23,6 +25,12 @@ export const RegisterForm = () => {
     workSpecified: '',
     careerLength: '',
   });
+
+  useEffect(() => {
+    if (authState.userData?.newMember) {
+      setPageStats(1);
+    }
+  }, [authState.userData?.newMember]);
 
   const toPageNext = () => {
     setPageStats(pageStats + 1);
