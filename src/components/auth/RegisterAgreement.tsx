@@ -5,7 +5,6 @@ import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '../common';
 import { getNaverAuthUrl } from '../../lib/api/auth';
-import { useUser } from '../../hooks';
 
 import { CheckboxItem } from './CheckboxItem';
 
@@ -28,7 +27,6 @@ export const RegisterAgreement = ({
   const [isCheckedAll, setIsCheckedAll] = useState(false);
   // BasicTerm, PersonalInfo, SMS, Email
   const [checkedList, setCheckedLists] = useState([false, false, false, false]);
-  const { sso } = useUser();
 
   const onClickShowMore = () => {
     setIsShowAll(true);
