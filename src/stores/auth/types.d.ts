@@ -4,7 +4,6 @@
 
 // 로그인 액션 페이로드 타입
 export type LoginPayload = {
-  provider: 'naver',
   code: string,
   state: string,
 };

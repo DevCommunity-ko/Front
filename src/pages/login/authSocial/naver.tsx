@@ -20,11 +20,12 @@ const CallbackNaver = () => {
     window.close();
     return;
   }
+
   sso({
-    provider: 'naver',
     code,
     state,
   });
+
   void router.push('/register');
   return null;
 };

@@ -2,10 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   sso, logout, additionalInfo,
-} from './actions';
+} from './thunks';
 
 import type { UserState } from './types';
-
 
 const initialState: UserState = {};
 

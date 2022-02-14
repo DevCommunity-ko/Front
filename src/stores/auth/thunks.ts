@@ -9,7 +9,7 @@ import type {
 
 export const sso = createAsyncThunk<LoginResponse, LoginPayload, { rejectValue: undefined }>(
   'auth/sso',
-  async ({ provider, code, state }, { rejectWithValue }) => {
+  async ({ code, state }, { rejectWithValue }) => {
     try {
       const resp = await client.post<LoginResponse>('/auth/naver', {
         code,
