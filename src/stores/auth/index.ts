@@ -1,5 +1,11 @@
 import reducer from './reducer';
-import * as actions from './actions';
+import * as thunks from './thunks';
 
-export { reducer, actions };
-export * from './types';
+import type {
+  LoginPayload, RegisterPayload, UserState, UserData,
+} from './types';
+
+export { reducer, thunks };
+export type {
+  LoginPayload, RegisterPayload, UserState, UserData,
+};

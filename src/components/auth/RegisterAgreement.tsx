@@ -4,7 +4,7 @@ import { rem } from 'polished';
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '../common';
-import { openNaverSSO } from '../../lib/api/auth';
+import { getNaverAuthUrl } from '../../lib/api/auth';
 
 import { CheckboxItem } from './CheckboxItem';
 
@@ -63,6 +63,11 @@ export const RegisterAgreement = ({
     setIsMobile(matches);
   };
 
+  const onClickNaverLogin = () => {
+    const naverAuthUrl = getNaverAuthUrl();
+    window.location.href = naverAuthUrl;
+  };
+
   useEffect(() => {
     const mobileLargeWidth = 640; // @mobileLarge
     setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
@@ -77,7 +82,7 @@ export const RegisterAgreement = ({
       <SNSBlock>
         <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
         <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={openNaverSSO}>
+          <SNSItemTemplateForTest onClick={onClickNaverLogin}>
             {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정으로 가입하기</>}
           </SNSItemTemplateForTest>
           <SNSItemTemporary />

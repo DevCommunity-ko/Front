@@ -1,22 +1,33 @@
-import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+
+import { useUser } from '../../../hooks';
 
 const CallbackNaver = () => {
-  useEffect(() => {
-    const href = window.location.href;
-    const params = new URL(href).searchParams;
-    const code = params.get('code');
-    const state = params.get('state');
-    console.log({ code });
-    console.log({ state });
-    /*
-      이곳에서 code를 백엔드 서버로 전송합니다.
-      백엔드에서 loginForm쪽으로 결과를 반환하도록 하여, 로그인 결과를 알 수 있도록 합니다.
-    */
+  const { sso } = useUser();
+  const router = useRouter();
 
-    // 페이지 내에서 할 모든 작업이 끝나면 페이지를 종료합니다.
-    //window.close();
-  }, []);
-  return <div></div>;
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const params = new URL(window.location.href).searchParams;
+  const code = params.get('code');
+  const state = params.get('state');
+
+  if (code === null || state === null) {
+    alert('정상적인 접근이 아닙니다.');
+    window.close();
+    return;
+  }
+
+  sso({
+    code,
+    state,
+  });
+
+  void router.push('/register');
+  return null;
 };
 
 export default CallbackNaver;

@@ -4,11 +4,15 @@
 
 // 로그인 액션 페이로드 타입
 export type LoginPayload = {
-  provider: 'naver',
   code: string,
   state: string,
 };
-  
+
+export type LoginResponse = {
+  newMember: boolean,
+  userId: number,
+};
+
 // 회원가입 액션 페이로드 타입
 export type RegisterPayload = {
   userId: string,
@@ -33,6 +37,6 @@ export type UserData = {
 
 //초기 상태 타입
 export type UserState = {
-  userData: LoginPayload | null,
-  error: unknown,
+  userData?: LoginResponse,
+  error?: unknown,
 };

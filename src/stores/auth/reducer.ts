@@ -1,26 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import {
-  sso, logout, additionalInfo, 
-} from './actions';
+  sso, logout, additionalInfo,
+} from './thunks';
 
 import type { UserState } from './types';
 
+const initialState: UserState = {};
 
-const initialState: UserState = {
-  userData: null,
-  error: null,
-};
 
-                                                                                                                          
 const { reducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(sso.fulfilled, (state, action) => {
-      // TODO: 로그인 성공 후 서버에서 내려온 값을 state에 저장합니다.
+      const { payload } = action;
+      state.userData = {
+        ...payload,
+      };
     });
 
     builder.addCase(sso.rejected, (state, action) => {
