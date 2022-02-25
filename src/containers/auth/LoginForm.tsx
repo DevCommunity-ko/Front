@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { rem } from 'polished';
 
@@ -16,6 +15,11 @@ const LoginForm = () => {
     setIsMobile(matches);
   };
 
+  const onClickNaverLogin = () => {
+    const naverAuthUrl = getNaverAuthUrl();
+    window.location.href = naverAuthUrl;
+  };
+
   useEffect(() => {
     const mobileLargeWidth = 640; // @mobileLarge
     setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
@@ -31,7 +35,7 @@ const LoginForm = () => {
         <SNSBlock>
           <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
           <SelectSNSItem>
-            <SNSItemTemplateForTest onClick={getNaverAuthUrl}>
+            <SNSItemTemplateForTest onClick={onClickNaverLogin}>
               {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
             </SNSItemTemplateForTest>
             <SNSItemTemplate />
@@ -45,12 +49,6 @@ const LoginForm = () => {
             </LabelKeepLoggedIn>
           </MobileBlock>
         </SNSBlock>
-        <AbsoluteBlock>
-          <ToRegisterBlock>
-            <div>아직 마그넷 회원이 아니신가요?</div>
-            <Link href="/register">회원가입</Link>
-          </ToRegisterBlock>
-        </AbsoluteBlock>
       </Wrapper>
     </>
   );
@@ -115,43 +113,6 @@ const SNSSubtitle = styled('p', {
   },
   '@mobileSmall': {
     fontSize: '$smallMobile',
-  },
-});
-
-const AbsoluteBlock = styled('div', {
-  '@mobileLarge': {
-    position: 'absolute',
-    bottom: rem(56),
-    left: '50%',
-    transform: 'translate(-50%, 0)',
-  },
-  '@mobileSmall': {
-    bottom: rem(30.44),
-  },
-});
-
-const ToRegisterBlock = styled('div', {
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
-  fontWeight: '$bold',
-  fontSize: '$subtitle',
-
-  '& > div': {
-    fontWeight: '$regular',
-  },
-
-  '@mobileLarge': {
-    fontSize: '$smallMobile',
-    fontWeight: '$medium',
-    width: 'max-content',
-
-    '& > div': {
-      marginRight: rem(6),
-    },
-  },
-  '@mobileSmall': {
-    fontWeight: '$bold',
   },
 });
 

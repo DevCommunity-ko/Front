@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { registerFormItems } from '../../lib/texts/texts';
 import { RoundButton } from '../common';
-import { getNaverAuthUrl } from '../../lib/api/auth';
 
 import { CheckboxItem } from './CheckboxItem';
 
@@ -21,7 +20,6 @@ export const RegisterAgreement = ({
   registerForm,
   setRegisterForm,
 }: AgreementProps) => {
-  const [isMobile, setIsMobile] = useState(false);
   const [isShowAll, setIsShowAll] = useState(false);
   const [isErrorShown, setIsErrorShown] = useState(false);
   const [isCheckedAll, setIsCheckedAll] = useState(false);
@@ -58,38 +56,9 @@ export const RegisterAgreement = ({
     toPageNext();
   };
 
-  const screenChange = (event: MediaQueryListEvent) => {
-    const { matches } = event;
-    setIsMobile(matches);
-  };
-
-  const onClickNaverLogin = () => {
-    const naverAuthUrl = getNaverAuthUrl();
-    window.location.href = naverAuthUrl;
-  };
-
-  useEffect(() => {
-    const mobileLargeWidth = 640; // @mobileLarge
-    setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
-    const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
-    mql.addEventListener('change', screenChange);
-    return () => mql.removeEventListener('change', screenChange);
-  }, []);
-
   return (
     <>
       <TitleArea isShowAll={isShowAll}>가입하기</TitleArea>
-      <SNSBlock>
-        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
-        <SelectSNSItem>
-          <SNSItemTemplateForTest onClick={onClickNaverLogin}>
-            {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정으로 가입하기</>}
-          </SNSItemTemplateForTest>
-          <SNSItemTemporary />
-          <SNSItemTemporary />
-          <SNSItemTemporary />
-        </SelectSNSItem>
-      </SNSBlock>
       <FormBlock id="AgreeForm" isShowAll={isShowAll}>
         {registerFormItems.map((item, index) => (
           <CheckboxItem
@@ -155,106 +124,6 @@ const TitleArea = styled('h2', {
         paddingTop: rem(150),
       },
     },
-  },
-});
-
-const SNSBlock = styled('div', {
-  textAlign: 'center',
-  width: '100%',
-  marginBottom: rem(60),
-
-  '@mobileLarge': {
-    marginBottom: rem(29),
-  },
-});
-
-const SNSSubtitle = styled('p', {
-  fontSize: '$subtitle',
-  fontWeight: '$regular',
-  margin: `0 0 ${rem(21)} 0`,
-
-  '@mobileLarge': {
-    fontSize: '$text',
-    color: '$darkGray',
-    fontWeight: '$regular',
-    margin: `0 0 ${rem(10)} 0`,
-  },
-  '@mobileSmall': {
-    fontSize: '$smallMobile',
-  },
-});
-
-const SelectSNSItem = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  margin: `0 ${rem(60)}`,
-
-  '@mobileLarge': {
-    display: 'block',
-    margin: '0',
-  },
-});
-
-// TODO : 디자인에서 리소스를 받은 후 대체될 요소입니다.
-const SNSItemTemporary = styled('div', {
-  backgroundColor: '$gray',
-  cursor: 'pointer',
-
-  width: rem(65),
-  height: rem(65),
-  borderRadius: rem(50),
-
-  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
-  '&:hover': {
-    backgroundColor: '$lightGray',
-  },
-
-  '@mobileLarge': {
-    display: 'none',
-  },
-});
-
-// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
-const SNSItemTemplateForTest = styled('button', {
-  backgroundColor: '#04cf5c',
-  cursor: 'pointer',
-  border: 'none',
-
-  width: rem(65),
-  height: rem(65),
-  borderRadius: rem(50),
-
-  // hover 효과는 임의 효과입니다. 디자인 확정 뒤 삭제될 수 있습니다.
-  '&:hover': {
-    backgroundColor: '#08ff6b',
-  },
-
-  '@mobileLarge': {
-    position: 'relative',
-    width: '100%',
-    height: rem(40),
-    padding: '0',
-    color: 'white',
-    fontSize: '$text',
-    fontWeight: '$medium',
-  },
-  '@mobileSmall': {
-    height: rem(30),
-    fontSize: '$smallMobile',
-  },
-});
-
-// TODO : 디자인에서 리소스를 받은 후 대체(삭제)될 요소입니다.
-const SocialIconTemp = styled('div', {
-  fontWeight: '600',
-  fontSize: '1.875em',
-  position: 'absolute',
-  left: rem(30),
-  top: rem(4),
-
-  '@mobileSmall': {
-    left: rem(27),
-    top: rem(3),
   },
 });
 
