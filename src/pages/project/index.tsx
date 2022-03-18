@@ -4,6 +4,7 @@ import { rem } from 'polished';
 
 import { Header } from '../../components/common/Header';
 import { styled } from '../../lib/styles/stitches.config';
+import { ProjectMatrix } from '../../components/project/ProjectMatrix';
 
 const index = () => {
   return (
@@ -14,7 +15,7 @@ const index = () => {
       <Header />
       <BannerTemplate />
       <ContentSection>
-        <ContentBlock />
+        <ProjectMatrix />
       </ContentSection>
     </>
   );
@@ -22,7 +23,7 @@ const index = () => {
 
 export default index;
 
-const BannerTemplate = styled('section', {
+const BannerTemplate = styled('article', {
   // TODO : 배너에 대한 자세한 디자인이 확정되면, 컴포넌트 자체를 재설계해야합니다.
   // 현재는 크기 및 색상만을 고정값으로 가지고 있습니다.
 
@@ -33,8 +34,8 @@ const BannerTemplate = styled('section', {
 
 const ContentSection = styled('section', {
   paddingTop: rem(44),
-});
 
-const ContentBlock = styled('article', {
-    
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
 });
