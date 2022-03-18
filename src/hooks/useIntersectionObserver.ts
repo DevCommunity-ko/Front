@@ -11,7 +11,7 @@ interface useIntersectionObserverProps {
 const useIntersectionObserver = ({
   root,
   rootMargin = '0px',
-  threshold = 1,
+  threshold = 0,
   onIntersect,
   destroyer = false,
 }: useIntersectionObserverProps) => {
