@@ -16,41 +16,38 @@ const LoginForm = () => {
   };
 
   const onClickNaverLogin = () => {
-    const naverAuthUrl = getNaverAuthUrl();
-    window.location.href = naverAuthUrl;
+    window.location.href = getNaverAuthUrl();
   };
 
   useEffect(() => {
     const mobileLargeWidth = 640; // @mobileLarge
-    setIsMobile((window.innerWidth < mobileLargeWidth) ? true : false);
+    setIsMobile(window.innerWidth < mobileLargeWidth);
     const mql = window.matchMedia(`screen and (max-width: ${mobileLargeWidth}px)`);
     mql.addEventListener('change', screenChange);
     return () => mql.removeEventListener('change', screenChange);
   }, []);
 
   return (
-    <>
-      <Wrapper>
-        <Title>로그인하기</Title>
-        <SNSBlock>
-          <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
-          <SelectSNSItem>
-            <SNSItemTemplateForTest onClick={onClickNaverLogin}>
-              {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
-            </SNSItemTemplateForTest>
-            <SNSItemTemplate />
-            <SNSItemTemplate />
-            <SNSItemTemplate />
-          </SelectSNSItem>
-          <MobileBlock>
-            <LabelKeepLoggedIn>
-              <CheckboxKeepLoggedIn type="checkbox" />
+    <Wrapper>
+      <Title>로그인하기</Title>
+      <SNSBlock>
+        <SNSSubtitle>SNS 계정으로 간편하게 시작하기</SNSSubtitle>
+        <SelectSNSItem>
+          <SNSItemTemplateForTest onClick={onClickNaverLogin}>
+            {isMobile && <><SocialIconTemp>N</SocialIconTemp>네이버 계정 로그인</>}
+          </SNSItemTemplateForTest>
+          <SNSItemTemplate />
+          <SNSItemTemplate />
+          <SNSItemTemplate />
+        </SelectSNSItem>
+        <MobileBlock>
+          <LabelKeepLoggedIn>
+            <CheckboxKeepLoggedIn type="checkbox" />
               로그인 유지
-            </LabelKeepLoggedIn>
-          </MobileBlock>
-        </SNSBlock>
-      </Wrapper>
-    </>
+          </LabelKeepLoggedIn>
+        </MobileBlock>
+      </SNSBlock>
+    </Wrapper>
   );
 };
 
@@ -76,7 +73,11 @@ const MobileBlock = styled('div', {
 });
 
 const Wrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   width: rem(360),
+  minHeight: '100%',
 
   '@mobileLarge': {
     textAlign: 'center',

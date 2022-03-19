@@ -58,7 +58,7 @@ export const RegisterAgreement = ({
 
   return (
     <>
-      <TitleArea isShowAll={isShowAll}>가입하기</TitleArea>
+      <TitleArea>가입하기</TitleArea>
       <FormBlock id="AgreeForm" isShowAll={isShowAll}>
         {registerFormItems.map((item, index) => (
           <CheckboxItem
@@ -86,10 +86,6 @@ export const RegisterAgreement = ({
 const AbsoluteBlock = styled('div', {
   variants: {
     isShowAll: {
-      true: {
-        // 버튼이 화면 아래에 딱 붙지 않도록 하는 여백 공간입니다. 높이는 확정된 크기입니다.
-        marginBottom: rem(138),
-      },
       false: {
         '@mobileSmall': {
           position: 'absolute',
@@ -116,14 +112,6 @@ const TitleArea = styled('h2', {
   },
   '@mobileSmall': {
     fontSize: '$text',
-  },
-
-  variants: {
-    isShowAll: {
-      true: {
-        paddingTop: rem(150),
-      },
-    },
   },
 });
 

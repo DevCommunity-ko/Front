@@ -62,7 +62,11 @@ export const RegisterForm = () => {
 };
 
 const RegisterBlock = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   width: rem(480),
+  minHeight: '100%',
 
   '@mobileLarge': {
     textAlign: 'center',
