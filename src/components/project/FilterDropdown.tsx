@@ -20,6 +20,7 @@ type Props = {
 export const FilterDropdown = ({ item, defaultValue }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<dropdownItem | undefined >(undefined);
+  const [selectedValues, setSelectedValues] = useState<dropdownItem[]>([]);
 
   const { setTarget } = useOutsideClick(setShowMenu);
 
@@ -36,7 +37,10 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
       <Wrapper ref={setTarget} showMenu={showMenu}>
         <ContentWrap onClick={showDropDownMenu}>
           <ValueContainer>
-            <PlaceholderContainer>{selectedValue ? selectedValue.label : item.placeholder}</PlaceholderContainer>
+            <PlaceholderContainer>
+              {item.selectMultiple ? (
+                (selectedValues.length === 0) ? item.placeholder : selectedValues[0].label) :
+                (selectedValue ? selectedValue.label : item.placeholder)}</PlaceholderContainer>
             <InputContainer>
               <SelectedValue></SelectedValue>
               <HiddenInput type='text' name='val' readOnly />
@@ -52,7 +56,8 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
                 item={dItem} key={dItem.value}
                 isMultiple={item.selectMultiple}
                 selectedValue={selectedValue}
-                setSelectedValue={setSelectedValue}
+                selectedValues={selectedValues}
+                setSelectedValue={item.selectMultiple ? setSelectedValues : setSelectedValue}
                 setShowMenu={setShowMenu}/>
             ))
           }
