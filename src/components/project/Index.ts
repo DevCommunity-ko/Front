@@ -5,3 +5,4 @@ export * from './ProjListOneLine';
 export * from './ProjectMatrix';
 export * from './ProjListContainer';
 export * from './FetchMore';
+export * from './DropdownMenuItem';

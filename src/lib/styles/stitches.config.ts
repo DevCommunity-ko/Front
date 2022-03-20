@@ -13,6 +13,7 @@ export const { styled, css } = createStitches({
       darkBlue: '#0057FF',
       lightBlue: '#849EFF',
       background: '#F6F6F6',
+      purple: '#AD4DE8',
     },
     fontWeights: {
       /* Noto Sans Regular400 , Medium 500, Bold 700*/

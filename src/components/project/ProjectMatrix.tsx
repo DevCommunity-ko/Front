@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
+import { projFilterData } from '../../lib/texts/texts';
 
 import { SearchBox } from './SearchBox';
 import { FilterDropdown } from './FilterDropdown';
@@ -66,10 +67,10 @@ export const ProjectMatrix = () => {
       <FilterBlock>
         <FilterLeft>
           <SearchBox />
-          <FilterDropdown />
-          <FilterDropdown />
+          <FilterDropdown item={projFilterData.field} />
+          <FilterDropdown item={projFilterData.status}/>
         </FilterLeft>
-        <FilterDropdown />
+        <FilterDropdown item={projFilterData.sortby} defaultValue={{ value: projFilterData.sortby.list[0].value, label: projFilterData.sortby.list[0].label }}/>
       </FilterBlock>
       <ItemMatrix>
         <ProjListContainer list={list}/>
@@ -111,10 +112,10 @@ const FilterBlock = styled('div', {
 
 const FilterLeft = styled('div', {
   display: 'flex',
-  '*:first-child': {
+  '& > *:first-child': {
     marginRight: rem(16),
   },
-  '*:nth-child(2)': {
+  '& > *:nth-child(2)': {
     marginRight: rem(8),
   },
 });
