@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { rem } from 'polished';
+import Router from 'next/router';
 
 import { styled } from '../../lib/styles/stitches.config';
 import { RegisterAgreement } from '../../components/auth';
@@ -27,14 +28,18 @@ export const RegisterForm = () => {
   });
 
   useEffect(() => {
-    if (authState.userData?.newMember) {
-      setPageStats(1);
+    if (!authState.userData?.newMember) {
+      void Router.push('/');
     }
   }, [authState.userData?.newMember]);
 
   const toPageNext = () => {
     setPageStats(pageStats + 1);
   };
+
+  if (!authState.userData?.newMember) {
+    return null;
+  }
 
   // 소셜 로그인 구현이 완료되면, 회원가입이 완료되어 로그인 상태인 경우, register 페이지에 진입시 redirect 될 수 있도록 구현해야 합니다.
   return (
@@ -57,7 +62,11 @@ export const RegisterForm = () => {
 };
 
 const RegisterBlock = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   width: rem(480),
+  minHeight: '100%',
 
   '@mobileLarge': {
     textAlign: 'center',

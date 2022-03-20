@@ -75,8 +75,6 @@ export default RegisterField;
 
 const TitleArea = styled('h2', {
   fontSize: '$title',
-  margin: `0 0 ${rem(40)} 0`,
-  paddingTop: rem(141),
   textAlign: 'left',
 
 

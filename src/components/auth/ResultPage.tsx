@@ -16,7 +16,7 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
   };
   return (
     <>
-      {isSucceed ? (
+      {false ? (
         <BlockSucceed>
           <TitleSucceed>마그넷 가입완료</TitleSucceed>
           <SubTitleSucceed>
@@ -39,6 +39,10 @@ export const ResultPage = ({ isSucceed }: ResultProps) => {
 };
 
 const BlockTemplate = styled('div', {
+  display: 'flex',
+  minHeight: '100%',
+  flexDirection: 'column',
+  justifyContent: 'center',
   width: rem(480),
   textAlign: 'center',
   color: '$font',
@@ -108,8 +112,6 @@ const BlockSucceed = styled(BlockTemplate, {
 });
 
 const BlockFailed = styled(BlockTemplate, {
-  paddingTop: rem(94),
-
   '& > *': {
     fontSize: '$subtitle',
     fontWeight: '$medium',
