@@ -112,6 +112,7 @@ const FilterBlock = styled('div', {
 
 const FilterLeft = styled('div', {
   display: 'flex',
+  alignItems: 'end',  
   '& > *:first-child': {
     marginRight: rem(16),
   },
