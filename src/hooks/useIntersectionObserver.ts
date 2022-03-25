@@ -19,7 +19,6 @@ const useIntersectionObserver = ({
 
   useEffect(() => {
     if (!target) return;
-    if (destroyer) return () => observer.unobserve(target);
 
     const observer: IntersectionObserver = new IntersectionObserver(
       onIntersect,
@@ -27,6 +26,7 @@ const useIntersectionObserver = ({
     );
     observer.observe(target);
 
+    if (destroyer) return () => observer.unobserve(target);
     return () => observer.unobserve(target);
   }, [onIntersect, root, rootMargin, target, threshold, destroyer]);
 
