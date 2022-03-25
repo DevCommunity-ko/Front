@@ -3,10 +3,14 @@ import { rem } from 'polished';
 
 import { styled } from '../../lib/styles/stitches.config';
 
+import type Stitches from '@stitches/react';
+
+type Project= Stitches.VariantProps<typeof StyledType> ['projType'];
+
 export type ProjItemTypes = {
   id: number,
   title: string,
-  type: string,
+  type: Project,
   isTeam: boolean,
   href: string,
   img: string,
@@ -22,14 +26,13 @@ export const ProjItem = (item: Props) => {
   }
   return (
     <Wrapper>
-      <ImageArea>
-        {item.item.id}
-      </ImageArea>
+      <ImageArea />
       <TextBlock>
         <ItemLeft>
-          {item.item.title}{item.item.type}
+          {item.item.title}
+          <StyledType projType={item.item.type} />
         </ItemLeft>
-        {item.item.isTeam ? '팀 프로젝트' : '개인 프로젝트'}
+        <StyledTeamType isTeam={item.item.isTeam} />
       </TextBlock>
     </Wrapper>
   );
@@ -47,13 +50,77 @@ const ImageArea = styled('div', {
   width: rem(280),
   height: rem(186),
   backgroundColor: '$gray',
+
+  marginBottom: rem(4),
 });
 
 const TextBlock = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems: 'center',
 });
 
 const ItemLeft = styled('div', {
+  display: 'flex',
+  color: 'black',
+  fontWeight: '$medium',
+  fontSize: '$text',
+});
 
+const StyledType = styled('div', {
+  '&::after': {
+    marginLeft: rem(4),
+    padding: `0 ${rem(8)}`,
+  
+    width: 'fit-content',
+    height: rem(23),
+
+    boxSizing: 'border-box',
+    borderRadius: rem(14),
+    
+    fontSize: '$text',
+    fontWeight: '$regular',
+  },
+
+  variants: {
+    projType: {
+      web: {
+        '&::after' : {
+          border: '1px solid $blue',
+          content: 'web',
+          color: '$blue',
+        },
+      },
+      //TODO : 디자인이 확정된 뒤 아래의 요소들을 디자인해야 합니다.
+      ios: {
+
+      },
+      android: {
+
+      },
+      else: {
+        
+      },
+    },
+  },
+});
+
+const StyledTeamType = styled('div',{
+  '&::after' : {
+    fontWeight: '$regular', // DemiLight?
+    fontSize: rem(14),
+    content: '개인 프로젝트',
+    color: '$red',
+  },
+
+  variants: {
+    isTeam: {
+      true: {
+        '&::after' : {
+          content: '팀 프로젝트',
+          color: '$blue',
+        },
+      },
+    },
+  },
 });

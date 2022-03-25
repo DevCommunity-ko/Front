@@ -15,18 +15,18 @@ const lastName = '한'; // TODO : 변수를 State화 & Redux 연동하여 로그
 const loginStatus = false; // TODO : 변수를 State화 & Redux 연동하여, 로그인 상태를 불러와 로그인 상태를 확인할 수 있도록 수정해야 합니다.
 
 // TODO : 샘플 데이터 생성 함수입니다. API 연동 이후 삭제해야 합니다.
-const makeSampleData = (n: number) => {
+const makeSampleData = (n: number): ProjItemTypes[] => {
   let arr = [{ id: 0, title: '프로젝트 제목', type: 'web', isTeam: false, href: 'link', img: 'img' }];
 
   for (let i = 0; i < n; i++) {
     arr = arr.concat({ id: (i + 1), title: '프로젝트 제목', type: 'web', isTeam: true, href: 'link', img: 'img' });
   }
 
-  return arr;
+  return arr as ProjItemTypes[];
 };
 
 // TODO : 샘플 데이터(30개) 생성 구문입니다. API 연동 이후 삭제해야 합니다.
-const sampleData = makeSampleData(30);
+const sampleData: ProjItemTypes[] = makeSampleData(30);
 
 // TODO : 샘플 데이터를 로드하는 함수입니다. API 연동 이후 삭제해야 합니다.
 const dummyFetcher = (i: number, n: number) => {
@@ -34,6 +34,7 @@ const dummyFetcher = (i: number, n: number) => {
   const target = i + n;
 
   for (; i < target; i++) {
+    
     arr = arr.concat(sampleData[i]);
   }
 
