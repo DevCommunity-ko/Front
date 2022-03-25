@@ -28,7 +28,7 @@ const BannerTemplate = styled('article', {
   // 현재는 크기 및 색상만을 고정값으로 가지고 있습니다.
 
   width: '100%',
-  height: rem(772),
+  height: rem(680),
   backgroundColor: '$gray',
 });
 
