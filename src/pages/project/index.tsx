@@ -10,7 +10,7 @@ const Project = () => {
   return (
     <>
       <Head>
-        <title>MAGNET - 로그인</title>
+        <title>MAGNET - 프로젝트 전체보기</title>
       </Head>
       <Header />
       <BannerTemplate />
