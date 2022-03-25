@@ -43,7 +43,7 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
       <Wrapper ref={setTarget} showMenu={showMenu}>
         <ContentWrap onClick={showDropDownMenu}>
           <ValueContainer>
-            <PlaceholderContainer>
+            <PlaceholderContainer isMultiple={item.selectMultiple}>
               {item.selectMultiple ?
                 ((selectedValues.length === 0) ? item.placeholder :
                   (
@@ -147,14 +147,25 @@ const SelectedValue = styled('div',{});
 const PlaceholderContainer = styled('div', {
   display: 'flex',
   overflow: 'hidden',
-  
 
   fontSize: rem(14),
   fontWeight: '$regular', // DEMILIGHT?
   color: '#ABA7AF',
   width: rem(96),
 
-  borderRadius: rem(14),
+  '& > div:not(last-child)' : {
+    marginRight: rem(4),
+  },
+
+  variants: {
+    isMultiple: {
+      true: {
+        borderRadius: rem(14),
+        width: rem(108),
+        height: rem(28),
+      },
+    },
+  },
 });
 
 const ItemsSelectedContainer = styled('div',{
@@ -166,10 +177,11 @@ const ItemsSelectedContainer = styled('div',{
   color: '#1A141F',
 
   padding: `${rem(4)} ${rem(8)}`,
-  width: 'auto',
+  minWidth: rem(29),
+  width: 'stretch',
   height: rem(29),
 
-  overflow: 'initial',
+  textAlign: 'center',
 });
 
 const DummyIndicator = styled('div',{
