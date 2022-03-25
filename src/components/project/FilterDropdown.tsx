@@ -29,6 +29,12 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
   };
 
   useEffect(() => {
+    if (selectedValue  || (selectedValues.length !== 0)) {
+      // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
+    }
+  }, [selectedValue, selectedValues]);
+
+  useEffect(() => {
     defaultValue && setSelectedValue(defaultValue);
   },[defaultValue]);
   
@@ -39,13 +45,14 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
           <ValueContainer>
             <PlaceholderContainer>
               {item.selectMultiple ?
-                ((selectedValues.length === 0) ? item.placeholder : (
-                  selectedValues.map((item, index) => (
-                    <ItemsSelectedContainer key={index}>
-                      {item.label}
-                    </ItemsSelectedContainer>
-                  ))
-                )) :
+                ((selectedValues.length === 0) ? item.placeholder :
+                  (
+                    selectedValues.map((item, index) => (
+                      <ItemsSelectedContainer key={index}>
+                        {item.label}
+                      </ItemsSelectedContainer>
+                    ))
+                  )) :
                 (selectedValue ? selectedValue.label : item.placeholder)}
             </PlaceholderContainer>
             <InputContainer>

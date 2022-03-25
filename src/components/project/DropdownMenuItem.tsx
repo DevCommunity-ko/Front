@@ -22,16 +22,12 @@ export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValu
   const onClickSingle = (item: dropdownItem) => {
     setSelectedValue(item);
     setShowMenu(false);
-
-    // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
   };
       
   const onClickMultiple = (item: dropdownItem) => {
     isSelected(item) ? 
       setSelectedValue(selectedValues.filter(selected => selected.value !== item.value)) :
       setSelectedValue((prev: dropdownItem[]) => [...prev, item]);
-
-    // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
   };
 
   const isSelected = (target: dropdownItem) => {
