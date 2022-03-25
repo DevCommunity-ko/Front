@@ -91,15 +91,26 @@ const StyledType = styled('div', {
           color: '$blue',
         },
       },
-      //TODO : 디자인이 확정된 뒤 아래의 요소들을 디자인해야 합니다.
       ios: {
-
+        '&::after' : {
+          border: '1px solid $red',
+          content: 'ios',
+          color: '$red',
+        },
       },
       android: {
-
+        '&::after' : {
+          border: '1px solid $darkBlue',
+          content: '안드로이드',
+          color: '$darkBlue',
+        },
       },
       else: {
-        
+        '&::after' : {
+          border: '1px solid $purple',
+          content: '기타',
+          color: '$purple',
+        },
       },
     },
   },
