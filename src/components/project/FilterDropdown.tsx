@@ -38,9 +38,16 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
         <ContentWrap onClick={showDropDownMenu}>
           <ValueContainer>
             <PlaceholderContainer>
-              {item.selectMultiple ? (
-                (selectedValues.length === 0) ? item.placeholder : selectedValues[0].label) :
-                (selectedValue ? selectedValue.label : item.placeholder)}</PlaceholderContainer>
+              {item.selectMultiple ?
+                ((selectedValues.length === 0) ? item.placeholder : (
+                  selectedValues.map((item, index) => (
+                    <ItemsSelectedContainer key={index}>
+                      {item.label}
+                    </ItemsSelectedContainer>
+                  ))
+                )) :
+                (selectedValue ? selectedValue.label : item.placeholder)}
+            </PlaceholderContainer>
             <InputContainer>
               <SelectedValue></SelectedValue>
               <HiddenInput type='text' name='val' readOnly />
@@ -131,10 +138,31 @@ const InputContainer = styled('div',{
 const SelectedValue = styled('div',{});
 
 const PlaceholderContainer = styled('div', {
+  display: 'flex',
+  overflow: 'hidden',
+  
+
   fontSize: rem(14),
   fontWeight: '$regular', // DEMILIGHT?
   color: '#ABA7AF',
   width: rem(96),
+
+  borderRadius: rem(14),
+});
+
+const ItemsSelectedContainer = styled('div',{
+  borderRadius: rem(14),
+  backgroundColor: '#F5F3F7',
+
+  fontSize: rem(14),
+  fontWeight: '$regular', // DEMILIGHT?
+  color: '#1A141F',
+
+  padding: `${rem(4)} ${rem(8)}`,
+  width: 'auto',
+  height: rem(29),
+
+  overflow: 'initial',
 });
 
 const DummyIndicator = styled('div',{
