@@ -25,7 +25,7 @@ export const ProjItem = (item: Props) => {
     return <></>;
   }
   return (
-    <Wrapper>
+    <Wrapper role={'link'} tabIndex={0}>
       <ImageArea />
       <TextBlock>
         <ItemLeft>

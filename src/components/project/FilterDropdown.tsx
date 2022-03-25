@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useOutsideClick } from '../../hooks';
 import { styled } from '../../lib/styles/stitches.config';
+import { HiddenDescription } from '../common';
 
 import { DropdownMenuItem, dropdownItem } from './DropdownMenuItem';
 
@@ -37,23 +38,28 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
   useEffect(() => {
     defaultValue && setSelectedValue(defaultValue);
   },[defaultValue]);
+
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+  };
   
   return (
     <>
-      <Wrapper ref={setTarget} showMenu={showMenu}>
+      <Wrapper ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0}  onFocus={showDropDownMenu}>
         <ContentWrap onClick={showDropDownMenu}>
           <ValueContainer>
             <PlaceholderContainer isMultiple={item.selectMultiple}>
               {item.selectMultiple ?
                 ((selectedValues.length === 0) ? item.placeholder :
-                  (
-                    selectedValues.map((item, index) => (
+                  (<>
+                    <HiddenDescription>선택된 항목</HiddenDescription>
+                    {selectedValues.map((item, index) => (
                       <ItemsSelectedContainer key={index}>
                         {item.label}
                       </ItemsSelectedContainer>
-                    ))
+                    )) }</>
                   )) :
-                (selectedValue ? selectedValue.label : item.placeholder)}
+                (selectedValue ? (<><HiddenDescription>선택된 항목</HiddenDescription>{selectedValue.label}</>) : item.placeholder)}
             </PlaceholderContainer>
             <InputContainer>
               <SelectedValue></SelectedValue>
@@ -63,7 +69,7 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
           <DummyIndicator />
         </ContentWrap>
         {showMenu &&
-        <MenuContainer>
+        <MenuContainer onSubmit={(e) => onSubmit(e)}>
           {
             item.list.map((dItem) => (
               <DropdownMenuItem
@@ -87,7 +93,7 @@ const Wrapper = styled('div',{
 
   width: rem(152),
   height: rem(48),
-  
+
   padding: `0 ${rem(12)}`,
 
   variants: {
@@ -102,7 +108,7 @@ const Wrapper = styled('div',{
 });
 
 const ContentWrap = styled('div',{
-  width: rem(152),
+  width: '100%',
   height: rem(48),
 
   display: 'flex',
@@ -110,7 +116,7 @@ const ContentWrap = styled('div',{
 
 });
 
-const MenuContainer = styled('div',{
+const MenuContainer = styled('form',{
   position: 'relative',
   top: '-1px',
   right: rem(12 + 1), // paddingleft + border thickness
@@ -122,7 +128,7 @@ const MenuContainer = styled('div',{
   width: rem(152),
   height: 10,
 
-  '& > div:last-child' : {
+  '& > button:last-child' : {
     borderBottomLeftRadius: rem(24),
     borderBottomRightRadius: rem(24),
     borderBottom: '1px solid #E5E0EB',

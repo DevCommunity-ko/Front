@@ -105,7 +105,7 @@ export const projFilterData = {
     selectMultiple: false,
     list: [{ value: 'web', label : 'Web' },
       { value: 'ios', label: 'iOS' },
-      { value: 'andriod', label : 'andriod' },
+      { value: 'android', label : 'android' },
       { value: 'etc', label: '기타' }],
   },
   status : {

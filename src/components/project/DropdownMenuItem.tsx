@@ -18,7 +18,6 @@ type Props = {
 };
 
 export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValues, setSelectedValue, setShowMenu }: Props) => {
-
   const onClickSingle = (item: dropdownItem) => {
     setSelectedValue(item);
     setShowMenu(false);
@@ -38,17 +37,21 @@ export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValu
   };
 
   return (
-    <Wrapper
+    <Wrapper        
       isMultiple={isMultiple}
+      role={isMultiple ? 'option' : 'checkbox'}
       isSelected={isMultiple ? isSelected(item) : selectedValue?.value === item.value}
+      aria-checked={(isMultiple ? isSelected(item) : selectedValue?.value === item.value) ? 'true' : 'false'}
       onClick={isMultiple ? () => onClickMultiple(item) : () => onClickSingle(item)}>
       {isMultiple && <Checkbox isSelected={isSelected(item)}/>}
       {item.label}
     </Wrapper>
-  );
+  );        
 };
 
-const Wrapper = styled('div',{
+const Wrapper = styled('button',{
+  border: 'none',
+
   display: 'flex',
   alignItems: 'center',
 
