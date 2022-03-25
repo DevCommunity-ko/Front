@@ -47,26 +47,20 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
     <>
       <Wrapper ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0}  onFocus={showDropDownMenu}>
         <ContentWrap onClick={showDropDownMenu}>
-          <ValueContainer>
-            <PlaceholderContainer isMultiple={item.selectMultiple}>
-              {item.selectMultiple ?
-                ((selectedValues.length === 0) ? item.placeholder :
-                  (<>
-                    <HiddenDescription>선택된 항목</HiddenDescription>
-                    {selectedValues.map((item, index) => (
-                      <ItemsSelectedContainer key={index}>
-                        {item.label}
-                      </ItemsSelectedContainer>
-                    )) }</>
-                  )) :
-                (selectedValue ? (<><HiddenDescription>선택된 항목</HiddenDescription>{selectedValue.label}</>) : item.placeholder)}
-            </PlaceholderContainer>
-            <InputContainer>
-              <SelectedValue></SelectedValue>
-              <HiddenInput type='text' name='val' readOnly />
-            </InputContainer>
-          </ValueContainer>
-          <DummyIndicator />
+          <PlaceholderContainer isMultiple={item.selectMultiple}>
+            {item.selectMultiple ?
+              ((selectedValues.length === 0) ? item.placeholder :
+                (<>
+                  <HiddenDescription>선택된 항목</HiddenDescription>
+                  {selectedValues.map((item, index) => (
+                    <ItemsSelectedContainer key={index}>
+                      {item.label}
+                    </ItemsSelectedContainer>
+                  )) }</>
+                )) :
+              (selectedValue ? (<><HiddenDescription>선택된 항목</HiddenDescription>{selectedValue.label}</>) : item.placeholder)}
+          </PlaceholderContainer>
+          <DummyIndicator isMultiple={item.selectMultiple}/>
         </ContentWrap>
         {showMenu &&
         <MenuContainer onSubmit={(e) => onSubmit(e)}>
@@ -135,24 +129,10 @@ const MenuContainer = styled('form',{
   },
 });
 
-const ValueContainer = styled('div',{
-
-});
-
-
-const HiddenInput = styled('input', {
-  visibility: 'hidden',
-  width: 0,
-  height: 0,
-});
-const InputContainer = styled('div',{
-  position: 'absolute',
-});
-const SelectedValue = styled('div',{});
-
 const PlaceholderContainer = styled('div', {
   display: 'flex',
   overflow: 'hidden',
+  alignItems: 'center',
 
   fontSize: rem(14),
   fontWeight: '$regular', // DEMILIGHT?
@@ -194,4 +174,13 @@ const DummyIndicator = styled('div',{
   width: rem(24),
   height: rem(24),
   backgroundColor: '$gray',
+
+  marginLeft: rem(8),
+  variants: {
+    isMultiple: {
+      true: {
+        marginLeft: 0,
+      },
+    },
+  },
 });
