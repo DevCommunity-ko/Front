@@ -6,7 +6,7 @@ import { Header } from '../../components/common/Header';
 import { styled } from '../../lib/styles/stitches.config';
 import { ProjectMatrix } from '../../components/project/ProjectMatrix';
 
-const index = () => {
+const Project = () => {
   return (
     <>
       <Head>
@@ -21,7 +21,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default Project;
 
 const BannerTemplate = styled('article', {
   // TODO : 배너에 대한 자세한 디자인이 확정되면, 컴포넌트 자체를 재설계해야합니다.
