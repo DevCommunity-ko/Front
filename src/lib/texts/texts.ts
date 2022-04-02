@@ -98,3 +98,15 @@ export const RegisterFormFieldItems = [
     dropdown: ['항목1', '항목2', '항목3'],
   },
 ];
+
+export const StackTestData = {
+  frontend : [ 'PROG A', 'PROG B', 'PROG C'],
+  backend: ['PROG A', 'PROG B', 'PROG C'],
+  design: ['PROG A'],
+  devops: ['PROG A'],
+};
+
+export const ParticipantTestData = {
+  frontend: [ { name: '홍길동', image: 'asd' }, { name: '고길동', image: 'asd' } ],
+  backend: [ { name: '장국영', image: 'asd' }, { name: '황우혁', image: 'asd' }, { name: '박수영', image: 'asd' }, { name: '송새벽', image: 'asd' } ],
+};
