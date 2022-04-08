@@ -131,7 +131,7 @@ const StyledInput = styled('input', {
       true: {
         '& + div::after': {
           content: '(필수)',
-          color: '$alert',
+          color: '$crimson',
         },
       },
     },

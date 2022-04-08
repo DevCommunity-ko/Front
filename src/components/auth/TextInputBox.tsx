@@ -107,7 +107,7 @@ const InputLine = styled('div', {
   variants: {
     errorStatus: {
       true: {
-        borderBottom: '0.5px solid $alert',
+        borderBottom: '0.5px solid $crimson',
       },
     },
   },
@@ -135,7 +135,7 @@ const InputItem = styled('input', {
     errorStatus: {
       true: {
         '&::placeholder': {
-          color: '$alert',
+          color: '$crimson',
         },
       },
     },
@@ -145,6 +145,6 @@ const InputItem = styled('input', {
 const ErrorBox = styled('div', {
   textAlign: 'right',
   fontSize: '$text',
-  color: '$alert',
+  color: '$crimson',
   fontWeight: '$regular',
 });

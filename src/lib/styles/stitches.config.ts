@@ -5,7 +5,6 @@ export const { styled, css } = createStitches({
   theme: {
     colors: {
       // 아직 확정되지 않은 팔레트입니다.
-      alert: '#FF8080',
       font: '#333333',
       lightGray: '#EDEDED',
       gray: '#C4C4C4',
@@ -15,7 +14,9 @@ export const { styled, css } = createStitches({
       background: '#F6F6F6',
       purple: '#AD4DE8',
       blue: '#3B90ED',
-      red: '#F74D4D',
+      crimson: '#F74D4D',
+      red: '#F61515',
+      line: '#E5E0EB',
     },
     fontWeights: {
       /* Noto Sans Regular400 , Medium 500, Bold 700*/

@@ -6,23 +6,23 @@ import { styled } from '../../lib/styles/stitches.config';
 export const SearchBox = () => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    
+
     // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
   };
-  
+
   return (
     <Wrapper onSubmit={onSubmit}>
       <SearchIcon />
-      <StyledInput placeholder='입력하세요'/>
+      <StyledInput placeholder='입력하세요' />
     </Wrapper>
   );
 };
 
-const Wrapper = styled('form',{
+const Wrapper = styled('form', {
   display: 'flex',
   alignItems: 'center',
 
-  border: '1px solid #E5E0EB',
+  border: '1px solid $line',
   borderRadius: rem(22),
   paddingLeft: rem(15),
 

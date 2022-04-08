@@ -61,8 +61,8 @@ const Wrapper = styled('button', {
   height: rem(48),
 
   backgroundColor: 'white',
-  borderLeft: '1px solid #E5E0EB',
-  borderRight: '1px solid #E5E0EB',
+  borderLeft: '1px solid $line',
+  borderRight: '1px solid $line',
 
   color: '$darkGray',
   fontWeight: '$regular', //DemiLight?

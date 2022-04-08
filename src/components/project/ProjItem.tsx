@@ -99,9 +99,9 @@ const StyledType = styled('div', {
       },
       ios: {
         '&::after': {
-          border: '1px solid $red',
+          border: '1px solid $crimson',
           content: 'ios',
-          color: '$red',
+          color: '$crimson',
         },
       },
       android: {
@@ -127,7 +127,7 @@ const StyledTeamType = styled('div', {
     fontWeight: '$regular', // DemiLight?
     fontSize: rem(14),
     content: '개인 프로젝트',
-    color: '$red',
+    color: '$crimson',
   },
 
   variants: {

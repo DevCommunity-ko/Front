@@ -93,7 +93,7 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
 };
 
 const Wrapper = styled('div', {
-  border: '1px solid #E5E0EB',
+  border: '1px solid $line',
   borderRadius: rem(24),
 
   width: rem(152),
@@ -136,7 +136,7 @@ const MenuContainer = styled('form', {
   '& > button:last-child': {
     borderBottomLeftRadius: rem(24),
     borderBottomRightRadius: rem(24),
-    borderBottom: '1px solid #E5E0EB',
+    borderBottom: '1px solid $line',
   },
 });
 
