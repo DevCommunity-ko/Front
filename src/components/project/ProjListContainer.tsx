@@ -11,7 +11,7 @@ export const ProjListContainer = (list: Props) => {
   return (
     <div>
       {list.list.map((item, index) => (
-        ((index % 4) === 0) && item && (<ProjListOneLine index={index} projListArray={list.list} key={index}/>)
+        ((index % 4) === 0) && (<ProjListOneLine index={index} projListArray={list.list} key={index} />)
       ))}
     </div>
   );

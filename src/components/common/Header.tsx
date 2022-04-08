@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { rem } from 'polished';
+import { useRouter } from 'next/router';
 
 import { styled } from '../../lib/styles/stitches.config';
+
 
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,15 +12,14 @@ export const Header = () => {
   const [isProject, setIsProject] = useState(false);
   const user = '수민'; // TODO : Redux 연동 이후 Redux 형태에 맞게 사용할 수 있도록 변동 가능한 값으로 수정하기
 
+  const router = useRouter();
+
   useEffect(() => {
     // isButtonLogin 상태 체크 구문
-    const pathnames = location.pathname.split('/');
+    const pathnames = router.pathname.split('/');
     const lastPath = pathnames.pop() || pathnames.pop();
     setIsButtonLogin(true);
     switch (lastPath) {
-      case 'login':
-        setIsButtonLogin(false);
-        break;
       case '':
       case 'project':
         setIsProject(true);

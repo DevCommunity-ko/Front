@@ -37,7 +37,7 @@ const dummyFetcher = (i: number, n: number) => {
   const target = i + n;
 
   for (; i < target; i++) {
-    
+
     arr = arr.concat(sampleData[i]);
   }
 
@@ -72,13 +72,13 @@ export const ProjectMatrix = () => {
         <FilterLeft>
           <SearchBox />
           <FilterDropdown item={projFilterData.field} />
-          <FilterDropdown item={projFilterData.status}/>
+          <FilterDropdown item={projFilterData.status} />
         </FilterLeft>
-        <FilterDropdown item={projFilterData.sortby} defaultValue={{ value: projFilterData.sortby.list[0].value, label: projFilterData.sortby.list[0].label }}/>
+        <FilterDropdown item={projFilterData.sortby} defaultValue={{ value: projFilterData.sortby.list[0].value, label: projFilterData.sortby.list[0].label }} />
       </FilterBlock>
       <ItemMatrix>
-        <ProjListContainer list={list}/>
-        <FetchMore loading={loading} setPage={setPage} destroyer={isPageLast}/>
+        <ProjListContainer list={list} />
+        <FetchMore loading={loading} setPage={setPage} destroyer={isPageLast} />
       </ItemMatrix>
     </ContentBlock>
   );
@@ -116,7 +116,7 @@ const FilterBlock = styled('div', {
 
 const FilterLeft = styled('div', {
   display: 'flex',
-  alignItems: 'end',  
+  alignItems: 'end',
   '& > *:first-child': {
     marginRight: rem(16),
   },

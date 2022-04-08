@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 
 import { useOutsideClick } from '../../hooks';
 import { styled } from '../../lib/styles/stitches.config';
-import { HiddenDescription } from '../common';
 
 import { DropdownMenuItem, dropdownItem } from './DropdownMenuItem';
 
 type FilterItem = {
-  placeholder?: string | undefined,
+  placeholder?: string,
   selectMultiple: boolean,
   list: dropdownItem[],
 };
@@ -20,7 +19,7 @@ type Props = {
 
 export const FilterDropdown = ({ item, defaultValue }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<dropdownItem | undefined >(undefined);
+  const [selectedValue, setSelectedValue] = useState<dropdownItem | undefined>(undefined);
   const [selectedValues, setSelectedValues] = useState<dropdownItem[]>([]);
 
   const { setTarget } = useOutsideClick(setShowMenu);
@@ -30,58 +29,70 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
   };
 
   useEffect(() => {
-    if (selectedValue  || (selectedValues.length !== 0)) {
+    if (selectedValue || (selectedValues.length !== 0)) {
       // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
     }
   }, [selectedValue, selectedValues]);
 
   useEffect(() => {
     defaultValue && setSelectedValue(defaultValue);
-  },[defaultValue]);
+  }, [defaultValue]);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
   };
-  
+
+  const getAriaLabelMultiple = (): string => {
+    let str = '';
+    selectedValues.map((item) => (str = str + item.label + ', '));
+
+    return str;
+  };
+
+  const ariaLabelValue = item.selectMultiple ? (
+    selectedValues.length === 0 ? undefined : `선택된 다중 항목 ${getAriaLabelMultiple()}`
+  ) : (
+    selectedValue ? `선택된 항목 ${selectedValue.label}` : undefined
+  );
+
   return (
     <>
-      <Wrapper ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0}  onFocus={showDropDownMenu}>
-        <ContentWrap onClick={showDropDownMenu}>
-          <PlaceholderContainer isMultiple={item.selectMultiple}>
+      <Wrapper aria-label={ariaLabelValue} ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0} onFocus={showDropDownMenu} >
+        <ContentWrap onClick={showDropDownMenu} >
+          <PlaceholderContainer isMultiple={item.selectMultiple} >
             {item.selectMultiple ?
               ((selectedValues.length === 0) ? item.placeholder :
                 (<>
-                  <HiddenDescription>선택된 항목</HiddenDescription>
                   {selectedValues.map((item, index) => (
                     <ItemsSelectedContainer key={index}>
                       {item.label}
                     </ItemsSelectedContainer>
-                  )) }</>
+                  ))}</>
                 )) :
-              (selectedValue ? (<><HiddenDescription>선택된 항목</HiddenDescription>{selectedValue.label}</>) : item.placeholder)}
+              (selectedValue ? selectedValue.label : item.placeholder)}
           </PlaceholderContainer>
-          <DummyIndicator isMultiple={item.selectMultiple}/>
+          <DummyIndicator isMultiple={item.selectMultiple} />
         </ContentWrap>
         {showMenu &&
-        <MenuContainer onSubmit={(e) => onSubmit(e)}>
-          {
-            item.list.map((dItem) => (
-              <DropdownMenuItem
-                item={dItem} key={dItem.value}
-                isMultiple={item.selectMultiple}
-                selectedValue={selectedValue}
-                selectedValues={selectedValues}
-                setSelectedValue={item.selectMultiple ? setSelectedValues : setSelectedValue}
-                setShowMenu={setShowMenu}/>
-            ))
-          }
-        </MenuContainer>}
+          <MenuContainer onSubmit={(e) => onSubmit(e)}>
+            {
+              item.list.map((dItem) => (
+                <DropdownMenuItem
+                  item={dItem} key={dItem.value}
+                  isMultiple={item.selectMultiple}
+                  selectedValue={selectedValue}
+                  selectedValues={selectedValues}
+                  setSelectedValue={item.selectMultiple ? setSelectedValues : setSelectedValue}
+                  setShowMenu={setShowMenu} />
+              ))
+            }
+          </MenuContainer>}
       </Wrapper>
     </>
   );
 };
 
-const Wrapper = styled('div',{
+const Wrapper = styled('div', {
   border: '1px solid #E5E0EB',
   borderRadius: rem(24),
 
@@ -101,7 +112,7 @@ const Wrapper = styled('div',{
   },
 });
 
-const ContentWrap = styled('div',{
+const ContentWrap = styled('div', {
   width: '100%',
   height: rem(48),
 
@@ -110,7 +121,7 @@ const ContentWrap = styled('div',{
 
 });
 
-const MenuContainer = styled('form',{
+const MenuContainer = styled('form', {
   position: 'relative',
   top: '-1px',
   right: rem(12 + 1), // paddingleft + border thickness
@@ -122,7 +133,7 @@ const MenuContainer = styled('form',{
   width: rem(152),
   height: 10,
 
-  '& > button:last-child' : {
+  '& > button:last-child': {
     borderBottomLeftRadius: rem(24),
     borderBottomRightRadius: rem(24),
     borderBottom: '1px solid #E5E0EB',
@@ -139,7 +150,7 @@ const PlaceholderContainer = styled('div', {
   color: '#ABA7AF',
   width: rem(96),
 
-  '& > div:not(last-child)' : {
+  '& > div:not(last-child)': {
     marginRight: rem(4),
   },
 
@@ -154,7 +165,7 @@ const PlaceholderContainer = styled('div', {
   },
 });
 
-const ItemsSelectedContainer = styled('div',{
+const ItemsSelectedContainer = styled('div', {
   borderRadius: rem(14),
   backgroundColor: '#F5F3F7',
 
@@ -170,7 +181,7 @@ const ItemsSelectedContainer = styled('div',{
   textAlign: 'center',
 });
 
-const DummyIndicator = styled('div',{
+const DummyIndicator = styled('div', {
   width: rem(24),
   height: rem(24),
   backgroundColor: '$gray',

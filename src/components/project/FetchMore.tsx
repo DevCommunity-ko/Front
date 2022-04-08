@@ -18,7 +18,7 @@ export const FetchMore = ({ loading, setPage, destroyer }: Props) => {
 
   return (
     <LoadingMsg ref={setTarget} isLoading={loading}>
-        Loading!
+      Loading!
     </LoadingMsg>
   );
 };
@@ -27,7 +27,7 @@ const LoadingMsg = styled('div', {
   visibility: 'hidden',
   width: '100%',
   backgroundColor: 'red',
-    
+
   variants: {
     isLoading: {
       true: {

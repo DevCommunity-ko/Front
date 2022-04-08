@@ -22,34 +22,36 @@ export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValu
     setSelectedValue(item);
     setShowMenu(false);
   };
-      
+
   const onClickMultiple = (item: dropdownItem) => {
-    isSelected(item) ? 
+    isSelected(item) ?
       setSelectedValue(selectedValues.filter(selected => selected.value !== item.value)) :
       setSelectedValue((prev: dropdownItem[]) => [...prev, item]);
   };
 
   const isSelected = (target: dropdownItem) => {
-    for (let i = 0; i < selectedValues.length ; i++) {
+    for (let i = 0; i < selectedValues.length; i++) {
       if (selectedValues[i].value === target.value) return true;
     }
     return false;
   };
 
+  const isSelectedExprResult = isMultiple ? isSelected(item) : selectedValue?.value === item.value;
+
   return (
-    <Wrapper        
+    <Wrapper
       isMultiple={isMultiple}
       role={isMultiple ? 'option' : 'checkbox'}
-      isSelected={isMultiple ? isSelected(item) : selectedValue?.value === item.value}
-      aria-checked={(isMultiple ? isSelected(item) : selectedValue?.value === item.value) ? 'true' : 'false'}
+      isSelected={isSelectedExprResult}
+      aria-checked={isSelectedExprResult ? 'true' : 'false'}
       onClick={isMultiple ? () => onClickMultiple(item) : () => onClickSingle(item)}>
-      {isMultiple && <Checkbox isSelected={isSelected(item)}/>}
+      {isMultiple && <Checkbox isSelected={isSelected(item)} />}
       {item.label}
     </Wrapper>
-  );        
+  );
 };
 
-const Wrapper = styled('button',{
+const Wrapper = styled('button', {
   border: 'none',
 
   display: 'flex',
@@ -57,10 +59,10 @@ const Wrapper = styled('button',{
 
   width: '100%',
   height: rem(48),
-  
+
   backgroundColor: 'white',
-  borderLeft:'1px solid #E5E0EB',
-  borderRight:'1px solid #E5E0EB',
+  borderLeft: '1px solid #E5E0EB',
+  borderRight: '1px solid #E5E0EB',
 
   color: '$darkGray',
   fontWeight: '$regular', //DemiLight?
@@ -88,7 +90,7 @@ const Wrapper = styled('button',{
   },
 });
 
-const Checkbox = styled('div',{
+const Checkbox = styled('div', {
   width: rem(16),
   height: rem(16),
   border: '1px solid $darkGray',
@@ -97,7 +99,7 @@ const Checkbox = styled('div',{
 
   marginRight: rem(5.33),
 
-  variants:{
+  variants: {
     isSelected: {
       true: {
         backgroundColor: 'blue', //TODO : 임시 색상입니다. 체크무늬 에셋을 받은 뒤 색상 대신 에셋이 나타나도록 적용합니다.

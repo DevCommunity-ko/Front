@@ -5,7 +5,7 @@ import { styled } from '../../lib/styles/stitches.config';
 
 import type Stitches from '@stitches/react';
 
-type Project= Stitches.VariantProps<typeof StyledType> ['projType'];
+type Project = Stitches.VariantProps<typeof StyledType>['projType'];
 
 export type ProjItemTypes = {
   id: number,
@@ -22,7 +22,7 @@ type Props = {
 
 export const ProjItem = (item: Props) => {
   if (item.item === undefined) {
-    return <></>;
+    return null;
   }
   return (
     <Wrapper role={'link'} tabIndex={0}>
@@ -71,13 +71,13 @@ const StyledType = styled('div', {
   '&::after': {
     marginLeft: rem(4),
     padding: `0 ${rem(8)}`,
-  
+
     width: 'fit-content',
     height: rem(23),
 
     boxSizing: 'border-box',
     borderRadius: rem(14),
-    
+
     fontSize: '$text',
     fontWeight: '$regular',
   },
@@ -85,28 +85,28 @@ const StyledType = styled('div', {
   variants: {
     projType: {
       web: {
-        '&::after' : {
+        '&::after': {
           border: '1px solid $blue',
           content: 'web',
           color: '$blue',
         },
       },
       ios: {
-        '&::after' : {
+        '&::after': {
           border: '1px solid $red',
           content: 'ios',
           color: '$red',
         },
       },
       android: {
-        '&::after' : {
+        '&::after': {
           border: '1px solid $darkBlue',
           content: '안드로이드',
           color: '$darkBlue',
         },
       },
       else: {
-        '&::after' : {
+        '&::after': {
           border: '1px solid $purple',
           content: '기타',
           color: '$purple',
@@ -116,8 +116,8 @@ const StyledType = styled('div', {
   },
 });
 
-const StyledTeamType = styled('div',{
-  '&::after' : {
+const StyledTeamType = styled('div', {
+  '&::after': {
     fontWeight: '$regular', // DemiLight?
     fontSize: rem(14),
     content: '개인 프로젝트',
@@ -127,7 +127,7 @@ const StyledTeamType = styled('div',{
   variants: {
     isTeam: {
       true: {
-        '&::after' : {
+        '&::after': {
           content: '팀 프로젝트',
           color: '$blue',
         },

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Project from './project/index';
+import ProjectPage from './project/index';
 
-const index = () => {
+const Index = () => {
   return (
     <div>
-      <Project />
+      <ProjectPage />
     </div>
   );
 };
 
-export default index;
+export default Index;
