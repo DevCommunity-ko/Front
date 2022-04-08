@@ -12,7 +12,6 @@ export type ProjItemTypes = {
   title: string,
   type: Project,
   isTeam: boolean,
-  href: string,
   img: string,
 };
 
@@ -24,9 +23,15 @@ export const ProjItem = (item: Props) => {
   if (item.item === undefined) {
     return null;
   }
+
+  const handleSrcError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    // TODO: 대체 이미지에 대한 논의 필요
+    e.currentTarget.src = 'https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png';
+  };
+
   return (
-    <Wrapper role={'link'} tabIndex={0}>
-      <ImageArea />
+    <Wrapper tabIndex={0} href={`detail/${item.item.id}`}>
+      <ImageArea src={item.item.img} onError={handleSrcError} />
       <TextBlock>
         <ItemLeft>
           {item.item.title}
@@ -38,13 +43,14 @@ export const ProjItem = (item: Props) => {
   );
 };
 
-const Wrapper = styled('div', {
+const Wrapper = styled('a', {
   cursor: 'pointer',
 
   marginRight: rem(40),
 });
 
-const ImageArea = styled('div', {
+const ImageArea = styled('img', {
+  display: 'block',
   borderRadius: rem(4),
 
   width: rem(280),

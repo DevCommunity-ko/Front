@@ -16,13 +16,13 @@ const loginStatus = false; // TODO : 변수를 State화 & Redux 연동하여, �
 
 // TODO : 샘플 데이터 생성 함수입니다. API 연동 이후 삭제해야 합니다.
 const makeSampleData = (n: number): ProjItemTypes[] => {
-  let arr = [{ id: 0, title: '프로젝트 제목', type: 'web', isTeam: false, href: 'link', img: 'img' }];
-  arr = arr.concat({ id: 1, title: '프로젝트 제목', type: 'ios', isTeam: true, href: 'link', img: 'img' });
-  arr = arr.concat({ id: 2, title: '프로젝트 제목', type: 'android', isTeam: false, href: 'link', img: 'img' });
-  arr = arr.concat({ id: 3, title: '프로젝트 제목', type: 'else', isTeam: false, href: 'link', img: 'img' });
+  let arr = [{ id: 0, title: '프로젝트 제목', type: 'web', isTeam: false, img: 'img' }];
+  arr = arr.concat({ id: 1, title: '프로젝트 제목', type: 'ios', isTeam: true, img: 'img' });
+  arr = arr.concat({ id: 2, title: '프로젝트 제목', type: 'android', isTeam: false, img: 'img' });
+  arr = arr.concat({ id: 3, title: '프로젝트 제목', type: 'else', isTeam: false, img: 'img' });
 
   for (let i = 4; i < n; i++) {
-    arr = arr.concat({ id: (i + 1), title: '프로젝트 제목', type: 'web', isTeam: true, href: 'link', img: 'img' });
+    arr = arr.concat({ id: (i + 1), title: '프로젝트 제목', type: 'web', isTeam: true, img: 'img' });
   }
 
   return arr as ProjItemTypes[];
