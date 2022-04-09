@@ -66,7 +66,7 @@ export const ProjectMatrix = () => {
     <ContentBlock>
       <TitleBlock>
         <Title>프로젝트 매니저</Title>
-        <SubTitle>{loginStatus ? <>{lastName} 님의 프로젝트에 영감을 얻을 수 있어요.</> : <>프로젝트에서 영감을 얻으세요.</>}</SubTitle>
+        <SubTitle>{loginStatus ? `${lastName} 님의 프로젝트에 영감을 얻을 수 있어요.` : '프로젝트에서 영감을 얻으세요.'}</SubTitle>
       </TitleBlock>
       <FilterBlock>
         <FilterLeft>
