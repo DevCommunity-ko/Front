@@ -69,16 +69,17 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
                     </ItemsSelectedContainer>
                   ))}</>
                 )) :
-              (selectedValue ? selectedValue.label : item.placeholder)}
+              (selectedValue?.label ?? item.placeholder)}
           </PlaceholderContainer>
           <DummyIndicator isMultiple={item.selectMultiple} />
         </ContentWrap>
         {showMenu &&
-          <MenuContainer onSubmit={(e) => onSubmit(e)}>
+          <MenuContainer role={item.selectMultiple ? 'listbox' : 'form'} onSubmit={(e) => onSubmit(e)}>
             {
               item.list.map((dItem) => (
                 <DropdownMenuItem
-                  item={dItem} key={dItem.value}
+                  item={dItem}
+                  key={dItem.value}
                   isMultiple={item.selectMultiple}
                   selectedValue={selectedValue}
                   selectedValues={selectedValues}

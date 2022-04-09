@@ -43,7 +43,7 @@ export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValu
       isMultiple={isMultiple}
       role={isMultiple ? 'option' : 'checkbox'}
       isSelected={isSelectedExprResult}
-      aria-checked={isSelectedExprResult ? 'true' : 'false'}
+      aria-checked={isSelectedExprResult}
       onClick={isMultiple ? () => onClickMultiple(item) : () => onClickSingle(item)}>
       {isMultiple && <Checkbox isSelected={isSelected(item)} />}
       {item.label}
