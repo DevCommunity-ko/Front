@@ -30,6 +30,7 @@ export const ProjItem = (item: Props) => {
   };
 
   return (
+    // REMINDER : 현재 item.item.img가 임시값 'img'로 지정되어 있어 404 에러 발생함. 
     <Wrapper tabIndex={0} href={`detail/${item.item.id}`}>
       <ImageArea src={item.item.img} onError={handleSrcError} />
       <TextBlock>

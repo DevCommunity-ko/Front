@@ -11,40 +11,44 @@ export type dropdownItem = {
 type Props = {
   item: dropdownItem,
   isMultiple: boolean,
-  selectedValue: dropdownItem | undefined,
-  selectedValues: dropdownItem[],
+  selectedValue: dropdownItem | dropdownItem[] | undefined,
   setSelectedValue: CallableFunction,
   setShowMenu: CallableFunction,
 };
 
-export const DropdownMenuItem = ({ item, isMultiple, selectedValue, selectedValues, setSelectedValue, setShowMenu }: Props) => {
-  const onClickSingle = (item: dropdownItem) => {
-    setSelectedValue(item);
-    setShowMenu(false);
-  };
+export const DropdownMenuItem = ({ item, isMultiple, selectedValue, setSelectedValue, setShowMenu }: Props) => {
+  const isArray = Array.isArray(selectedValue);
 
-  const onClickMultiple = (item: dropdownItem) => {
-    isSelected(item) ?
-      setSelectedValue(selectedValues.filter(selected => selected.value !== item.value)) :
-      setSelectedValue((prev: dropdownItem[]) => [...prev, item]);
-  };
-
-  const isSelected = (target: dropdownItem) => {
-    for (let i = 0; i < selectedValues.length; i++) {
-      if (selectedValues[i].value === target.value) return true;
+  const onClick = (item: dropdownItem) => {
+    if (isArray) {
+      isSelected(item) ?
+        setSelectedValue(selectedValue.filter(selected => selected.value !== item.value)) :
+        setSelectedValue((prev: dropdownItem[]) => [...prev, item]);
+    } else {
+      setSelectedValue(item);
+      setShowMenu(false);
     }
-    return false;
   };
 
-  const isSelectedExprResult = isMultiple ? isSelected(item) : selectedValue?.value === item.value;
+  const isSelected = (target: dropdownItem): boolean => {
+    if (isArray) {
+      for (let i = 0; i < selectedValue.length; i++) {
+        if (selectedValue[i].value === target.value) return true;
+      }
+      return false;
+    }
+    return selectedValue?.value === item.value;
+  };
 
   return (
+    // REMINDER : 드롭다운 선택 즉시 submit을 통해 결과를 반영하도록 로직이 결정되면 type 속성을 재지정할 필요 있음
     <Wrapper
       isMultiple={isMultiple}
       role={isMultiple ? 'option' : 'checkbox'}
-      isSelected={isSelectedExprResult}
-      aria-checked={isSelectedExprResult}
-      onClick={isMultiple ? () => onClickMultiple(item) : () => onClickSingle(item)}>
+      isSelected={isSelected(item)}
+      aria-checked={isSelected(item)}
+      onClick={() => onClick(item)}
+      type={'button'}>
       {isMultiple && <Checkbox isSelected={isSelected(item)} />}
       {item.label}
     </Wrapper>

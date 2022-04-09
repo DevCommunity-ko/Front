@@ -19,9 +19,7 @@ type Props = {
 
 export const FilterDropdown = ({ item, defaultValue }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<dropdownItem | undefined>(undefined);
-  const [selectedValues, setSelectedValues] = useState<dropdownItem[]>([]);
-
+  const [selectedValue, setSelectedValue] = useState<dropdownItem | dropdownItem[] | undefined>(item.selectMultiple ? [] : undefined);
   const { setTarget } = useOutsideClick(setShowMenu);
 
   const showDropDownMenu = () => {
@@ -29,10 +27,10 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
   };
 
   useEffect(() => {
-    if (selectedValue || (selectedValues.length !== 0)) {
+    if (selectedValue) {
       // TODO : 백엔드에 새 쿼리를 송신해 리스트를 새로고침시킬 수 있는 구문을 추가해야 합니다.
     }
-  }, [selectedValue, selectedValues]);
+  }, [selectedValue]);
 
   useEffect(() => {
     defaultValue && setSelectedValue(defaultValue);
@@ -42,34 +40,25 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
     e.preventDefault();
   };
 
-  const getAriaLabelMultiple = (): string => {
-    let str = '';
-    selectedValues.map((item) => (str = str + item.label + ', '));
+  const valuedIsArray = Array.isArray(selectedValue);
 
-    return str;
+  const getAriaLabelMultiple = (): string => {
+    if (!valuedIsArray) return '';
+    return selectedValue.reduce((prev, curr) => `${prev}, ${curr.label}`, '');
   };
 
-  const ariaLabelValue = item.selectMultiple ? (
-    selectedValues.length === 0 ? undefined : `선택된 다중 항목 ${getAriaLabelMultiple()}`
-  ) : (
-    selectedValue ? `선택된 항목 ${selectedValue.label}` : undefined
-  );
+  const ariaLabelValue = valuedIsArray ? `선택된 다중 항목 ${getAriaLabelMultiple()}` :
+    (selectedValue ? `선택된 항목 ${selectedValue.label}` : undefined);
 
   return (
     <>
       <Wrapper aria-label={ariaLabelValue} ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0} onFocus={showDropDownMenu} >
         <ContentWrap onClick={showDropDownMenu} >
           <PlaceholderContainer isMultiple={item.selectMultiple} >
-            {item.selectMultiple ?
-              ((selectedValues.length === 0) ? item.placeholder :
-                (<>
-                  {selectedValues.map((item, index) => (
-                    <ItemsSelectedContainer key={index}>
-                      {item.label}
-                    </ItemsSelectedContainer>
-                  ))}</>
-                )) :
-              (selectedValue?.label ?? item.placeholder)}
+            {valuedIsArray ?
+              ((selectedValue.length === 0) ? item.placeholder : selectedValue.map((item, index) => (
+                <ItemsSelectedContainer key={index}> {item.label} </ItemsSelectedContainer>
+              ))) : selectedValue?.label ?? item.placeholder}
           </PlaceholderContainer>
           <DummyIndicator isMultiple={item.selectMultiple} />
         </ContentWrap>
@@ -78,12 +67,11 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
             {
               item.list.map((dItem) => (
                 <DropdownMenuItem
-                  item={dItem}
                   key={dItem.value}
+                  item={dItem}
                   isMultiple={item.selectMultiple}
                   selectedValue={selectedValue}
-                  selectedValues={selectedValues}
-                  setSelectedValue={item.selectMultiple ? setSelectedValues : setSelectedValue}
+                  setSelectedValue={setSelectedValue}
                   setShowMenu={setShowMenu} />
               ))
             }

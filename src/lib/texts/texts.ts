@@ -100,25 +100,31 @@ export const RegisterFormFieldItems = [
 ];
 
 export const projFilterData = {
-  field : {
+  field: {
     placeholder: '분야별',
     selectMultiple: false,
-    list: [{ value: 'web', label : 'Web' },
+    list: [
+      { value: 'web', label: 'Web' },
       { value: 'ios', label: 'iOS' },
-      { value: 'android', label : 'android' },
-      { value: 'etc', label: '기타' }],
+      { value: 'android', label: 'android' },
+      { value: 'etc', label: '기타' },
+    ],
   },
-  status : {
+  status: {
     placeholder: '상태별',
     selectMultiple: true,
-    list: [{ value: 'onIncruit', label : '팀원 모집중' },
-      { value: 'onDevelop', label : '개발중' },
+    list: [
+      { value: 'onIncruit', label: '팀원 모집중' },
+      { value: 'onDevelop', label: '개발중' },
       { value: 'onService', label: '운영중' },
-      { value: 'etc' , label : '기타' }],
+      { value: 'etc', label: '기타' },
+    ],
   },
   sortby: {
     selectMultiple: false,
-    list: [{ value: 'popular', label : '인기순' },
-      { value: 'newest', label : '최신순' }],
+    list: [
+      { value: 'popular', label: '인기순' },
+      { value: 'newest', label: '최신순' },
+    ],
   },
 };
