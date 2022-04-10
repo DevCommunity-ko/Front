@@ -40,14 +40,14 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
     e.preventDefault();
   };
 
-  const valuedIsArray = Array.isArray(selectedValue);
+  const isArray = Array.isArray(selectedValue);
 
   const getAriaLabelMultiple = (): string => {
-    if (!valuedIsArray) return '';
+    if (!isArray) return '';
     return selectedValue.reduce((prev, curr) => `${prev}, ${curr.label}`, '');
   };
 
-  const ariaLabelValue = valuedIsArray ? `선택된 다중 항목 ${getAriaLabelMultiple()}` :
+  const ariaLabelValue = isArray ? `선택된 다중 항목 ${getAriaLabelMultiple()}` :
     (selectedValue ? `선택된 항목 ${selectedValue.label}` : undefined);
 
   return (
@@ -55,7 +55,7 @@ export const FilterDropdown = ({ item, defaultValue }: Props) => {
       <Wrapper aria-label={ariaLabelValue} ref={setTarget} showMenu={showMenu} role={'select'} tabIndex={0} onFocus={showDropDownMenu} >
         <ContentWrap onClick={showDropDownMenu} >
           <PlaceholderContainer isMultiple={item.selectMultiple} >
-            {valuedIsArray ?
+            {isArray ?
               ((selectedValue.length === 0) ? item.placeholder : selectedValue.map((item, index) => (
                 <ItemsSelectedContainer key={index}> {item.label} </ItemsSelectedContainer>
               ))) : selectedValue?.label ?? item.placeholder}

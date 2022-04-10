@@ -33,7 +33,7 @@ export const DropdownMenuItem = ({ item, isMultiple, selectedValue, setSelectedV
   const isSelected = (target: dropdownItem): boolean => {
     if (isArray) {
       for (let i = 0; i < selectedValue.length; i++) {
-        if (selectedValue[i].value === target.value) return true;
+        return selectedValue.some((item) => item.value === target.value);
       }
       return false;
     }
