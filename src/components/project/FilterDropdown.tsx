@@ -135,7 +135,7 @@ const PlaceholderContainer = styled('div', {
   alignItems: 'center',
 
   fontSize: rem(14),
-  fontWeight: '$regular', // DEMILIGHT?
+  fontWeight: '$regular',
   color: '#ABA7AF',
   width: rem(96),
 
@@ -159,7 +159,7 @@ const ItemsSelectedContainer = styled('div', {
   backgroundColor: '#F5F3F7',
 
   fontSize: rem(14),
-  fontWeight: '$regular', // DEMILIGHT?
+  fontWeight: '$regular',
   color: '#1A141F',
 
   padding: `${rem(4)} ${rem(8)}`,

@@ -49,7 +49,7 @@ const StyledInput = styled('input', {
   '&::placeholder': {
     fontFamily: 'Noto Sans KR',
     fontSize: rem(14),
-    fontWeight: '$regular', //DemiLight?
+    fontWeight: '$regular',
     color: '#ABA7AF',
   },
 });

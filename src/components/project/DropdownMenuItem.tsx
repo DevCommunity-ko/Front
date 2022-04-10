@@ -69,7 +69,7 @@ const Wrapper = styled('button', {
   borderRight: '1px solid $line',
 
   color: '$darkGray',
-  fontWeight: '$regular', //DemiLight?
+  fontWeight: '$regular',
   fontSize: rem(14),
 
   '&:hover': {

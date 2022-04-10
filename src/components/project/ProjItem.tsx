@@ -125,7 +125,7 @@ const StyledType = styled('div', {
 
 const StyledTeamType = styled('div', {
   '&::after': {
-    fontWeight: '$regular', // DemiLight?
+    fontWeight: '$regular',
     fontSize: rem(14),
     content: '개인 프로젝트',
     color: '$crimson',
