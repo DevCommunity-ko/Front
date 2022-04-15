@@ -1,9 +1,10 @@
 import { rem } from 'polished';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { styled } from '../../lib/styles/stitches.config';
 
 export const SearchBox = () => {
+  const [isFocused, setIsFocused] = useState(false);
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
@@ -11,9 +12,9 @@ export const SearchBox = () => {
   };
 
   return (
-    <Wrapper onSubmit={onSubmit}>
+    <Wrapper onSubmit={onSubmit} isFocused={isFocused}>
       <SearchIcon />
-      <StyledInput placeholder='입력하세요' />
+      <StyledInput placeholder='입력하세요' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}/>
     </Wrapper>
   );
 };
@@ -28,6 +29,14 @@ const Wrapper = styled('form', {
 
   height: rem(45),
   width: rem(378),
+
+  variants: {
+    isFocused: {
+      true: {
+        border: '1px solid $purple',
+      },
+    },
+  },
 });
 
 // TODO : 검색 아이콘 에셋을 받은 뒤 교체되어야 합니다.
