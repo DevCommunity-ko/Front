@@ -8,12 +8,13 @@ export const AuthTemplate: React.FC = ({ children }) => {
 };
 
 const AuthTemplateBlock = styled('main', {
-  marginTop: rem(240), // 320 - 80(Header Height);
+  paddingTop: rem(80),
   display: 'flex',
   justifyContent: 'center',
+  boxSizing: 'border-box',
+  minHeight: '100%',
 
   '@laptop': {
-    marginTop: rem(110), // 190 - 80(Header Height);
   },
   '@mobileLarge': {
     width: '100%',

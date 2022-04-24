@@ -10,6 +10,7 @@ export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isButtonLogin, setIsButtonLogin] = useState(false);
   const [isProject, setIsProject] = useState(false);
+
   const user = '수민'; // TODO : Redux 연동 이후 Redux 형태에 맞게 사용할 수 있도록 변동 가능한 값으로 수정하기
 
   const router = useRouter();
@@ -25,6 +26,7 @@ export const Header = () => {
         setIsProject(true);
         break;
     }
+
     // isLoggedIn 상태 체크 구문
     /*
        TODO : Redux 연동 후 setIsLoggedIn() 구문 작성하기.
@@ -52,8 +54,8 @@ export const Header = () => {
             </MenuBlock>
             {isLoggedIn ?
               (<><HelloBlock>반가워요,&nbsp;<span>{user}</span>님</HelloBlock><PersonIconTemp /></>) :
-              (<Link href={isButtonLogin ? '/login' : '/register'} passHref={true}>
-                <LoginButton>{isButtonLogin ? '로그인' : '회원가입'}</LoginButton>
+              (<Link href={'/login'} passHref={true}>
+                <LoginButton>{'로그인'}</LoginButton>
               </Link>)}
           </div>
         </Wrapper>
@@ -92,7 +94,7 @@ const HeaderBlock = styled('header', {
   verticalAlign: 'middle',
   background: 'white',
   height: rem(80),
-  zIndex: '10', // 헤더보다 위는 10 이상, 헤더 아래는 10 이하를 사용할 수 있도록 임의의 기준값으로 '10'을 주었습니다. 
+  zIndex: '10', // 헤더보다 위는 10 이상, 헤더 아래는 10 이하를 사용할 수 있도록 임의의 기준값으로 '10'을 주었습니다.
 
   '@mobileLarge': {
     height: rem(50),
