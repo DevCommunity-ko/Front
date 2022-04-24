@@ -119,7 +119,7 @@ const InputLine = styled('div', {
   variants: {
     errorStatus: {
       true: {
-        borderBottom: '0.5px solid $alert',
+        borderBottom: '0.5px solid $crimson',
       },
     },
   },
@@ -143,7 +143,7 @@ const InputItem = styled('input', {
     errorStatus: {
       true: {
         '&::placeholder': {
-          color: '$alert',
+          color: '$crimson',
         },
       },
     },
@@ -187,7 +187,7 @@ const RoundButtonGender = styled('div', {
 const ErrorBox = styled('div', {
   float: 'right',
   fontSize: '1em',
-  color: '$alert',
+  color: '$crimson',
   fontWeight: '$regular',
   marginBottom: rem(20),
 });

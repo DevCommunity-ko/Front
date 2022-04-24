@@ -1,19 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { rem } from 'polished';
+import { useRouter } from 'next/router';
 
 import { styled } from '../../lib/styles/stitches.config';
 
+
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isButtonLogin, setIsButtonLogin] = useState(false);
+  const [isProject, setIsProject] = useState(false);
+
   const user = '수민'; // TODO : Redux 연동 이후 Redux 형태에 맞게 사용할 수 있도록 변동 가능한 값으로 수정하기
 
+  const router = useRouter();
+
   useEffect(() => {
+    // isButtonLogin 상태 체크 구문
+    const pathnames = router.pathname.split('/');
+    const lastPath = pathnames.pop() || pathnames.pop();
+    setIsButtonLogin(true);
+    switch (lastPath) {
+      case '':
+      case 'project':
+        setIsProject(true);
+        break;
+    }
+
     // isLoggedIn 상태 체크 구문
     /*
        TODO : Redux 연동 후 setIsLoggedIn() 구문 작성하기.
     */
   }, []);
+
+  const onClickNewProject = () => {
+    // No-op / TODO
+  };
 
   return (
     <>
@@ -23,6 +45,7 @@ export const Header = () => {
             <LogoTemp>로고</LogoTemp>
           </Link>
           <div className="right">
+            {isProject && isLoggedIn && <ButtonNewProject onClick={onClickNewProject}>프로젝트 등록</ButtonNewProject>}
             <MenuBlock>
               {/* 게시판 리스트 현재 확정되지 않고 변동 가능성 있어 하드코딩 해 두었습니다. */}
               <MenuItem>게시판</MenuItem>
@@ -204,4 +227,21 @@ const Spacer = styled('div', {
   '@mobileLarge': {
     display: 'none',
   },
+});
+
+const ButtonNewProject = styled('button', {
+  borderRadius: rem(20),
+  border: 'none',
+  width: rem(172),
+  height: rem(40),
+
+  backgroundColor: '$purple',
+  color: 'White',
+
+  fontSize: '$text',
+  fontWeight: 'medium',
+
+  marginRight: rem(40),
+
+  cursor: 'pointer',
 });

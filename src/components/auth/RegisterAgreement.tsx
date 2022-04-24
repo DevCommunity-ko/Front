@@ -129,7 +129,7 @@ const FormBlock = styled('form', {
 
 const SpacerWithErrorMsg = styled('div', {
   height: rem(40), // 60 - 20(CheckboxItem의 하단 여백)
-  color: '$alert',
+  color: '$crimson',
   textAlign: 'center',
   fontWeight: '$regular',
   lineHeight: rem(40),
